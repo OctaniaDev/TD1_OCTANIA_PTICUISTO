@@ -1,2 +1,9 @@
 # IGNORER LES PARAMÈTRES DE CONNEXION
 /php/param_connexion_etu.php
+param_connexion_etu.php
+
+
+# IGNORER LES PACKAGES
+package-lock.json
+package.json
+

@@ -1,12 +1,16 @@
-<?php
-    
+<!doctype html>
+<html>
 
-    include_once 'php/param_connexion_etu.php';
-    include_once 'php/pdo_agile.php';
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/dist/output.css" rel="stylesheet">
+</head>
 
-    $conn = OuvrirConnexionPDO($dbMySql,$db_username,$db_password);
+<body>
+    <?php
+        require_once'view/navbar.php';
+    ?>
+</body>
 
-    echo 'Vosu êtes connecté en tant que : '.$db_username.'<br>';
-
-
-?>
+</html>
