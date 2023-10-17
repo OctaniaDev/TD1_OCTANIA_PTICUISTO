@@ -3,7 +3,5 @@
 param_connexion_etu.php
 
 
-# IGNORER LES PACKAGES
-package-lock.json
-package.json
-
+# IGNORER LES DOSSIER NODE
+node_modules
