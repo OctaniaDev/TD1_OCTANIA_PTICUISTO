@@ -10,7 +10,6 @@ class Utilisateur {
     }
 
     public function connexion($username, $password) {
-        echo "SELECT UTI_PSEUDO, UTI_MDP FROM CUI_UTILISATEUR WHERE UTI_PSEUDO ='".$username."' AND UTI_MDP ='".$password."'";
         $sql = "SELECT UTI_PSEUDO, UTI_MDP FROM CUI_UTILISATEUR WHERE UTI_PSEUDO ='".$username."' AND UTI_MDP ='".$password."'";
         LireDonneesPDO1($this->connection,$sql,$tab);
         /*$hashedPassword = $stmt->fetchColumn();
@@ -21,13 +20,12 @@ class Utilisateur {
             return false; // Identifiants incorrects
         }*/
 
-        
-
+        $this->connction = null;
         if(isset($tab[0]["UTI_PSEUDO"]) && isset($tab[0]["UTI_MDP"])){
             echo $tab[0]["UTI_PSEUDO"];
             echo $tab[0]["UTI_MDP"];
             return true;
-        }
+        } 
         return false;
     }   
 }

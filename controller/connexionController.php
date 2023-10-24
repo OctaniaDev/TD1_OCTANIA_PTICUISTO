@@ -15,16 +15,18 @@ class ConnexionController extends controller {
             $this->getform();
         }
     }
+
     public function traiterConnexion($username, $password) {
         $utilisateur = new Utilisateur($this->connection);
         $estConnecte = $utilisateur->connexion($username, $password);
 
         if ($estConnecte) {
-            session_start();
-            $_SESSION['username'] = $estConnecte;
+            //session_start();
+            //$_SESSION['username'] = $estConnecte;
 
-            header("Location: ../view/accueil.php");
-            exit();
+            include './view/accueil.php';
+            //header("Location: ../view/accueil.php");
+            //exit();
         } else {
             $erreur = "Nom d'utilisateur ou mot de passe incorrect.";
             $this->getform();

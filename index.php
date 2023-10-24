@@ -21,4 +21,7 @@ if (isset($_GET['action'])) {
     echo 'non';
 }
 
+
+$connction = null;
+
 ?>
