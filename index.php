@@ -1,16 +1,27 @@
-<!doctype html>
-<html>
+<?php
+require_once('./model/param_connexion_etu.php');
+require_once('./model/pdo_agile.php');
+require_once('./model/utilisateurs.php');
+require_once('./controller/connexionController.php');
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/dist/output.css" rel="stylesheet">
-</head>
 
-<body>
-    <?php
-        require_once'view/navbar.php';
-    ?>
-</body>
+// $pdo = OuvrirConnexionPDO($db, $db_username, $db_password);
 
-</html>
+$connection = OuvrirConnexionPDO($db, $db_username, $db_password);
+
+
+if (isset($_GET['action'])) {
+    if($_GET['action'] == 'connexion'){
+        require_once './controller/connexionController.php';
+        $connexionController = new ConnexionController($connection);
+        $connexionController->choice();
+    }
+} else {
+    // $action = 'connexion';
+    echo 'non';
+}
+
+
+$connction = null;
+
+?>
