@@ -5,21 +5,20 @@ require_once('./model/utilisateurs.php');
 require_once('./controller/connexionController.php');
 
 
-$pdo = OuvrirConnexionPDO($db, $db_username, $db_password);
+// $pdo = OuvrirConnexionPDO($db, $db_username, $db_password);
 
-require_once('./view/navbar.php');
+$connection = OuvrirConnexionPDO($db, $db_username, $db_password);
+
+
+if (isset($_GET['action'])) {
+    if($_GET['action'] == 'connexion'){
+        require_once './controller/connexionController.php';
+        $connexionController = new ConnexionController($connection);
+        $connexionController->choice();
+    }
+} else {
+    // $action = 'connexion';
+    echo 'non';
+}
+
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PtiCuisto</title>
-
-    <link rel="stylesheet" href="./dist/output.css">
-</head>
-<body>
-    
-</body>
-</html>

@@ -1,23 +1,37 @@
 <?php
 
-    class ConnexionController {
-        private $pdo;
+include_once 'controller.php';
 
-        public function __construct($pdo) {
-            $this->pdo = $pdo;
-        }
+class ConnexionController extends controller {
 
-        public function traiterConnexion($username, $password) {
-            $utilisateur = new Utilisateur();
-            $estConnecte = $utilisateur->Connexion($username, $password);
+    public function __construct($connection) {
+        parent::__construct($connection);
+    }
 
-            if ($estConnecte) {
-                // header("Location: accueil.php");
-                exit();
-            } else {
-                $erreur = "Nom d'utilisateur ou mot de passe incorrect.";
-                include('./views/connexion.php');
-            }
+    public function choice() {
+        if(isset($_POST['username']) && isset($_POST['password'])) {
+            $this->traiterConnexion($_POST['username'], $_POST['password']);
+        } else {
+            $this->getform();
         }
     }
-?>
+    public function traiterConnexion($username, $password) {
+        $utilisateur = new Utilisateur($this->connection);
+        $estConnecte = $utilisateur->connexion($username, $password);
+
+        if ($estConnecte) {
+            session_start();
+            $_SESSION['username'] = $estConnecte;
+
+            header("Location: ../view/accueil.php");
+            exit();
+        } else {
+            $erreur = "Nom d'utilisateur ou mot de passe incorrect.";
+            $this->getform();
+        }
+    }
+
+    public function getform() {
+        include './view/connexion.php';
+    }
+}

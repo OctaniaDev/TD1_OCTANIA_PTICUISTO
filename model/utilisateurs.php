@@ -3,25 +3,32 @@ include_once 'param_connexion_etu.php';
 include_once 'pdo_agile.php';
 
 class Utilisateur {
-    private $pdo;
+    private $connection;
 
-    public function __construct() {
-        global $db, $db_username, $db_password;
-        $this->pdo = OuvrirConnexionPDO($db, $db_username, $db_password);
+    public function __construct($connection) {
+        $this->connection = $connection;
     }
 
-    public function Connexion($username, $password) {
-        $stmt = $this->pdo->prepare("SELECT UTI_MDP FROM CUI_UTILISATEUR WHERE UTI_PSEUDO = :username");
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-        $stmt->execute();
-
-        $hashedPassword = $stmt->fetchColumn();
-
+    public function connexion($username, $password) {
+        echo "SELECT UTI_PSEUDO, UTI_MDP FROM CUI_UTILISATEUR WHERE UTI_PSEUDO ='".$username."' AND UTI_MDP ='".$password."'";
+        $sql = "SELECT UTI_PSEUDO, UTI_MDP FROM CUI_UTILISATEUR WHERE UTI_PSEUDO ='".$username."' AND UTI_MDP ='".$password."'";
+        LireDonneesPDO1($this->connection,$sql,$tab);
+        /*$hashedPassword = $stmt->fetchColumn();
+    
         if ($hashedPassword && password_verify($password, $hashedPassword)) {
             return true;    
-        }
+        } else {
+            return false; // Identifiants incorrects
+        }*/
 
+        
+
+        if(isset($tab[0]["UTI_PSEUDO"]) && isset($tab[0]["UTI_MDP"])){
+            echo $tab[0]["UTI_PSEUDO"];
+            echo $tab[0]["UTI_MDP"];
+            return true;
+        }
         return false;
-    }
+    }   
 }
 ?>
