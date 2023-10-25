@@ -5,16 +5,15 @@
 </head>
 <body>
     <h1>Liste des recettes</h1>
-    <?php if (!empty($recettes)): ?>
-        <ul>
-            <?php foreach ($recettes as $recette): ?>
-                <li>
-                    <p><?php echo $recette['REC_TITRE']; ?></p>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    <?php else: ?>
-        <p>Aucune recette trouvée</p>
-    <?php endif; ?>
+    <?php
+        if (!empty($recettes)) {
+            echo '<ul>';
+                foreach ($recettes as $recette) {
+                    echo '<li><p>'.$recette['REC_TITRE'].'</p></li>';
+                }
+            echo '</ul>';
+        } else
+            echo '<p>Aucune recette trouvée</p>';
+    ?>
 </body>
 </html>

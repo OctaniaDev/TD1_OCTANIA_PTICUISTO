@@ -14,7 +14,7 @@
     }
     ?>
 
-    <form method="post" action="./index.php?action=connexion">
+    <form method="post" action="../index.php?action=connexion">
         <label for="username">Nom d'utilisateur :</label>
         <input type="text" id="username" name="username" required><br>
 

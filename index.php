@@ -2,6 +2,7 @@
 require_once('./model/param_connexion_etu.php');
 require_once('./model/pdo_agile.php');
 require_once('./model/utilisateurs.php');
+require_once('./model/recetteModel.php');
 require_once('./controller/connexionController.php');
 require_once('./controller/recetteController.php'); 
 
@@ -13,6 +14,12 @@ if (isset($_GET['action'])) {
         $connexionController = new ConnexionController($connection);
         $connexionController->choice();
     }
+    if ($_GET['action'] == 'voir_recettes') {
+        require_once './controller/recetteController.php';
+        $recetteController = new RecetteController($connection);
+        $recetteController->choice();
+    }
+
 } else {
     // $action = 'connexion';
     echo 'non';

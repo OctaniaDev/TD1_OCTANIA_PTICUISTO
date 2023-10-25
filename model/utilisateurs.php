@@ -1,4 +1,5 @@
 <?php
+
 include_once 'param_connexion_etu.php';
 include_once 'pdo_agile.php';
 
@@ -21,12 +22,7 @@ class Utilisateur {
         }*/
 
         $this->connction = null;
-        if(isset($tab[0]["UTI_PSEUDO"]) && isset($tab[0]["UTI_MDP"])){
-            echo $tab[0]["UTI_PSEUDO"];
-            echo $tab[0]["UTI_MDP"];
-            return true;
-        } 
-        return false;
+        return isset($tab[0]["UTI_PSEUDO"]) && isset($tab[0]["UTI_MDP"]);
     }   
 }
 ?>
