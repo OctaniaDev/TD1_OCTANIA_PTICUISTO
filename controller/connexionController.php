@@ -8,7 +8,7 @@ class ConnexionController extends controller {
         parent::__construct($connection);
     }
 
-    public function choice() {
+    public function choix() {
         if(isset($_POST['username']) && isset($_POST['password'])) {
             $this->traiterConnexion($_POST['username'], $_POST['password']);
         } else {
