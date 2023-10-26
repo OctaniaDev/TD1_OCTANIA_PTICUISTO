@@ -5,6 +5,7 @@ require_once('./model/utilisateurModel.php');
 require_once('./model/recetteModel.php');
 require_once('./controller/connexionController.php');
 require_once('./controller/recetteController.php'); 
+require_once('./controller/inscriptionController.php');
 
 $connection = OuvrirConnexionPDO($db, $db_username, $db_password);
 
@@ -16,6 +17,10 @@ if (isset($_GET['action'])) {
     if ($_GET['action'] == 'voir_recettes') {
         $recetteController = new RecetteController($connection);
         $recetteController->choix();
+    }
+    if($_GET['action'] == 'inscription'){
+        $inscriptionController = new InscriptionController($connection);
+        $inscriptionController->choix();
     }
 
 } else {

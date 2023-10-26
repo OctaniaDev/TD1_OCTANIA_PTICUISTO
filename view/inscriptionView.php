@@ -8,8 +8,7 @@
 <body>
     <h1>Inscription</h1>
 
-    <form method="post" action="">
-
+    <form method="post" action="./index.php?action=inscription">
         <label for="username">Nom :</label>
         <input type="text" id="nom" name="nom" required><br>
 
