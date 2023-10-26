@@ -34,6 +34,6 @@ class ConnexionController extends controller {
     }
 
     public function getform() {
-        include './view/connexion.php';
+        include './view/connexionView.php';
     }
 }
