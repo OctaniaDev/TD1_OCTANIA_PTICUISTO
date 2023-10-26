@@ -24,7 +24,7 @@ class ConnexionController extends controller {
             //session_start();
             //$_SESSION['username'] = $estConnecte;
 
-            include './view/accueil.php';
+            include './view/accueilView.php';
             //header("Location: ../view/accueil.php");
             //exit();
         } else {
