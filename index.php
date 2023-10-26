@@ -11,11 +11,11 @@ $connection = OuvrirConnexionPDO($db, $db_username, $db_password);
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'connexion') {
         $connexionController = new ConnexionController($connection);
-        $connexionController->choice();
+        $connexionController->choix();
     }
     if ($_GET['action'] == 'voir_recettes') {
         $recetteController = new RecetteController($connection);
-        $recetteController->choice();
+        $recetteController->choix();
     }
 
 } else {

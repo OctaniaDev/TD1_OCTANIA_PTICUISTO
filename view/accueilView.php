@@ -1,5 +1,5 @@
 <?php
-    require_once('./view/navbar.php');
+    require_once('./view/navbarView.php');
 ?>
 
 

@@ -77,11 +77,11 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#"
-                            class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Services</a>
+                        <a href="./index.php?action=voir_recettes"
+                            class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Nos Recettes</a>
                     </li>
                     <li>
-                        <a href="./view/connexion.php"
+                        <a href="./index.php?action=connexion"
                             class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Connexion</a>
                     </li>
                     <li>

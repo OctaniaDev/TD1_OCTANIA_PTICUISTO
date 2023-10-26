@@ -8,14 +8,27 @@ class RecetteController extends Controller {
         parent::__construct($connection);
     }
 
-    public function choice() {
-        $this->afficherRecette();
+    public function choix() {
+        if(isset($_GET['rec_id']))
+            $this->afficherRecette($_GET['rec_id']);
+        else
+            $this->afficherToutesRecettes();
+        
+        $this->connection = null;
     }
 
-    public function afficherRecette() {
+    public function afficherToutesRecettes() {
         $recetteModel = new RecetteModel($this->connection);
-        $recettes = $recetteModel->getAllRecettes();
+        $recettes = $recetteModel->recupererToutesRecettes();
         include './view/recetteView.php';
     }
+
+    public function afficherRecette($recId) {
+        $recetteModel = new RecetteModel($this->connection);
+        $recetteDetail = $recetteModel->recupererRecetteSimple($recId);
+        $ingredients = $recetteModel->recupererIngredientsRecette($recId);
+        include './view/recetteDetailView.php';
+    }
+
 }
 ?>
