@@ -13,12 +13,10 @@ if (isset($_GET['action'])) {
     if ($_GET['action'] == 'connexion') {
         $connexionController = new ConnexionController($connection);
         $connexionController->choix();
-    }
-    if ($_GET['action'] == 'voir_recettes') {
+    } elseif ($_GET['action'] == 'voir_recettes') {
         $recetteController = new RecetteController($connection);
         $recetteController->choix();
-    }
-    if($_GET['action'] == 'inscription'){
+    } elseif ($_GET['action'] == 'inscription'){
         $inscriptionController = new InscriptionController($connection);
         $inscriptionController->choix();
     }

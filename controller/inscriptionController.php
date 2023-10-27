@@ -10,7 +10,7 @@ class InscriptionController extends controller {
 
     
     public function choix() {
-        if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($POST['email']) && isset($_POST['pseudo']) && isset($_POST['password'])) {
+        if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['pseudo']) && isset($_POST['password'])) {
             $this->traiterInscription($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['pseudo'], $_POST['password']);
         } else {
             $this->getform();
