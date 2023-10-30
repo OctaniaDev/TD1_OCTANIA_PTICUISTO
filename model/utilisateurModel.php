@@ -21,8 +21,16 @@ class Utilisateur {
             return false; // Identifiants incorrects
         }*/
 
-        $this->connction = null;
+        $this->connection = null;
         return isset($tab[0]["UTI_PSEUDO"]) && isset($tab[0]["UTI_MDP"]);
-    }   
+    }
+
+
+    public function inscription($nom, $prenom, $email, $pseudo, $password) {
+        $sql = "INSERT INTO CUI_UTILISATEUR VALUES (null,2,1,'".$password."', '".$pseudo."', '".$email."', '".$prenom."','".$nom."',sysdate())";
+        $req = majDonneesPDO($this->connection,$sql);
+        $this->connection = null;
+        return $req;
+    }
 }
 ?>
