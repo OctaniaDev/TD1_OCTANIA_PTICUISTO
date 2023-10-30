@@ -11,4 +11,11 @@ class Compte {
     public function __construct ($connection){
         $this->connection = $connection;
     }
+
+    public function deleteUser($userId) {
+        $sql = "DELETE FROM CUI_UTILISATEUR WHERE id = :UTI_ID";
+        $req = majDonneesPDO($this->connection,$sql);
+        $this->connection = null;
+        return $req;
+    }
 }
