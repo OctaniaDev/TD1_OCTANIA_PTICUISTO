@@ -23,6 +23,9 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == 'supprimer_compte') {
         $compteController = new CompteController($connection);
         $compteController->traiterSuppression();
+    } elseif ($_GET['action'] == 'modifier_mot_de_passe') {
+        $compteController = new CompteController($connection);
+        $compteController->traiterModificationMotDePasse();
     }
 } else {
     // $action = 'connexion';
