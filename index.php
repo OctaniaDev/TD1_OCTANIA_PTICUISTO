@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(!isset($_SESSION['connecter']))
+    $_SESSION['connecter'] = 'non';
 
 require_once('./model/param_connexion_etu.php');
 require_once('./model/pdo_agile.php');;
@@ -15,6 +18,8 @@ require_once('./routes.php');
 
 if(array_key_exists($currentPath, $routes)) {
     if(!isset($_GET['action']))
+        require $routes[$currentPath];
+    else if($_GET['action'] == "deconnexion")
         require $routes[$currentPath];
     else
         $routes[$currentPath]->choix();

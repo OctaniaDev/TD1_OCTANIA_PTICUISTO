@@ -19,15 +19,12 @@ class ConnexionController extends controller {
 
     public function traiterConnexion($username, $password) {
         $utilisateur = new Utilisateur($this->connection);
-        $estConnecte = $utilisateur->connexion($username, $password);
-
-        if ($estConnecte) {
-            //session_start();
-            //$_SESSION['username'] = $estConnecte;
-
+        $tab = $utilisateur->connexion($username, $password);
+        if(isset($tab[0]["UTI_PSEUDO"]) && isset($tab[0]["UTI_MDP"])) {
+            $_SESSION['type_utilisateur'] = $tab[0]['TYPE_LIBELLE'];
+            $_SESSION['connecter'] = 'oui';
             require $GLOBALS['root'] . 'view/accueilView.php';
-            //header("Location: ../view/accueil.php");
-            //exit();
+            exit();
         } else {
             echo "Nom d'utilisateur ou mot de passe incorrect.";
             $this->getform();

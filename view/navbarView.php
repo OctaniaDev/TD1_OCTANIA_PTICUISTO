@@ -81,9 +81,20 @@
                             class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Nos Recettes</a>
                     </li>
                     <li>
-                        <a href="./index.php?action=connexion"
-                            class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Connexion</a>
+                        <?php 
+                        if($_SESSION['connecter'] != 'oui')
+                            echo '<a href="./index.php?action=connexion" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Connexion</a>';
+                        else
+                            echo '<a href="./index.php?action=deconnexion"
+                            class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Deconnexion</a>';
+
+                        ?>
                     </li>
+                    <?php if($_SESSION['connecter'] != 'oui')
+
+                    echo '<li><a href="./index.php?action=inscription" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Inscription</a></li>';
+
+                    ?>
                     <li>
                         <a href="#"
                             class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Contact</a>
