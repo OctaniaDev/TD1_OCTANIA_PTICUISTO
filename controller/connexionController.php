@@ -22,12 +22,9 @@ class ConnexionController extends controller {
         $estConnecte = $utilisateur->connexion($username, $password);
 
         if ($estConnecte) {
-            //session_start();
-            //$_SESSION['username'] = $estConnecte;
-
+            $_SESSION['connecter'] = 'oui';
             require $GLOBALS['root'] . 'view/accueilView.php';
-            //header("Location: ../view/accueil.php");
-            //exit();
+            exit();
         } else {
             echo "Nom d'utilisateur ou mot de passe incorrect.";
             $this->getform();
