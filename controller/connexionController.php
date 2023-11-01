@@ -29,7 +29,7 @@ class ConnexionController extends controller {
             //header("Location: ../view/accueil.php");
             //exit();
         } else {
-            $erreur = "Nom d'utilisateur ou mot de passe incorrect.";
+            echo "Nom d'utilisateur ou mot de passe incorrect.";
             $this->getform();
         }
     }
