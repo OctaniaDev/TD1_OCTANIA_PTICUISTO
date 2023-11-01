@@ -20,8 +20,8 @@ class InscriptionController extends controller {
 
     public function traiterInscription($nom, $prenom, $email, $pseudo, $password) {
         $utilisateur = new Utilisateur($this->connection);
-        $pasinscrit = $utilisateur->inscription($nom, $prenom, $email, $pseudo, $password);
-        if($pasinscrit) {
+        $inscrit = $utilisateur->inscription($nom, $prenom, $email, $pseudo, $password);
+        if($inscrit) {
             require $GLOBALS['root'] . 'view/connexionView.php';
         } else {
             echo "Client déjà inscrit !";
