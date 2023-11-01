@@ -14,7 +14,6 @@ class CompteController extends controller {
     public function choix() {        
         if ($_SESSION['connecter'] === 'oui' && isset($_SESSION['id_utilisateur'])) {
             $accountInfo = $this->traiterInformationsCompte($_SESSION['id_utilisateur']);
-            require $GLOBALS['root'] . 'view/compteView.php';
         } else {
             require $GLOBALS['root'] . 'view/connexionView.php';
         }
@@ -29,7 +28,7 @@ class CompteController extends controller {
         return $accountInfo;
     }
 
-    /*
+    
     public function traiterSuppression() {
         if (isset($_SESSION['user_id'])) {
             $userId = $_SESSION['user_id']; 
@@ -46,7 +45,7 @@ class CompteController extends controller {
         }
     }
 
-
+    /*
     public function traiterModificationMotDePasse() {
         if (isset($_SESSION['user_id'])) {
             $userId = $_SESSION['user_id'];

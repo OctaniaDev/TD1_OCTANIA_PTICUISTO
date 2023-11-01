@@ -13,6 +13,7 @@ $routes = [
 	'/index.php?action=voir_recettes' => new RecetteController($connection),
 	'/index.php?action=inscription' => new InscriptionController($connection),
 	'/index.php?action=compte' => new compteController($connection),
+	'/index.php?action=supprimer_compte' => new compteController($connection),
 ];
 
 ?>
