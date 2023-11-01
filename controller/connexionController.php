@@ -21,6 +21,7 @@ class ConnexionController extends controller {
         $utilisateur = new Utilisateur($this->connection);
         $tab = $utilisateur->connexion($username, $password);
         if(isset($tab[0]["UTI_PSEUDO"]) && isset($tab[0]["UTI_MDP"])) {
+            $_SESSION['id_utilisateur'] = ['UTI_ID'];
             $_SESSION['type_utilisateur'] = $tab[0]['TYPE_LIBELLE'];
             $_SESSION['connecter'] = 'oui';
             require $GLOBALS['root'] . 'view/accueilView.php';
