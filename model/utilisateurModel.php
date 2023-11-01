@@ -1,8 +1,5 @@
 <?php
 
-include_once 'param_connexion_etu.php';
-include_once 'pdo_agile.php';
-
 class Utilisateur {
     private $connection;
 
@@ -21,7 +18,7 @@ class Utilisateur {
             return false; // Identifiants incorrects
         }*/
 
-        $this->connction = null;
+        $this->connection = null;
         return isset($tab[0]["UTI_PSEUDO"]) && isset($tab[0]["UTI_MDP"]);
     }   
 }

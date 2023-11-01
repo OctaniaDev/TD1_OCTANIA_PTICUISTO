@@ -1,6 +1,7 @@
 <?php
 
-include_once 'controller.php';
+require_once 'controller.php';
+require_once($GLOBALS['root'] . 'model/recetteModel.php');
 
 class RecetteController extends Controller {
 
@@ -20,14 +21,14 @@ class RecetteController extends Controller {
     public function afficherToutesRecettes() {
         $recetteModel = new RecetteModel($this->connection);
         $recettes = $recetteModel->recupererToutesRecettes();
-        include './view/recetteView.php';
+        require $GLOBALS['root'] . 'view/recetteView.php';
     }
 
     public function afficherRecette($recId) {
         $recetteModel = new RecetteModel($this->connection);
         $recetteDetail = $recetteModel->recupererRecetteSimple($recId);
         $ingredients = $recetteModel->recupererIngredientsRecette($recId);
-        include './view/recetteDetailView.php';
+        require $GLOBALS['root'] . 'view/recetteDetailView.php';
     }
 
 }

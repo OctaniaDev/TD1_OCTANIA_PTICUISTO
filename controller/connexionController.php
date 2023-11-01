@@ -1,6 +1,7 @@
 <?php
 
 include_once 'controller.php';
+require_once $GLOBALS['root'] . 'model/utilisateurModel.php';
 
 class ConnexionController extends controller {
 
@@ -24,7 +25,7 @@ class ConnexionController extends controller {
             //session_start();
             //$_SESSION['username'] = $estConnecte;
 
-            include './view/accueilView.php';
+            require $GLOBALS['root'] . 'view/accueilView.php';
             //header("Location: ../view/accueil.php");
             //exit();
         } else {
@@ -34,6 +35,6 @@ class ConnexionController extends controller {
     }
 
     public function getform() {
-        include './view/connexionView.php';
+        require $GLOBALS['root'] . 'view/connexionView.php';
     }
 }
