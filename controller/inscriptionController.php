@@ -1,6 +1,7 @@
 <?php
 
 include_once 'controller.php';
+require_once $GLOBALS['root'] . 'model/utilisateurModel.php';
 
 class InscriptionController extends controller {
 
@@ -21,7 +22,7 @@ class InscriptionController extends controller {
         $utilisateur = new Utilisateur($this->connection);
         $pasinscrit = $utilisateur->inscription($nom, $prenom, $email, $pseudo, $password);
         if($pasinscrit) {
-            include './view/connexionView.php';
+            require $GLOBALS['root'] . 'view/connexionView.php';
         } else {
             echo "Client déjà inscrit !";
             $this->getform();
@@ -29,6 +30,6 @@ class InscriptionController extends controller {
     }
 
     public function getform() {
-        include './view/inscriptionView.php';
+        require $GLOBALS['root'] . 'view/inscriptionView.php';
     }
 }
