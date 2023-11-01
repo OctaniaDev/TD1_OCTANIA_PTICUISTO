@@ -8,7 +8,7 @@ class Utilisateur {
     }
 
     public function connexion($username, $password) {
-        $sql = "SELECT UTI_PSEUDO, UTI_MDP, TYPE_LIBELLE FROM CUI_UTILISATEUR JOIN CUI_TYPE_UTILISATEUR USING(TYPE_iD) WHERE UTI_PSEUDO ='".$username."' AND UTI_MDP = '". md5($password) ."'";
+        $sql = "SELECT UTI_PSEUDO, UTI_MDP, TYPE_LIBELLE, UTI_ID FROM CUI_UTILISATEUR JOIN CUI_TYPE_UTILISATEUR USING(TYPE_iD) WHERE UTI_PSEUDO ='".$username."' AND UTI_MDP = '". md5($password) ."'";
         LireDonneesPDO1($this->connection,$sql,$tab);
         $this->connection = null;
         return $tab;
