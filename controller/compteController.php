@@ -30,11 +30,9 @@ class CompteController extends controller {
 
     
     public function traiterSuppression() {
-        if (isset($_SESSION['user_id'])) {
-            $userId = $_SESSION['user_id']; 
-
+        if (isset($_SESSION['id_utilisateur'])) {
+            $userId = $_SESSION['id_utilisateur']; 
             $result = $this->compteModel->deleteUser($userId);
-
             if ($result) {
                 require $GLOBALS['root'] . 'view/accueilView.php';
             } else {
@@ -45,10 +43,9 @@ class CompteController extends controller {
         }
     }
 
-    /*
     public function traiterModificationMotDePasse() {
-        if (isset($_SESSION['user_id'])) {
-            $userId = $_SESSION['user_id'];
+        if (isset($_SESSION['id_utilisateur'])) {
+            $userId = $_SESSION['id_utilisateur'];
             
             if (isset($_POST['nouveau_mot_de_passe']) && !empty($_POST['nouveau_mot_de_passe'])) {
                 $nouveauMotDePasse = $_POST['nouveau_mot_de_passe'];
@@ -64,5 +61,5 @@ class CompteController extends controller {
         } else {
             require $GLOBALS['root'] . 'view/accueilView.php';
         }
-    }*/
+    }
 }

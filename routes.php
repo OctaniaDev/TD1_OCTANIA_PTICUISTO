@@ -14,6 +14,7 @@ $routes = [
 	'/index.php?action=inscription' => new InscriptionController($connection),
 	'/index.php?action=compte' => new compteController($connection),
 	'/index.php?action=supprimer_compte' => new compteController($connection),
+	'/index.php?action=modifier_mot_de_passe' => new compteController($connection),
 ];
 
 ?>
