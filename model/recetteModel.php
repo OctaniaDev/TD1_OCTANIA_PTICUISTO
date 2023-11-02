@@ -9,13 +9,13 @@ class RecetteModel {
 
 
     public function recupererToutesRecettes() {
-        $sql = "SELECT * FROM CUI_RECETTE";
+        $sql = "SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID)";
         LireDonneesPDO1($this->connection, $sql, $tab);
         return $tab;
     }
 
     public function recupererRecetteSimple($recId) {
-        $sql = 'SELECT * FROM CUI_RECETTE WHERE rec_id ='.$recId;
+        $sql = 'SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID) WHERE rec_id ='.$recId;
         LireDonneesPDO1($this->connection, $sql, $tab);
         return $tab;
     }
