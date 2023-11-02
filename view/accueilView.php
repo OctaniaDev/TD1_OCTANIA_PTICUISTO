@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="./dist/output.css">
 </head>
 <body>
-    
+    <?php
+        if(isset($_SESSION['type_utilisateur'])) {
+            echo '<p>'.$_SESSION['type_utilisateur'].'</p>';
+        }
+    ?>
 </body>
 </html>

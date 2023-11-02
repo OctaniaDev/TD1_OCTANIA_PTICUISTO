@@ -1,6 +1,7 @@
 <?php
 
 include_once 'controller.php';
+require_once $GLOBALS['root'] . 'model/utilisateurModel.php';
 
 class ConnexionController extends controller {
 
@@ -18,22 +19,20 @@ class ConnexionController extends controller {
 
     public function traiterConnexion($username, $password) {
         $utilisateur = new Utilisateur($this->connection);
-        $estConnecte = $utilisateur->connexion($username, $password);
-
-        if ($estConnecte) {
-            //session_start();
-            //$_SESSION['username'] = $estConnecte;
-
-            include './view/accueilView.php';
-            //header("Location: ../view/accueil.php");
-            //exit();
+        $tab = $utilisateur->connexion($username, $password);
+        if(isset($tab[0]["UTI_PSEUDO"]) && isset($tab[0]["UTI_MDP"])) {
+            $_SESSION['id_utilisateur'] = $tab[0]['UTI_ID'];
+            $_SESSION['type_utilisateur'] = $tab[0]['TYPE_LIBELLE'];
+            $_SESSION['connecter'] = 'oui';
+            require $GLOBALS['root'] . 'view/accueilView.php';
+            exit();
         } else {
-            $erreur = "Nom d'utilisateur ou mot de passe incorrect.";
+            echo "Nom d'utilisateur ou mot de passe incorrect.";
             $this->getform();
         }
     }
 
     public function getform() {
-        include './view/connexionView.php';
+        require $GLOBALS['root'] . 'view/connexionView.php';
     }
 }
