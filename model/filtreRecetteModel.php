@@ -1,8 +1,5 @@
 <?php 
 
-include_once 'param_connexion_etu.php';
-include_once 'pdo_agile.php';
-
 class filtreRecetteModel {
     private $connection;
 
@@ -10,14 +7,14 @@ class filtreRecetteModel {
         $this->connection = $connection;
     }
 
-    public function filtrerRecetteParCategorie($catId) {
-        $sql = 'Select * from CUI_RECETTE where cat_id ='.$catId;
+    public function filtrerRecetteParCategorie($TypeCategorie) {
+        $sql = "SELECT * FROM CUI_RECETTE WHERE CAT_ID =".$TypeCategorie;
         LireDonneesPDO1($this->connection, $sql, $tab);
         return $tab;
     }
 
-    public function filtrerRecetteParTitre($motChercher) {
-        $sql = "Select * from CUI_RECETTE where REC_TITRE LIKE'%".$motChercher."%'";
+    public function filtrerRecetteParTitre($motCherche) {
+        $sql = "SELECT * FROM CUI_RECETTE WHERE upper(trim(REC_TITRE)) LIKE upper(trim('%".$motCherche."%'))";
         LireDonneesPDO1($this->connection, $sql, $tab);
         return $tab;
     }

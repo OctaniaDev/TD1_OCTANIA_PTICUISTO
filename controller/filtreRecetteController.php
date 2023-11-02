@@ -1,33 +1,34 @@
 <?php
 
-include_once 'controller.php';
+require_once 'controller.php';
+require_once($GLOBALS['root'] . 'model/filtreRecetteModel.php');
 class filtreRecetteController extends Controller {
     public function __construct($connection) {
         parent::__construct($connection);
     }
     
-    public function choixFiltre() {
-        if(isset($_GET['catId'])) {
-            $this->afficherToutesRecettesParCategorie($_GET['catId']);
+    public function choix() {
+        if(isset($_GET['type_categorie'])) {
+            $this->afficherToutesRecettesParCategorie($_GET['type_categorie']);
         }
-        if(isset($_GET['motChercher'])){
-            $this->afficherToutesRecettesParMot($_GET['motChercher']);
+        if(isset($_POST['motCherche'])){
+            $this->afficherToutesRecettesParMot($_POST['motCherche']);
         }
         else
-            $this->connection = null;
+            echo'probleme';
         $this->connection = null;
     }
 
     public function afficherToutesRecettesParCategorie($catId) {
         $filtreRecetteModel = new filtreRecetteModel($this->connection);
         $recettes = $filtreRecetteModel->filtrerRecetteParCategorie($catId);
-        include './view/recetteView.php';
+        require $GLOBALS['root'] . 'view/recetteView.php';
     }
 
     public function afficherToutesRecettesParMot($motChercher) {
         $filtreRecetteModel = new filtreRecetteModel($this->connection);
         $recettes = $filtreRecetteModel->filtrerRecetteParTitre($motChercher);
-        include './view/recetteView.php';
+        require $GLOBALS['root'] . 'view/recetteView.php';
     }
 }
 ?>
