@@ -38,7 +38,7 @@ class CompteController extends Controller {
         $userId = $_SESSION['id_utilisateur'];
         $compteModel = new Compte($this->connection);
         $result = $compteModel->deleteUser($userId);
-        require $GLOBALS['root'] . 'view/accueilView.php';
+        echo '<script>location.replace("./index.php?action=deconnexion");</script>';  
         return $result;
     }
 
@@ -46,6 +46,7 @@ class CompteController extends Controller {
         $nouveauMotDePasse = $_POST['nouveau_mot_de_passe'];
         $compteModel = new Compte($this->connection);
         $result = $compteModel->modifierMotDePasse($_SESSION['id_utilisateur'], $nouveauMotDePasse);
+        echo '<script>location.replace("./index.php?action=deconnexion");</script>';
         return $result;
     }
 }
