@@ -17,10 +17,12 @@ class Compte {
     }
     
     
+    
     public function deleteUser($userId) {
-        $sql = "DELETE FROM CUI_UTILISATEUR WHERE UTI_ID = :userId";
+        $sql = "DELETE FROM CUI_UTILISATEUR WHERE UTI_ID =" . $userId;
         $req = majDonneesPDO($this->connection,$sql);
         $this->connection = null;
+        echo $sql;
         return $req;
     }
     public function modifierMotDePasse($userId, $nouveauMotDePasse) {
@@ -30,8 +32,10 @@ class Compte {
         ajouterParamPDO($cur, ':motDePasse', $motDePasseHache);
         ajouterParamPDO($cur, ':userId', $userId, 'nombre');
         $req = majDonneesPrepareesPDO($cur);
+        echo $sql;
         return $req;
     }
+    
     
     
     

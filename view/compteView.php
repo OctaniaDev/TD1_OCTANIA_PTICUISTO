@@ -18,6 +18,8 @@
         <input type="password" name="confirmation_mot_de_passe" required>
         <input type="submit" name="modifier_mot_de_passe" value="Modifier le mot de passe">
     </form>
+
+
     <p>Email :
         <?php echo $accountInfo['UTI_EMAIL']; ?>
     </p>
@@ -30,7 +32,6 @@
     <p>Date d'inscription :
         <?php echo $accountInfo['UTI_DATE_INSCRIPTION']; ?>
     </p>
-
 
 
     <form method="post" action="/index.php?action=supprimer_compte">
