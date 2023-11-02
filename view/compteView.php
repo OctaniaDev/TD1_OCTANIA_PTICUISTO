@@ -11,7 +11,7 @@
     <p>Pseudo :
         <?php echo $accountInfo['UTI_PSEUDO']; ?>
     </p>
-    <form method="post" action="/index?action=modifier_mot_de_passe">
+    <form method="post" action="/index.php?action=modifier_mot_de_passe">
         <label for="nouveau_mot_de_passe">Nouveau mot de passe :</label>
         <input type="password" name="nouveau_mot_de_passe" required>
         <label for="confirmation_mot_de_passe">Confirmer le nouveau mot de passe :</label>
