@@ -17,9 +17,6 @@ class Compte {
     }
     
     
-    
-    
-
     public function deleteUser($userId) {
         $sql = "DELETE FROM CUI_UTILISATEUR WHERE UTI_ID = :userId";
         $req = majDonneesPDO($this->connection,$sql);
