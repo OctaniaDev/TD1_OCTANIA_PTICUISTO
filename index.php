@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION['commencer'])) {
+    session_start();
+    $_SESSION['commencer'] = true;
+}
 if(!isset($_SESSION['connecter']))
     $_SESSION['connecter'] = 'non';
 
@@ -21,8 +24,11 @@ if(array_key_exists($currentPath, $routes)) {
         require $routes[$currentPath];
     else if($_GET['action'] == "deconnexion")
         require $routes[$currentPath];
-    else
+    else {
+        if($_GET['action'] != "voir_recettes")
+            $_POST['nombre_recette'] = 2;
         $routes[$currentPath]->choix();
+    }
 } else
     require $ROOT . 'view/erreur404View.php';
 
