@@ -24,11 +24,8 @@ if(array_key_exists($currentPath, $routes)) {
         require $routes[$currentPath];
     else if($_GET['action'] == "deconnexion")
         require $routes[$currentPath];
-    else {
-        if($_GET['action'] != "voir_recettes")
-            $_POST['nombre_recette'] = 2;
+    else
         $routes[$currentPath]->choix();
-    }
 } else
     require $ROOT . 'view/erreur404View.php';
 

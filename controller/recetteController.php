@@ -21,13 +21,7 @@ class RecetteController extends Controller {
     public function afficherToutesRecettes() {
         $recetteModel = new RecetteModel($this->connection);
         $recettes = $recetteModel->recupererToutesRecettes();
-
-        if(!isset($_POST['nombre_recette'])) {
-            $_POST['nombre_recette'] = 2;
-        }
-        echo $_POST['nombre_recette'];
         require $GLOBALS['root'] . 'view/recetteView.php';
-        $_POST['nombre_recette'] = $_POST['nombre_recette'] + 2;
     }
 
     public function afficherRecette($recId) {

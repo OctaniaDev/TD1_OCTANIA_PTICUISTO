@@ -12,9 +12,11 @@
                 echo '<p>'.$recette['REC_CONTENU'].'</p>';
             }
             echo '<p>Liste ingredients :</p><ul>';
-                foreach ($ingredients as $ingredient) {
+            if(isset($ingredient)) {
+                foreach ($ingredients as $ingredient)
                     echo '<li><p>'.$ingredient['ING_INTITULE'].'</p></li>';
-                }
+            } else
+                echo "pas d'ingredients (à faire)";
             echo '</ul>';
             
         } else
