@@ -28,6 +28,7 @@ class RecetteController extends Controller {
         $recetteModel = new RecetteModel($this->connection);
         $recetteDetail = $recetteModel->recupererRecetteSimple($recId);
         $ingredients = $recetteModel->recupererIngredientsRecette($recId);
+        $commentaires = $recetteModel->recupererCommentairesRecette($recId);
         require $GLOBALS['root'] . 'view/recetteDetailView.php';
     }
 

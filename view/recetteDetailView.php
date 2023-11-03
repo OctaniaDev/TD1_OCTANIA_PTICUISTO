@@ -18,7 +18,17 @@
             } else
                 echo "pas d'ingredients (à faire)";
             echo '</ul>';
-            
+            echo '<p>Commentaires : </p>';
+            if(isset($commentaires)) {
+                echo '<div>';
+                foreach ($commentaires as $commentaire){
+                    echo '<div><h4>'.$commentaire['UTI_PSEUDO'].'</h4>';
+                    if($commentaire['COM_STATUS'] != 1)
+                        echo '<p>en attente</p>';
+                    echo '<p>'.$commentaire['COM_COMMENTAIRE'].'</p></div>';
+                }
+                echo '</div>';
+            }
         } else
             echo '<p>Aucune recette trouvée</p>';
     ?>

@@ -21,7 +21,16 @@ class RecetteModel {
     }
 
     public function recupererIngredientsRecette($recId) {
-        $sql = 'SELECT * FROM CUI_INGREDIENT JOIN CUI_CONTENIR USING (ING_ID) where REC_ID ='.$recId;
+        $sql = 'SELECT * FROM CUI_INGREDIENT JOIN CUI_CONTENIR USING (ING_ID) WHERE REC_ID ='.$recId;
+        LireDonneesPDO1($this->connection, $sql, $tab);
+        return $tab;
+    }
+
+    public function recupererCommentairesRecette($recId) {
+        if($_SESSION['connecter'] == 'oui')
+            $sql = 'SELECT * FROM CUI_COMMENTAIRE JOIN CUI_UTILISATEUR USING(UTI_ID) WHERE REC_ID = '.$recId.' AND ( COM_STATUS = 1 || UTI_ID = '. $_SESSION['id_utilisateur'].')';
+        else
+            $sql = 'SELECT * FROM CUI_COMMENTAIRE JOIN CUI_UTILISATEUR USING(UTI_ID) WHERE REC_ID = '.$recId.' AND COM_STATUS = 1';
         LireDonneesPDO1($this->connection, $sql, $tab);
         return $tab;
     }
