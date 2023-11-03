@@ -23,18 +23,27 @@
 		<fieldset>
 			<legend>choisissez une categorie</legend>
 			<div>
-				<label for="entree-recette">entree</label></p>
+				<label for="entree-recette">entree</label>
 				<input id="entree-recette" value="1" type="radio" name="categorie_recette">
 			</div>
 			<div>
-				<label for="plat-recette">plat</label></p>
+				<label for="plat-recette">plat</label>
 				<input id="plat-recette" value="2" type="radio" name="categorie_recette">
 			</div>
 			<div>
-				<label for="dessert-recette">dessert</label></p>
+				<label for="dessert-recette">dessert</label>
 				<input id="dessert-recette" value="3" type="radio" name="categorie_recette">
 			</div>
 		</fieldset>
+
+		<div><?php
+			if(!empty($ingredients)) {
+				foreach($ingredients as $ingredient) {
+					echo '<div><label for="'.$ingredient['ING_INTITULE'].'-recette-recette">'.$ingredient['ING_INTITULE'].'</label>';
+					echo '<input id="'.$ingredient['ING_INTITULE'].'-recette" value="'.$ingredient['ING_INTITULE'].'" type="checkbox" name="ingredients_recette"></div>';
+				}
+			}
+		?></div>
 		<div>
 			<input placeholder="choisir une image" type="file" id="image-recette" name="image_recette" accept="image/*">
 		</div>

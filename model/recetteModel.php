@@ -23,6 +23,13 @@ class RecetteModel {
         return $tab;
     }
 
+    public function recupererIngredients() {
+        $req = 'SELECT ING_INTITULE FROM CUI_INGREDIENT';
+        $cur = preparerRequetePDO($this->connection, $req);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
+
     public function recupererIngredientsRecette($recId) {
         $req = 'SELECT * FROM CUI_INGREDIENT JOIN CUI_CONTENIR USING (ING_ID) WHERE REC_ID = :recId';
         $cur = preparerRequetePDO($this->connection, $req);

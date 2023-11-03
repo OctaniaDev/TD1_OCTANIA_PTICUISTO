@@ -10,6 +10,7 @@ class AjoutRecetteController extends Controller {
     }
 
     public function choix() {
+		$ingredients = $this->recuperIngredient();
 		if(!isset($_POST['titre_recette']) && $_SESSION['connecter'] == 'oui') {
 			require $GLOBALS['root'] . 'view/ajoutRecetteView.php';
 		} else {
@@ -28,12 +29,17 @@ class AjoutRecetteController extends Controller {
 		if(!isset($_POST['contenu_recette'])) return false;
 		if(!isset($_POST['resume_recette'])) return false;
 		if(!isset($_POST['categorie_recette'])) return false;
+		if(!isset($_POST['ingredients_recette'])) return false;
 		//if(!isset($_POST['image_recette'])) return false;
-		//if(!isset($_POST['ingredients_recette'])) return false;
 		//if(!isset($_POST['tags_recette'])) return false;
 		$recetteModel = new RecetteModel($this->connection);
 		$res = $recetteModel->insererRecette($_POST['titre_recette'], $_POST['contenu_recette'], $_POST['resume_recette'], $_POST['categorie_recette']);
 		return $res;
+	}
+
+	public function recuperIngredient() {
+		$recetteModel = new RecetteModel($this->connection);
+		return $recetteModel->recupererIngredients();
 	}
 }
 ?>
