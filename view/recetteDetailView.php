@@ -12,7 +12,7 @@ if (!empty($recetteDetail)) {
         echo '<p>'.$recette['REC_CONTENU'].'</p>';
     }
     echo '<p>Liste ingredients :</p>';
-    if(isset($ingredient)) {
+    if(!empty($ingredients)) {
         echo '<ul>';
         foreach ($ingredients as $ingredient)
             echo '<li><p>'.$ingredient['ING_INTITULE'].'</p></li>';
@@ -31,13 +31,13 @@ if (!empty($recetteDetail)) {
 <?php
     }
     echo '<p>Commentaires : </p>';
-    if(isset($commentaires)) {
+    if(!empty($commentaires)) {
         echo '<div>';
         foreach ($commentaires as $commentaire){
-            echo '<div><h4>'.$commentaire['UTI_PSEUDO'].'</h4>';
+            echo '<div><p>'.$commentaire['UTI_PSEUDO'];
             if($commentaire['COM_STATUS'] != 1)
-                echo '<p>en attente</p>';
-            echo '<p>'.$commentaire['COM_COMMENTAIRE'].'</p></div>';
+                echo ' | en attente de validité';
+            echo '</p><p>'.$commentaire['COM_COMMENTAIRE'].'</p></div>';
         }
         echo '</div>';
     }

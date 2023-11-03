@@ -25,13 +25,11 @@ class RecetteController extends Controller {
 
     public function afficherRecette($recId) {
         $recetteModel = new RecetteModel($this->connection);
+        if(isset($_POST['texte_commentaire']) && $_SESSION['connecter'] == 'oui' && !empty($_POST['texte_commentaire']))
+            $recetteModel->insererCommentaire($recId, trim($_POST['texte_commentaire']), $_SESSION['id_utilisateur']);
         $recetteDetail = $recetteModel->recupererRecetteSimple($recId);
         $ingredients = $recetteModel->recupererIngredientsRecette($recId);
         $commentaires = $recetteModel->recupererCommentairesRecette($recId);
-        if(isset($_POST['texte_commentaire']) && $_SESSION['connecter'] == 'oui' && !empty($_POST['texte_commentaire'])) {
-            $recetteModel->insererCommentaire($recId, trim($_POST['texte_commentaire']), $_SESSION['id_utilisateur']);
-            sleep(2);
-        }
         require $GLOBALS['root'] . 'view/recetteDetailView.php';
     }
 
