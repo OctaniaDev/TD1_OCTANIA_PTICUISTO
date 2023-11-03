@@ -53,6 +53,17 @@ class RecetteModel {
         ajouterParamPDO($cur, ':commentaire', $commentaire);
         return majDonneesPrepareesPDO($cur);
     }
+
+    public function insererRecette($titre, $contenu, $resume, $categorie) {
+        $req = "INSERT into CUI_RECETTE values(null, :categorie, :utiId, :titre, :contenu, :resume, sysdate(), sysdate(), 'lien_de_limage')";
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ':categorie', $categorie);
+        ajouterParamPDO($cur, ':utiId', $_SESSION['id_utilisateur']);
+        ajouterParamPDO($cur, ':titre', $titre);
+        ajouterParamPDO($cur, ':contenu', $contenu);
+        ajouterParamPDO($cur, ':resume', $resume);
+        return majDonneesPrepareesPDO($cur);
+    }
 }
 
 ?>
