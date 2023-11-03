@@ -21,11 +21,11 @@ if (!empty($recetteDetail)) {
         echo "<p>pas d'ingredients (à faire)</p>";
     
     if($_SESSION['connecter'] == 'oui') {
-        echo '<form method="post" action="./index.php?action=voir_recettes&rec_id='.$recette['REC_ID'].'>';
+        echo '<form method="post" action="./index.php?action=voir_recettes&rec_id='.$recette['REC_ID'].'">';
 ?>
     
         <p><label for="commentaire-input">Postez votre commentaire</label></p>
-        <textarea rows="4" cols="50" id="commentaire-input" name="texte_commentaire" value="">écrit un commentaire !</textarea>
+        <textarea rows="4" cols="50" id="commentaire-input" name="texte_commentaire"></textarea>
         <input type="submit" value="Poster">
         </form>
 <?php

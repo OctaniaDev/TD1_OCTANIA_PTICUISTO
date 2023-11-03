@@ -28,11 +28,16 @@ class RecetteModel {
 
     public function recupererCommentairesRecette($recId) {
         if($_SESSION['connecter'] == 'oui')
-            $sql = 'SELECT * FROM CUI_COMMENTAIRE JOIN CUI_UTILISATEUR USING(UTI_ID) WHERE REC_ID = '.$recId.' AND ( COM_STATUS = 1 || UTI_ID = '. $_SESSION['id_utilisateur'].')';
+            $sql = 'SELECT * FROM CUI_COMMENTAIRE JOIN CUI_UTILISATEUR USING(UTI_ID) WHERE REC_ID = '.$recId.' AND ( COM_STATUS = 1 || UTI_ID = '. $_SESSION['id_utilisateur'].') order by COM_DATE DESC';
         else
-            $sql = 'SELECT * FROM CUI_COMMENTAIRE JOIN CUI_UTILISATEUR USING(UTI_ID) WHERE REC_ID = '.$recId.' AND COM_STATUS = 1';
+            $sql = 'SELECT * FROM CUI_COMMENTAIRE JOIN CUI_UTILISATEUR USING(UTI_ID) WHERE REC_ID = '.$recId.' AND COM_STATUS = 1 order by COM_DATE DESC';
         LireDonneesPDO1($this->connection, $sql, $tab);
         return $tab;
+    }
+
+    public function insererCommentaire($recId, $commentaire, $utiID) {
+        $sql = "INSERT into  CUI_COMMENTAIRE values (null,".$recId.",".$utiID.",'".$commentaire."', 2, sysdate())";
+        return majDonneesPDO($this->connection, $sql);
     }
 }
 
