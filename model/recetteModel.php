@@ -24,7 +24,7 @@ class RecetteModel {
     }
 
     public function recupererIngredients() {
-        $req = 'SELECT ING_INTITULE FROM CUI_INGREDIENT';
+        $req = 'SELECT * FROM CUI_INGREDIENT';
         $cur = preparerRequetePDO($this->connection, $req);
         LireDonneesPDOPreparee($cur, $tab);
         return $tab;
@@ -36,6 +36,22 @@ class RecetteModel {
         ajouterParamPDO($cur, ':recId', $recId);
         LireDonneesPDOPreparee($cur, $tab);
         return $tab;
+    }
+
+    public function recupererRecettes($utiId) {
+        $req = 'SELECT REC_ID from CUI_RECETTE where UTI_ID = :utiId order by REC_ID desc';
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ':utiId', $utiId);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
+
+    public function insererIngredient($recId, $ingId) {
+        $req = "INSERT into  CUI_CONTENIR values (:recId, :ingId)";
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ':recId', $recId);
+        ajouterParamPDO($cur, ':ingId', $ingId);
+        return majDonneesPrepareesPDO($cur);
     }
 
     public function recupererCommentairesRecette($recId) {

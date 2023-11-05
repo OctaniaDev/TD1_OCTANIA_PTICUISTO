@@ -40,7 +40,7 @@
 			if(!empty($ingredients)) {
 				foreach($ingredients as $ingredient) {
 					echo '<div><label for="'.$ingredient['ING_INTITULE'].'-recette-recette">'.$ingredient['ING_INTITULE'].'</label>';
-					echo '<input id="'.$ingredient['ING_INTITULE'].'-recette" value="'.$ingredient['ING_INTITULE'].'" type="checkbox" name="ingredients_recette"></div>';
+					echo '<input id="'.$ingredient['ING_INTITULE'].'-recette" value="'.$ingredient['ING_ID'].'" type="checkbox" name="ingredients_recette[]"></div>';
 				}
 			}
 		?></div>
