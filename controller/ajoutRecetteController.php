@@ -34,7 +34,7 @@ class AjoutRecetteController extends Controller {
 		//if(!isset($_POST['tags_recette'])) return false;
 		$recetteModel = new RecetteModel($this->connection);
 		$resRecette = $recetteModel->insererRecette($_POST['titre_recette'], $_POST['contenu_recette'], $_POST['resume_recette'], $_POST['categorie_recette']);
-		$recettesUtilisateur = $recetteModel->recupererRecettes($_SESSION['id_utilisateur']);
+		$recettesUtilisateur = $recetteModel->recupererRecettesUtilisateur($_SESSION['id_utilisateur']);
 		if(!isset($recettesUtilisateur[0]['REC_ID'])) return false;
 		foreach($_POST['ingredients_recette'] as $ingredient)
 			$resIngredients = $recetteModel->insererIngredient($recettesUtilisateur[0]['REC_ID'], $ingredient);
@@ -43,7 +43,7 @@ class AjoutRecetteController extends Controller {
 
 	public function recuperIngredient() {
 		$recetteModel = new RecetteModel($this->connection);
-		return $recetteModel->recupererIngredients();
+		return $recetteModel->recupererTousIngredients();
 	}
 }
 ?>

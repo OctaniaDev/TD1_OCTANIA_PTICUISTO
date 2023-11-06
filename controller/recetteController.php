@@ -19,7 +19,7 @@ class RecetteController extends Controller {
 
     public function afficherToutesRecettes() {
         $recetteModel = new RecetteModel($this->connection);
-        $recettes = $recetteModel->recupererToutesRecettes();
+        $recettes = $recetteModel->recupererTousRecettesValide();
         require $GLOBALS['root'] . 'view/recetteView.php';
     }
 
@@ -27,7 +27,7 @@ class RecetteController extends Controller {
         $recetteModel = new RecetteModel($this->connection);
         if(isset($_POST['texte_commentaire']) && $_SESSION['connecter'] == 'oui' && !empty($_POST['texte_commentaire']))
             $recetteModel->insererCommentaire($recId, trim($_POST['texte_commentaire']), $_SESSION['id_utilisateur']);
-        $recetteDetail = $recetteModel->recupererRecetteSimple($recId);
+        $recetteDetail = $recetteModel->recupererRecetteSimpleValide($recId);
         $ingredients = $recetteModel->recupererIngredientsRecette($recId);
         $commentaires = $recetteModel->recupererCommentairesRecette($recId);
         require $GLOBALS['root'] . 'view/recetteDetailView.php';

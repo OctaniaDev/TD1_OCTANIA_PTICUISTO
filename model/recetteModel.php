@@ -8,22 +8,28 @@ class RecetteModel {
     }
 
 
-    public function recupererToutesRecettes() {
+    public function recupererTousRecettes() {
         $req = "SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID)";
         $cur = preparerRequetePDO($this->connection, $req);
         LireDonneesPDOPreparee($cur, $tab);
         return $tab;
     }
 
-    public function recupererRecetteSimple($recId) {
-        $req = 'SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID) WHERE rec_id = :recId';
+    public function recupererTousRecettesValide() {
+        $req = "SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID) where REC_STATUS = 1";
+        $cur = preparerRequetePDO($this->connection, $req);
+        LireDonneesPDOPreparee($cur, $tab);
+    }
+
+    public function recupererRecetteSimpleValide($recId) {
+        $req = 'SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID) WHERE rec_id = :recId and REC_STATUS = 1';
         $cur = preparerRequetePDO($this->connection, $req);
         ajouterParamPDO($cur, ':recId', $recId);
         LireDonneesPDOPreparee($cur, $tab);
         return $tab;
     }
 
-    public function recupererIngredients() {
+    public function recupererTousIngredients() {
         $req = 'SELECT * FROM CUI_INGREDIENT';
         $cur = preparerRequetePDO($this->connection, $req);
         LireDonneesPDOPreparee($cur, $tab);
@@ -38,7 +44,7 @@ class RecetteModel {
         return $tab;
     }
 
-    public function recupererRecettes($utiId) {
+    public function recupererRecettesUtilisateur($utiId) {
         $req = 'SELECT REC_ID from CUI_RECETTE where UTI_ID = :utiId order by REC_ID desc';
         $cur = preparerRequetePDO($this->connection, $req);
         ajouterParamPDO($cur, ':utiId', $utiId);
@@ -78,7 +84,7 @@ class RecetteModel {
     }
 
     public function insererRecette($titre, $contenu, $resume, $categorie) {
-        $req = "INSERT into CUI_RECETTE values(null, :categorie, :utiId, :titre, :contenu, :resume, sysdate(), sysdate(), 'lien_de_limage')";
+        $req = "INSERT into CUI_RECETTE values(null, :categorie, :utiId, :titre, :contenu, :resume, sysdate(), sysdate(), 'lien_de_limage', 2)";
         $cur = preparerRequetePDO($this->connection, $req);
         ajouterParamPDO($cur, ':categorie', $categorie);
         ajouterParamPDO($cur, ':utiId', $_SESSION['id_utilisateur']);
