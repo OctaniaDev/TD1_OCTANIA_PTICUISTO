@@ -2,7 +2,7 @@
 
     <nav class="border-gray-200">
         <div class="container mx-auto flex flex-wrap items-center justify-between">
-            <a href="#" class="flex">
+            <a href="./index.php" class="flex">
                 <svg class="h-10 mr-3" width="51" height="70" viewBox="0 0 51 70" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0)">
@@ -40,7 +40,7 @@
             <div class="hidden md:block w-full md:w-auto" id="mobile-menu">
                 <ul class="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
                     <li>
-                        <a href="#"
+                        <a href="./index.php"
                             class="bg-blue-700 md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-blue-700 md:p-0 rounded focus:outline-none"
                             aria-current="page">Home</a>
                     </li>

@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Ajout d'une recette</title>
-	<meta charset="utf-8">
-</head>
-<body>
+<?php ob_start(); ?>
 	<h1>Ajout d'une recette</h1>
 
 	<form enctype="multipart/form-data" method="post" action="/index.php?action=ajout_recette">
@@ -50,5 +44,8 @@
 		<input type="submit" value="Publier">
 	</form>
 
-</body>
-</html>
+<?php
+$content = ob_get_clean();
+$titre = 'Ajout Recette';
+require $GLOBALS['root'] . 'view/template.php';
+?>

@@ -7,14 +7,17 @@
     <link rel="stylesheet" href="./dist/output.css">
 </head>
 <body>
-    <?php
-    require_once('./view/navbarView.php');
-    ?>
-    <?php
-        if(isset($_SESSION['type_utilisateur'])) {
-            echo '<p>'.$_SESSION['type_utilisateur'].'</p>';
-        }
-    ?>
-    <?php echo $content ?>
+<?php
+
+require_once $GLOBALS['root'] . 'view/navbarView.php';
+
+if(isset($_SESSION['type_utilisateur'])) {
+    echo '<p>'.$_SESSION['type_utilisateur'].'</p>';
+}
+
+?>
+
+  <?= $content ?>
+
 </body>
 </html>

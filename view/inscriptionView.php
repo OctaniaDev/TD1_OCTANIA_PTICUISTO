@@ -23,5 +23,5 @@
 <?php
     $content = ob_get_clean();
     $titre = 'Inscription';
-    require '/view/template.php';
+    require $GLOBALS['root'] . 'view/template.php';
 ?>

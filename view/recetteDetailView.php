@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Liste des recettes</title>
-	<meta charset="utf-8">
-</head>
-<body>
 <?php
+ob_start();
+
 if (!empty($recetteDetail)) {
     foreach ($recetteDetail as $recette) {
         echo '<h1>'.$recette['REC_TITRE'].'</h1>';
@@ -45,5 +40,9 @@ if (!empty($recetteDetail)) {
 } else
     echo '<p>Aucune recette trouvée</p>';
 ?>
-</body>
-</html>
+
+<?php
+$content = ob_get_clean();
+$titre = 'Detail Recette';
+require $GLOBALS['root'] . 'view/template.php';
+?>
