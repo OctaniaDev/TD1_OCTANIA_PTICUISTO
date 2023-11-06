@@ -8,6 +8,8 @@
 <body>
     <a href="/index.php?action=gestion_de_compte">Gestion de comtpes</a>
     <a href="/index.php?action=deconnexion">Gestion de recettes</a>
-    <a href="/index.php?action=deconnexion">GEstion des commentaires</a>
+    <a href="/index.php?action=deconnexion">Gestion des commentaires</a>
+
+    
 </body>
 </html>
