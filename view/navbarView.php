@@ -104,6 +104,10 @@
                         echo '<li><a href="./index.php?action=compte" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Mon Compte</a></li>';  
                     }                  
                     ?>
+                    <?php if(isset($_SESSION['type_utilisateur'])  == 'admin') {
+                        echo '<li><a href="./index.php?action=admin" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Pannel admin</a></li>';  
+                    }                  
+                    ?>
                 </ul>
             </div>
         </div>
