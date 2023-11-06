@@ -19,6 +19,7 @@ class RecetteModel {
         $req = "SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID) where REC_STATUS = 1";
         $cur = preparerRequetePDO($this->connection, $req);
         LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
     }
 
     public function recupererRecetteSimpleValide($recId) {
