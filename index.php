@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION['commencer'])) {
+    session_start();
+    $_SESSION['commencer'] = true;
+}
 if(!isset($_SESSION['connecter']))
     $_SESSION['connecter'] = 'non';
 

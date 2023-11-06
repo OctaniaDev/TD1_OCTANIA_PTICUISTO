@@ -14,20 +14,22 @@ class RecetteController extends Controller {
             $this->afficherRecette($_GET['rec_id']);
         else
             $this->afficherToutesRecettes();
-        
         $this->connection = null;
     }
 
     public function afficherToutesRecettes() {
         $recetteModel = new RecetteModel($this->connection);
-        $recettes = $recetteModel->recupererToutesRecettes();
+        $recettes = $recetteModel->recupererTousRecettesValide();
         require $GLOBALS['root'] . 'view/recetteView.php';
     }
 
     public function afficherRecette($recId) {
         $recetteModel = new RecetteModel($this->connection);
-        $recetteDetail = $recetteModel->recupererRecetteSimple($recId);
+        if(isset($_POST['texte_commentaire']) && $_SESSION['connecter'] == 'oui' && !empty($_POST['texte_commentaire']))
+            $recetteModel->insererCommentaire($recId, trim($_POST['texte_commentaire']), $_SESSION['id_utilisateur']);
+        $recetteDetail = $recetteModel->recupererRecetteSimpleValide($recId);
         $ingredients = $recetteModel->recupererIngredientsRecette($recId);
+        $commentaires = $recetteModel->recupererCommentairesRecette($recId);
         require $GLOBALS['root'] . 'view/recetteDetailView.php';
     }
 
