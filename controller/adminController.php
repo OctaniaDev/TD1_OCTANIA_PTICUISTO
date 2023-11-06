@@ -23,6 +23,7 @@ class AdminController extends Controller {
         } else {
             echo '<script>location.replace("/index.php");</script>';
         }
+        $this->connection = null;
     }
 
     public function afficherTousComptes(){

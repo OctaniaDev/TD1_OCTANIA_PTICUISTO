@@ -16,6 +16,7 @@ class InscriptionController extends controller {
         } else {
             $this->getform();
         }
+        $this->connection = null;
     }
 
     public function traiterInscription($nom, $prenom, $email, $pseudo, $password) {

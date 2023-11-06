@@ -8,22 +8,32 @@ class Utilisateur {
     }
 
     public function connexion($username, $password) {
-        $sql = "SELECT UTI_PSEUDO, UTI_MDP, TYPE_LIBELLE, UTI_ID FROM CUI_UTILISATEUR JOIN CUI_TYPE_UTILISATEUR USING(TYPE_iD) WHERE UTI_PSEUDO ='".$username."' AND UTI_MDP = '". md5($password) ."'";
-        LireDonneesPDO1($this->connection,$sql,$tab);
-        $this->connection = null;
+        $password = md5($password);
+        $sql = "SELECT UTI_PSEUDO, UTI_MDP, TYPE_LIBELLE, UTI_ID FROM CUI_UTILISATEUR JOIN CUI_TYPE_UTILISATEUR USING(TYPE_iD) WHERE UTI_PSEUDO = :username AND UTI_MDP = :password";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':username', $username);
+        ajouterParamPDO($cur, ':password', $password);
+        LireDonneesPDOPreparee($cur, $tab);
         return $tab;
     }
 
 
     public function inscription($nom, $prenom, $email, $pseudo, $password) {
-        $sql = "SELECT * FROM CUI_UTILISATEUR WHERE UTI_PSEUDO = '" . $pseudo . "'";
-        LireDonneesPDO1($this->connection,$sql,$tab);
+        $sql = "SELECT * FROM CUI_UTILISATEUR WHERE UTI_PSEUDO = :pseudo";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':pseudo', $pseudo);
+        LireDonneesPDOPreparee($cur, $tab);
         if(isset($tab[0]["UTI_PSEUDO"]))
             return false;
-        $sql = "INSERT INTO CUI_UTILISATEUR VALUES (null,3,1,'". md5($password) ."', '".$pseudo."', '".$email."', '".$prenom."','".$nom."',sysdate())";
-        $req = majDonneesPDO($this->connection,$sql);
-        $this->connection = null;
-        return $req;
+        $password = md5($password);
+        $sql = "INSERT INTO CUI_UTILISATEUR VALUES (null, 3, 1, :password, :pseudo, :email, :prenom, :nom, sysdate())";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':password', $password);
+        ajouterParamPDO($cur, ':pseudo', $pseudo);
+        ajouterParamPDO($cur, ':email', $email);
+        ajouterParamPDO($cur, ':prenom', $prenom);
+        ajouterParamPDO($cur, ':nom', $nom);
+        return majDonneesPrepareesPDO($cur);
     }
 }
 ?>

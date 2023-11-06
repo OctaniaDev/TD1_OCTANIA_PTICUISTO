@@ -18,6 +18,7 @@ class ConnexionController extends controller {
             }
         } else
             echo '<script>location.replace("/index.php");</script>';
+        $this->connection = null;
     }
 
     public function traiterConnexion($username, $password) {

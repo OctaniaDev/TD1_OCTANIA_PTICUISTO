@@ -7,15 +7,20 @@ class filtreRecetteModel {
         $this->connection = $connection;
     }
 
-    public function filtrerRecetteParCategorie($TypeCategorie) {
-        $sql = "SELECT * FROM CUI_RECETTE WHERE CAT_ID =".$TypeCategorie;
-        LireDonneesPDO1($this->connection, $sql, $tab);
+    public function filtrerRecetteParCategorie($typeCategorie) {
+        $req = "SELECT * FROM CUI_RECETTE join CUI_CATEGORIE using(CAT_ID) WHERE CAT_ID = :typeCategorie and REC_STATUS = 1";
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ":typeCategorie", $typeCategorie);
+        LireDonneesPDOPreparee($cur, $tab);
         return $tab;
     }
 
     public function filtrerRecetteParTitre($motCherche) {
-        $sql = "SELECT * FROM CUI_RECETTE WHERE upper(trim(REC_TITRE)) LIKE upper(trim('%".$motCherche."%'))";
-        LireDonneesPDO1($this->connection, $sql, $tab);
+        $motCherche = "%" . $motCherche . "%";
+        $req = "SELECT * FROM CUI_RECETTE join CUI_CATEGORIE using(CAT_ID) WHERE upper(trim(REC_TITRE)) LIKE upper(trim(:motCherche)) and REC_STATUS = 1";
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ":motCherche", $motCherche);
+        LireDonneesPDOPreparee($cur, $tab);
         return $tab;
     }
 

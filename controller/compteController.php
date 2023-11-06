@@ -15,13 +15,14 @@ class CompteController extends Controller {
         if ($_SESSION['connecter'] === 'oui' && isset($_SESSION['id_utilisateur'])) {
             $this->traiterInformationsCompte($_SESSION['id_utilisateur']);
             if (isset($_GET['action']) && $_GET['action'] == 'supprimer_compte') {
-                $result = $this->traiterSuppression($_SESSION['id_utilisateur']);
+                $this->traiterSuppression($_SESSION['id_utilisateur']);
             } else if (isset($_GET['action']) && $_GET['action'] == 'modifier_mot_de_passe') {
                 $result = $this->traiterModificationMotDePasse($_SESSION['id_utilisateur']);
             }
         } else {
             require $GLOBALS['root'] . 'view/connexionView.php';
         }
+        $this->connection = null;
     }
     
     
@@ -38,8 +39,12 @@ class CompteController extends Controller {
         $userId = $_SESSION['id_utilisateur'];
         $compteModel = new Compte($this->connection);
         $result = $compteModel->deleteUser($userId);
-        echo '<script>location.replace("./index.php?action=deconnexion");</script>';  
-        return $result;
+        if($result)
+            echo '<script>location.replace("/index.php");</script>';
+        else {
+            echo '<script>location.replace("/index.php?action=compte");</script>';
+        }
+
     }
 
     public function traiterModificationMotDePasse($userId) {
