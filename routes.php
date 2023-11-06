@@ -5,6 +5,7 @@ require_once('./controller/recetteController.php');
 require_once('./controller/ajoutRecetteController.php');
 require_once('./controller/inscriptionController.php');
 require_once('./controller/compteController.php');
+require_once('./controller/adminController.php');
 
 $routes = [
 	'/' => $ROOT . 'view/accueilView.php',
@@ -17,6 +18,8 @@ $routes = [
 	'/index.php?action=supprimer_compte' => new compteController($connection),
 	'/index.php?action=modifier_mot_de_passe' => new compteController($connection),
 	'/index.php?action=ajout_recette' => new AjoutRecetteController($connection),
+	'/index.php?action=admin' => new adminController($connection),
+	'/index.php?action=gestion_de_compte' => new adminController($connection),
 ];
 
 ?>
