@@ -10,6 +10,5 @@
     <a href="/index.php?action=deconnexion">Gestion de recettes</a>
     <a href="/index.php?action=deconnexion">Gestion des commentaires</a>
 
-    
 </body>
 </html>

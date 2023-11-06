@@ -23,8 +23,5 @@ class AdminController extends Controller {
         } else {
             echo '<script>location.replace("/index.php");</script>';
         }
-
     }
-
-
 }

@@ -6,6 +6,6 @@
     <title>Gestion de comptes</title>
 </head>
 <body>
-    
+    <h1>Gestion de comptes</h1>
 </body>
 </html>
