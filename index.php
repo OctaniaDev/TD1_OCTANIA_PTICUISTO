@@ -6,6 +6,9 @@ if(!isset($_SESSION['commencer'])) {
 if(!isset($_SESSION['connecter']))
     $_SESSION['connecter'] = 'non';
 
+if(!isset($_SESSION['ingredients'])){
+    $_SESSION['ingredients'] = new RecetteModel()->recupererTousIngredients();
+}
 require_once('./model/param_connexion_etu.php');
 require_once('./model/pdo_agile.php');;
 
