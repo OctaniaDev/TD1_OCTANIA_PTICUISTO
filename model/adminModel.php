@@ -9,7 +9,7 @@ class Admin {
     }
 
     public function recupererTousComptes(){
-        $sql = "SELECT * from CUI_UTILISATEUR";
+        $sql = "SELECT * from CUI_UTILISATEUR WHERE UTI_ID != 1";
         $cur = preparerRequetePDO($this->connection, $sql);
         LireDonneesPDOPreparee($cur,$tab);
         return $tab;
@@ -25,6 +25,13 @@ class Admin {
 
     public function rendreInactif($userId) {
         $sql = "UPDATE CUI_UTILISATEUR SET STA_ID = 2 WHERE UTI_ID = :userId";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':userId', $userId);
+        majDonneesPrepareesPDO($cur);
+    }
+
+    public function rendreActif($userId){
+        $sql = "UPDATE CUI_UTILISATEUR SET STA_ID = 1 WHERE UTI_ID = :userId";
         $cur = preparerRequetePDO($this->connection, $sql);
         ajouterParamPDO($cur, ':userId', $userId);
         majDonneesPrepareesPDO($cur);

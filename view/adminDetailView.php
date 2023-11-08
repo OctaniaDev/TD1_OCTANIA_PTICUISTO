@@ -1,4 +1,9 @@
-<?php ob_start(); ?>
+<?php 
+    ob_start(); 
+
+?>
+
+
 
 <h1>Profil de l'utilisateur</h1>
 
@@ -8,9 +13,18 @@
     <p>Adresse mail: <?php echo $utilisateur['UTI_EMAIL']; ?></p>
     <p>Status: <?php echo $utilisateur['STA_LIBELLE']; ?></p>
 
-    <form method="post" action="/index.php?action=rendre_inactif&user_id=<?php echo $utilisateur['UTI_ID']; ?>">
-        <button type="submit">Rendre inactif</button>
-    </form>
+
+    <?php
+        if ($utilisateur['STA_ID'] == 1) {
+            echo '<form method="post" action="/index.php?action=rendre_inactif&user_id=' . $utilisateur['UTI_ID'] . '">
+                <button type="submit">Rendre inactif</button>
+            </form>';
+        } else {
+            echo '<form method="post" action="/index.php?action=rendre_actif&user_id=' . $utilisateur['UTI_ID'] . '">
+                <button type="submit">Rendre actif</button>
+            </form>';
+        }
+    ?>  
 
     <form method="post" action="/index.php?action=supprimer_compte_utilisateur&user_id=<?php echo $utilisateur['UTI_ID']; ?>"
       onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce compte ?');">

@@ -23,6 +23,8 @@ class AdminController extends Controller {
                 $this->rendreInactif($_GET['user_id']);
             } else if($_GET['action'] == 'supprimer_compte_utilisateur') {
                 $this->supprimerCompte($_GET['user_id']);
+            } else if ($_GET['action'] == 'rendre_actif') {
+                $this->rendreActif($_GET['user_id']);
             }
         } else {
             echo '<script>location.replace("/index.php");</script>';
@@ -45,6 +47,12 @@ class AdminController extends Controller {
     public function rendreInactif($userId) {
         $adminModel = new Admin($this->connection);
         $adminModel->rendreInactif($userId);
+        echo '<script>location.replace("/index.php?action=gestion_de_compte");</script>';
+    }
+
+    public function rendreActif($userId) {
+        $adminModel = new Admin($this->connection);
+        $adminModel->rendreActif($userId);
         echo '<script>location.replace("/index.php?action=gestion_de_compte");</script>';
     }
 

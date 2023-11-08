@@ -25,6 +25,7 @@ $routes = [
 	'/index.php?action=voir_recettes_par_titre' => new filtreRecetteController($connection),
 	'/index.php?action=voir_utilisateur' => new adminController($connection),
 	'/index.php?action=rendre_inactif' => new adminController($connection),
+	'/index.php?action=rendre_actif' => new adminController($connection),
 	'/index.php?action=supprimer_compte_utilisateur' => new adminController($connection),
 ];
 
