@@ -8,7 +8,6 @@ class filtreRecetteController extends Controller {
     }
     
     public function choix() {
-        echo "test";
         if(isset($_GET['type_categorie'])) {
             $this->afficherToutesRecettesParCategorie($_GET['type_categorie']);
         }
@@ -16,7 +15,6 @@ class filtreRecetteController extends Controller {
             $this->afficherToutesRecettesParMot($_POST['motCherche']);
         }
         if(isset($_POST['ingredients_recette'])){
-            echo "test2";
             $this->afficherToutesRecettesParIngredient($_POST['ingredients_recette']);
         }
         $this->connection = null;
