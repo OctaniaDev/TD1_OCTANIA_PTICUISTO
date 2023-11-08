@@ -24,10 +24,18 @@ class filtreRecetteModel {
         return $tab;
     }
 
-    /*public function filtrerRecetteParIngredients($ingId) {
-        $sql = "Select * from CUI_RECETTE  join CUI_CONTENIR using (REC_ID) where REC_ID";
-        LireDonneesPDO1($this->connection, $sql, $tab);
+    public function filtrerRecetteParIngredient($ingredients) {
+        $req = "SELECT * from CUI_RECETTE join CUI_CATEGORIE using(CAT_ID) where rec_id IN ( select rec_id from CUI_CONTENIR where ing_id = :ingredient0 and REC_STATUS = 1) ";
+        for($i = 1; $i<count($ingredients); $i++){
+            $req .= "and rec_id IN ( select rec_id from CUI_CONTENIR where ing_id = :ingredient".intval($i)." and REC_STATUS = 1) ";
+        }
+        $cur = preparerRequetePDO($this->connection, $req);
+        for($i = 0; $i<count($ingredients); $i++){
+            $ingId = ":ingredient".$i;
+            ajouterParamPDO($cur, $ingId, $ingredients[$i], 'nombre');
+        }
+        LireDonneesPDOPreparee($cur, $tab);
         return $tab;
-    }*/
+    }
 }
     ?>

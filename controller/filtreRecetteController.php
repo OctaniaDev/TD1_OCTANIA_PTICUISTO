@@ -8,14 +8,17 @@ class filtreRecetteController extends Controller {
     }
     
     public function choix() {
+        echo "test";
         if(isset($_GET['type_categorie'])) {
             $this->afficherToutesRecettesParCategorie($_GET['type_categorie']);
         }
         if(isset($_POST['motCherche'])){
             $this->afficherToutesRecettesParMot($_POST['motCherche']);
         }
-        else
-            echo'probleme';
+        if(isset($_POST['ingredients_recette'])){
+            echo "test2";
+            $this->afficherToutesRecettesParIngredient($_POST['ingredients_recette']);
+        }
         $this->connection = null;
     }
 
@@ -28,6 +31,12 @@ class filtreRecetteController extends Controller {
     public function afficherToutesRecettesParMot($motChercher) {
         $filtreRecetteModel = new filtreRecetteModel($this->connection);
         $recettes = $filtreRecetteModel->filtrerRecetteParTitre($motChercher);
+        require $GLOBALS['root'] . 'view/recetteView.php';
+    }
+
+    public function afficherToutesRecettesParIngredient($ingredient) {
+        $filtreRecetteModel = new filtreRecetteModel($this->connection);
+        $recettes = $filtreRecetteModel->filtrerRecetteParIngredient($ingredient);
         require $GLOBALS['root'] . 'view/recetteView.php';
     }
 }
