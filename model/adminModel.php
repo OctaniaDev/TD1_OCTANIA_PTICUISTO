@@ -10,7 +10,7 @@ class Admin {
 
     public function recupererTousComptes(){
         $sql = "SELECT * from CUI_UTILISATEUR";
-        $cur = preparerRequetePDO($this->connection,$sql);
+        $cur = preparerRequetePDO($this->connection, $sql);
         LireDonneesPDOPreparee($cur,$tab);
         return $tab;
     }

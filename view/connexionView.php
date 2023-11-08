@@ -1,28 +1,24 @@
-<!DOCTYPE html>
-<html>
+<?php ob_start(); ?>
 
-<head>
-    <title>Connexion</title>
-</head>
+<h1>Connexion</h1>
+<?php
+if (isset($erreur) && !empty($erreur)) {
+    echo '<p class="erreur">' . $erreur . '</p>';
+}
+?>
 
-<body>
-    <h1>Connexion</h1>
+<form method="post" action="./index.php?action=connexion">
+    <label for="username">Nom d'utilisateur :</label>
+    <input type="text" id="username" name="username" required><br>
+     
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="password" required><br>
 
-    <?php
-    if (isset($erreur) && !empty($erreur)) {
-        echo '<p class="erreur">' . $erreur . '</p>';
-    }
-    ?>
+    <input type="submit" value="Se connecter">
+</form>
 
-    <form method="post" action="./index.php?action=connexion">
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" name="username" required><br>
-
-        <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" required><br>
-
-        <input type="submit" value="Se connecter">
-    </form>
-</body>
-
-</html>
+<?php
+$content = ob_get_clean();
+$titre = 'Connexion';
+require $GLOBALS['root'] . 'view/template.php';
+?>

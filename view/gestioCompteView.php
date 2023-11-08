@@ -1,9 +1,9 @@
 <?php ob_start(); ?>
 
-<h1>Edito</h1>
+<h1>Gestion de comptes</h1>
 
 <?php
 $content = ob_get_clean();
-$titre = 'Accueil';
+$titre = 'Gestion de comptes';
 require $GLOBALS['root'] . 'view/template.php';
 ?>

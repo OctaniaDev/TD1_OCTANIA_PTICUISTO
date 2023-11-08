@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Compte</title>
-</head>
-
-<body>
-
+<?php ob_start(); ?>
     <h1>Informations du compte</h1>
     <p>Pseudo :
         <?php echo $accountInfo['UTI_PSEUDO']; ?>
@@ -38,6 +30,9 @@
         <input type="submit" name="delete" value="Supprimer le compte"
             onclick="return confirm('Confirmez la suppression de votre compte.');">
     </form>
-</body>
 
-</html>
+<?php
+$content = ob_get_clean();
+$titre = 'Compte';
+require $GLOBALS['root'] . 'view/template.php';
+?>

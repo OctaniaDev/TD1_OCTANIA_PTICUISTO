@@ -10,11 +10,15 @@ class ConnexionController extends controller {
     }
 
     public function choix() {
-        if(isset($_POST['username']) && isset($_POST['password'])) {
-            $this->traiterConnexion($_POST['username'], $_POST['password']);
-        } else {
-            $this->getform();
-        }
+        if($_SESSION['connecter'] != 'oui') {
+            if(isset($_POST['username']) && isset($_POST['password'])) {
+                $this->traiterConnexion($_POST['username'], $_POST['password']);
+            } else {
+                $this->getform();
+            }
+        } else
+            echo '<script>location.replace("/index.php");</script>';
+        $this->connection = null;
     }
 
     public function traiterConnexion($username, $password) {
