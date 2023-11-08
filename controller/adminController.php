@@ -17,7 +17,6 @@ class AdminController extends Controller {
                 require $GLOBALS['root'] . 'view/adminView.php';
             } else if($_GET['action'] == 'gestion_de_compte') {
                 $this->afficherTousComptes();
-                require $GLOBALS['root'] . 'view/gestionCompteView.php';
             }
         } else {
             echo '<script>location.replace("/index.php");</script>';
@@ -27,7 +26,7 @@ class AdminController extends Controller {
 
     public function afficherTousComptes(){
         $adminModel = new Admin($this->connection);
-        $comptes = $adminModel->recupererTousComptes();
+        $utilisateurs = $adminModel->recupererTousComptes();
         require $GLOBALS['root'] . 'view/gestionCompteView.php';
     }
 

@@ -18,6 +18,7 @@ $routes = [
 	'/index.php?action=modifier_mot_de_passe' => new compteController($connection),
 	'/index.php?action=admin' => new adminController($connection),
 	'/index.php?action=gestion_de_compte' => new adminController($connection),
+	'/index.php?action=voir_utilisateur' => new adminController($connection),
 ];
 
 ?>
