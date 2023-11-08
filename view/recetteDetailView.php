@@ -17,13 +17,28 @@ if (!empty($recetteDetail)) {
         echo "<p>pas d'ingredients (à faire)</p>";
     
     if($_SESSION['connecter'] == 'oui') {
-        echo '<form method="post" action="./index.php?action=voir_recettes&rec_id='.$recette['REC_ID'].'">';
+        echo '<form method="post" class="h-screen flex items-center" action="./index.php?action=voir_recettes&rec_id='.$recette['REC_ID'].'">';
 ?>
-    
-        <p><label for="commentaire-input">Postez votre commentaire</label></p>
-        <textarea rows="4" cols="50" id="commentaire-input" name="texte_commentaire"></textarea>
-        <input type="submit" value="Poster">
-        </form>
+
+    <label
+        for="commentaire-input"
+        class="flex mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        Postez votre commentaire
+    </label>
+    <textarea
+        id="commentaire-input"
+        rows="4"
+        name="texte_commentaire"
+        value=""
+        class="flex w-56 p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+        placeholder="Ecrivez ce que vous voulez"></textarea>
+    <button
+        type="submit"
+        class="flex w-20 my-4 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        value="Poster">
+        Envoyé
+    </button>
+</form>
 <?php
     }
     echo '<p>Commentaires : </p>';

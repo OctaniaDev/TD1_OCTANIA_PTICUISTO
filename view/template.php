@@ -15,9 +15,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
-
     <!-- TAILWIND CSS -->
     <link rel="stylesheet" href="./dist/output.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -33,5 +33,7 @@ if(isset($_SESSION['type_utilisateur'])) {
 
   <?= $content ?>
 
+<script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
 </body>
 </html>
