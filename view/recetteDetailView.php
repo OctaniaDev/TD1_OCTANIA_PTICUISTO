@@ -1,6 +1,8 @@
-<?php
-ob_start();
+<?php ob_start(); ?>
 
+<div class="flex flex-auto items-center text-left flex-col">
+<div>
+<?php
 if (!empty($recetteDetail)) {
     foreach ($recetteDetail as $recette) {
         echo '<h1>'.$recette['REC_TITRE'].'</h1>';
@@ -15,14 +17,16 @@ if (!empty($recetteDetail)) {
         echo '</ul>';
     } else
         echo "<p>pas d'ingredients (à faire)</p>";
-    
-    if($_SESSION['connecter'] == 'oui') {
-        echo '<form method="post" class="h-screen flex items-center" action="./index.php?action=voir_recettes&rec_id='.$recette['REC_ID'].'">';
 ?>
-
+</div>
+<div>
+<?php
+if($_SESSION['connecter'] == 'oui') {
+    echo '<form method="post" class="flex flex-col" action="./index.php?action=voir_recettes&rec_id='.$recette['REC_ID'].'">';
+?>
     <label
         for="commentaire-input"
-        class="flex mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        class="mb-2 text-sm font-medium text-gray-900 dark:text-white">
         Postez votre commentaire
     </label>
     <textarea
@@ -30,15 +34,16 @@ if (!empty($recetteDetail)) {
         rows="4"
         name="texte_commentaire"
         value=""
-        class="flex w-56 p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+        class="w-56 h-24 resize-none p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
         placeholder="Ecrivez ce que vous voulez"></textarea>
     <button
         type="submit"
-        class="flex w-20 my-4 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        class="w-20 my-4 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         value="Poster">
         Envoyé
     </button>
-</form>
+    </form>
+</div>
 <?php
     }
     echo '<p>Commentaires : </p>';
@@ -55,6 +60,7 @@ if (!empty($recetteDetail)) {
 } else
     echo '<p>Aucune recette trouvée</p>';
 ?>
+</div>
 
 <?php
 $content = ob_get_clean();
