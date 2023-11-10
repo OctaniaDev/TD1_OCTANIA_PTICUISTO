@@ -17,6 +17,9 @@ class filtreRecetteController extends Controller {
         if(isset($_POST['ingredients_recette'])){
             $this->afficherToutesRecettesParIngredient($_POST['ingredients_recette']);
         }
+        if(isset($_POST['tags'])){
+            $this->afficherToutesRecettesParTag($_POST['tags']);
+        }
         $this->connection = null;
     }
 
@@ -35,6 +38,12 @@ class filtreRecetteController extends Controller {
     public function afficherToutesRecettesParIngredient($ingredient) {
         $filtreRecetteModel = new filtreRecetteModel($this->connection);
         $recettes = $filtreRecetteModel->filtrerRecetteParIngredient($ingredient);
+        require $GLOBALS['root'] . 'view/recetteView.php';
+    }
+
+    public function afficherToutesRecettesParTag($tag) {
+        $filtreRecetteModel = new filtreRecetteModel($this->connection);
+        $recettes = $filtreRecetteModel->filtrerRecetteParTag($tag);
         require $GLOBALS['root'] . 'view/recetteView.php';
     }
 }

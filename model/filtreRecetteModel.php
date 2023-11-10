@@ -37,5 +37,26 @@ class filtreRecetteModel {
         LireDonneesPDOPreparee($cur, $tab);
         return $tab;
     }
+
+    public function filtrerRecetteParTag($tags) {
+        $req = "SELECT * from CUI_RECETTE join CUI_CATEGORIE using(CAT_ID) where rec_id IN ( select rec_id from CUI_POSSEDER where tag_id = :tag0 and REC_STATUS = 1) ";
+        for($i = 1; $i<count($tags); $i++){
+            $req .= "and rec_id IN ( select rec_id from CUI_POSSEDER where tag_id = :tag".intval($i)." and REC_STATUS = 1) ";
+        }
+        $cur = preparerRequetePDO($this->connection, $req);
+        for($i = 0; $i<count($tags); $i++){
+            $tagId = ":tag".$i;
+            ajouterParamPDO($cur, $tagId, $tags[$i], 'nombre');
+        }
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
+    
+    public function recupererTousTags() {
+        $req = 'SELECT * FROM CUI_TAG';
+        $cur = preparerRequetePDO($this->connection, $req);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
 }
     ?>
