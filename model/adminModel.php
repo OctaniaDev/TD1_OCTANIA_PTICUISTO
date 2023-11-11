@@ -63,10 +63,25 @@ class Admin {
     }
 
     public function refuserRecette($recId){
+        $res1 = $this->refuserIngredients($recId);
+        $res2 = $this->refuserTags($recId);
         $sql = "DELETE FROM CUI_RECETTE WHERE REC_ID = :recId";
         $cur = preparerRequetePDO($this->connection, $sql);
         ajouterParamPDO($cur, ':recId', $recId);
-        echo $sql;
+        return $res1 && $res2 && majDonneesPrepareesPDO($cur);
+    }
+
+    public function refuserIngredients($recId){
+        $sql = "delete from CUI_CONTENIR WHERE REC_ID = :recId";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':recId', $recId);
+        return majDonneesPrepareesPDO($cur);
+    }
+
+    public function refuserTags($recId){
+        $sql = "delete from CUI_POSSEDER WHERE REC_ID = :recId";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':recId', $recId);
         return majDonneesPrepareesPDO($cur);
     }
 
