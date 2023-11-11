@@ -25,6 +25,8 @@ class AdminController extends Controller {
                 $this->supprimerCompte($_GET['user_id']);
             } else if ($_GET['action'] == 'rendre_actif') {
                 $this->rendreActif($_GET['user_id']);
+            } else if ($_GET['action'] == 'gestion_de_recette'){
+                $this->afficherToutesRecettes();
             }
         } else {
             echo '<script>location.replace("/index.php");</script>';
@@ -62,6 +64,11 @@ class AdminController extends Controller {
         echo '<script>location.replace("/index.php?action=gestion_de_compte");</script>';
     }
 
+    public function afficherToutesRecettes(){
+        $adminModel = new Admin($this->connection);
+        $recettes = $adminModel->recupererToutesRecettes();
+        require $GLOBALS['root'] . 'view/gestionRecetteView.php';
+    }
 
 
 }

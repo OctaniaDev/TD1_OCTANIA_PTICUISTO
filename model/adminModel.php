@@ -45,4 +45,12 @@ class Admin {
     }
 
 
+    public function recupererToutesRecettes(){
+        $sql = "SELECT * from CUI_RECETTE WHERE rec_status = 0";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        LireDonneesPDOPreparee($cur,$tab);
+        return $tab;
+    }
+
+
 }
