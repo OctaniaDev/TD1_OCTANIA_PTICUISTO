@@ -10,8 +10,8 @@
     if (!empty($recettes)) {
         echo '<ul>';
             foreach ($recettes as $recette) {
-                echo '<li><p>'.$recette['rec_nom'] . '</p><a href="./index.php?action=voir_recette&rec_id='
-                . $recette['rec_id'].
+                echo '<li><p>'.$recette['REC_TITRE'] . '</p><a href="./index.php?action=voir_recette_details&rec_id='
+                . $recette['REC_ID'].
                 '">voir la recette</a></li>';
             }
         echo '</ul>';

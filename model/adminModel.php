@@ -44,6 +44,7 @@ class Admin {
         majDonneesPrepareesPDO($cur);
     }
 
+    
 
     public function recupererToutesRecettes(){
         $sql = "SELECT * from CUI_RECETTE WHERE rec_status = 0";
@@ -53,4 +54,26 @@ class Admin {
     }
 
 
+    public function recupererRecetteDetails($recId) {
+        $sql = "SELECT * FROM CUI_RECETTE WHERE REC_ID = :recId";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':recId', $recId);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab[0];
+    }
+
+    public function refuserRecette($recId){
+        $sql = "DELETE FROM CUI_RECETTE WHERE REC_ID = :recId";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':recId', $recId);
+        echo $sql;
+        return majDonneesPrepareesPDO($cur);
+    }
+
+    public function accepterRecette($recId){
+        $sql = "UPDATE CUI_RECETTE SET REC_STATUS = 1 WHERE REC_ID = :recId";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':recId', $recId);
+        return majDonneesPrepareesPDO($cur);
+    }
 }
