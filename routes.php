@@ -29,6 +29,7 @@ $routes = [
 	'/index.php?action=supprimer_compte_utilisateur' => new adminController($connection),
 	'/index.php?action=gestion_de_recette' => new adminController($connection),
 	'/index.php?action=voir_recette' => new RecetteController($connection),
+	
 ];
 
 ?>	
