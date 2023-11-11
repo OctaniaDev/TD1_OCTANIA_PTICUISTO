@@ -17,7 +17,7 @@
 
 
     <!-- TAILWIND CSS -->
-    <link rel="stylesheet" href="./dist/output.css">
+    <link rel="stylesheet" href="output.css">
 
 </head>
 <body>

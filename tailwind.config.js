@@ -10,8 +10,8 @@ module.exports = {
         'bleu-clair': '#7890cd',
       },
       fontFamily: {
-        'titre': ['"Permanent Marker"'],
-        'texte': ['"Pacifico"'],
+        'titre': ["Permanent Marker"],
+        'texte': ["Pacifico"],
       },
     },
   },
