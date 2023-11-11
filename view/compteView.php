@@ -37,7 +37,7 @@
             onclick="return confirm('Confirmez la suppression de votre compte.');">
     </form>
 
-    <a href=""></a>
+    <a href="/index.php?action=voir_recettes_compte">voir vos recettes</a>
 
 <?php
 $content = ob_get_clean();

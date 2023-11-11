@@ -12,7 +12,7 @@ class CompteController extends Controller {
     
 
     public function choix() {
-        if ($_SESSION['connecter'] === 'oui' && isset($_SESSION['id_utilisateur'])) {
+        if ($_SESSION['connecter'] == 'oui' && isset($_SESSION['id_utilisateur'])) {
             $this->traiterInformationsCompte($_SESSION['id_utilisateur']);
             if (isset($_GET['action']) && $_GET['action'] == 'supprimer_compte') {
                 $result = $this->traiterSuppression($_SESSION['id_utilisateur']);

@@ -10,10 +10,20 @@ class RecetteController extends Controller {
     }
 
     public function choix() {
-        if(isset($_GET['rec_id']))
-            $this->afficherRecette($_GET['rec_id']);
-        else
-            $this->afficherToutesRecettes();
+        if($_GET['action'] == 'voir_recettes_compte') {
+            if($_SESSION['connecter'] == 'oui' && isset($_SESSION['id_utilisateur'])) {
+                if(isset($_GET['rec_id']))
+                    $this->afficherRecetteCompte($_GET['rec_id'], $_SESSION['id_utilisateur']);
+                else
+                    $this->afficherListeRecettesCompte($_SESSION['id_utilisateur']);
+            }
+        }
+        if($_GET['action'] == 'voir_recettes') {
+            if(isset($_GET['rec_id']))
+                $this->afficherRecette($_GET['rec_id']);
+            else
+                $this->afficherToutesRecettes();
+        }
         $this->connection = null;
     }
 
@@ -31,6 +41,20 @@ class RecetteController extends Controller {
         $ingredients = $recetteModel->recupererIngredientsRecette($recId);
         $commentaires = $recetteModel->recupererCommentairesRecette($recId);
         require $GLOBALS['root'] . 'view/recetteDetailView.php';
+    }
+
+    public function afficherRecetteCompte($recId, $utiId) {
+        $recetteModel = new RecetteModel($this->connection);
+        $recetteDetail = $recetteModel->recupererRecetteSimple($recId, $utiId);
+        $ingredients = $recetteModel->recupererIngredientsRecette($recId);
+        $commentaires = $recetteModel->recupererCommentairesRecette($recId);
+        require $GLOBALS['root'] . 'view/recetteDetailView.php';
+    }
+
+    public function afficherListeRecettesCompte($utiId) {
+        $recetteModel = new RecetteModel($this->connection);
+        $recettes = $recetteModel->recupererRecettesUtilisateur($utiId);
+        require $GLOBALS['root'] . 'view/recetteUtilisateurView.php';
     }
 
 }
