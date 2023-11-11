@@ -24,7 +24,18 @@ $routes = [
 	'/index.php?action=voir_recettes_par_entrer' => new filtreRecetteController($connection),
 	'/index.php?action=voir_recettes_par_titre' => new filtreRecetteController($connection),
 	'/index.php?action=voir_recettes_par_ingredients' => new filtreRecetteController($connection),
-	'/index.php?action=voir_recettes_par_tags' => new filtreRecetteController($connection)
+	'/index.php?action=voir_recettes_par_tags' => new filtreRecetteController($connection),
+	'/index.php?action=voir_utilisateur' => new adminController($connection),
+	'/index.php?action=rendre_inactif' => new adminController($connection),
+	'/index.php?action=rendre_actif' => new adminController($connection),
+	'/index.php?action=supprimer_compte_utilisateur' => new adminController($connection),
+	'/index.php?action=gestion_de_recette' => new adminController($connection),
+	'/index.php?action=refuser_recette' => new adminController($connection),
+	'/index.php?action=accepter_recette' => new adminController($connection),
+	'/index.php?action=voir_recette_details' => new adminController($connection),
+	'/index.php?action=gestion_de_commentaire' => new adminController($connection),
+	'/index.php?action=valider_commentaire' => new adminController($connection),
+	'/index.php?action=supprimer_commentaire' => new adminController($connection),
 ];
 
 ?>	

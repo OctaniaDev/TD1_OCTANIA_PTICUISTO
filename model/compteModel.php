@@ -17,7 +17,6 @@ class Compte {
     }
     
     
-    
     public function deleteUser($userId) {
         $res1 = $this->deleteUserCommentaire($userId);
         $res2 = $this->deleteUserRecettes($userId);
