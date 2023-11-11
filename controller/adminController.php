@@ -6,10 +6,6 @@ require_once $GLOBALS['root'] . 'model/adminModel.php';
 
 class AdminController extends Controller {
 
-<<<<<<< HEAD
-    private $adminModel;
-=======
->>>>>>> admin
 
     public function __construct($connection) {
         parent::__construct($connection);
