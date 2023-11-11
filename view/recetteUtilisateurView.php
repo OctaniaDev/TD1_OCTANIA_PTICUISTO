@@ -4,12 +4,15 @@
         echo '<a href="/index.php?action=ajout_recette">Ajouter une recette</a>';
         echo '<h1>Liste des recettes</h1>';
     if (!empty($recettes)) {
+        if(isset($_SESSION['erreurSuppression']))
+            echo '<p style=" color: red;">erreur lors de la suppression d\'une recette</p>';
         echo '<ul id="list-recette">';
         for($i = 0; $i < 10; $i++) {
             if($i < count($recettes)) {
             echo '<li><h2><a href="./index.php?action=voir_recettes_compte&rec_id='.$recettes[$i]['REC_ID'].'">'.$recettes[$i]['REC_TITRE'].'</a></h2>';
             echo '<p>'.$recettes[$i]['CAT_INTITULE'].'</p>';
-            echo '<p>'.$recettes[$i]['REC_RESUME'].'</p></li>';
+            echo '<p>'.$recettes[$i]['REC_RESUME'].'</p>';
+			echo '<a href="./index.php?action=supprimer_recette&rec_id='.$recettes[$i]['REC_ID'].'">supprimer recette</a></li>';
             }
         }
         echo '</ul>';
@@ -27,7 +30,7 @@
         let plusDeRecette = '';
         for(let i = nbRecette; i < nbRecette + 10; i++) {
             if(i < recettes.length)
-                plusDeRecette += '<li><h2><a href="./index.php?action=voir_recettes&rec_id='+recettes[i]['REC_ID']+'">'+recettes[i]['REC_TITRE']+'</a></h2>'+'<p>'+recettes[i]['CAT_INTITULE']+'</p><p>'+recettes[i]['REC_RESUME']+'</p></li>';
+                plusDeRecette += '<li><h2><a href="./index.php?action=voir_recettes&rec_id='+recettes[i]['REC_ID']+'">'+recettes[i]['REC_TITRE']+'</a></h2>'+'<p>'+recettes[i]['CAT_INTITULE']+'</p><p>'+recettes[i]['REC_RESUME']+'</p>'+'<a href="./index.php?action=supprimer_recette&rec_id='+$recettes[$i]['REC_ID']+'">supprimer recette</a></li>';
             else {
                 document.getElementById('button-plus').style.display = 'none';
             }

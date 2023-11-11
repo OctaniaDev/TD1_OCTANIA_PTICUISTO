@@ -4,7 +4,7 @@ require_once 'controller.php';
 require_once($GLOBALS['root'] . 'model/recetteModel.php');
 
 class RecetteController extends Controller {
-
+    private $recetteModel;
     public function __construct($connection) {
         parent::__construct($connection);
     }
@@ -23,6 +23,13 @@ class RecetteController extends Controller {
                 $this->afficherRecette($_GET['rec_id']);
             else
                 $this->afficherToutesRecettes();
+        }
+        if($_GET['action'] == 'supprimer_recette') {
+            if($_SESSION['connecter'] == 'oui' && isset($_SESSION['id_utilisateur'])) {
+                if(isset($_GET['rec_id'])) {
+                    $this->supprimerRecetteUtilisateur($_GET['rec_id'], $_SESSION['id_utilisateur']);
+                }
+            }
         }
         $this->connection = null;
     }
@@ -55,7 +62,19 @@ class RecetteController extends Controller {
         $recetteModel = new RecetteModel($this->connection);
         $recettes = $recetteModel->recupererRecettesUtilisateur($utiId);
         require $GLOBALS['root'] . 'view/recetteUtilisateurView.php';
+        $_SESSION['erreurSuppression'] = null;
     }
-
+    	
+    public function supprimerRecetteUtilisateur($recId, $utiId) {
+        $recetteModel = new RecetteModel($this->connection);
+        $resultat = $recetteModel->supprimerRecetteUtilisateur($recId, $utiId);
+        if($resultat == -1) {
+            echo '<script>location.replace("/index.php");</script>';
+        } else {
+            if(!$resultat)
+                $_SESSION['erreurSuppression'] = true;
+            echo '<script>location.replace("/index.php?action=voir_recettes_compte");</script>';
+        }
+    }
 }
 ?>
