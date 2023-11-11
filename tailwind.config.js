@@ -10,15 +10,12 @@ exports = {
         'bleu': '#2a3990',
         'blanc': '#ffffff',
         'gris': '#999999',
-        'bleu-clair': '#7890cd',
+        'bleu-clair': '#7890cd'
       },
       fontFamily: {
         'titre': ['"Permanent Marker"'],
         'texte': ['"Pacifico"'],
-      },
+      }
     },
-  },
-  plugins: [
-    require('flowbite/plugin')
-  ],
+  }
 }

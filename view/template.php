@@ -30,10 +30,14 @@ if(isset($_SESSION['type_utilisateur'])) {
 }
 
 ?>
-
+<div
+class="flex flex-col items-center mx-96">
   <?= $content ?>
+<div>
 
+<!-- FLOwBITE CSS -->
 <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+
 </body>
 </html>
