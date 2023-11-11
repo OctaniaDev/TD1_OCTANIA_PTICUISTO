@@ -59,23 +59,25 @@
                             <ul class="py-1" aria-labelledby="dropdownLargeButton">
                                 <li>
                                     <button data-modal-target="modal-cat" data-modal-toggle="modal-cat" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                                    Filtrer par cat
+                                    Filtrer par catégories
                                     </button>
                                 </li>
                                 <li>
                                     <button data-modal-target="modal-titre" data-modal-toggle="modal-titre" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                                    Filtrer par titre
+                                    Filtrer par titres
                                     </button>
                                 </li>
                                 <li>
-                                    <a href="#"
-                                        class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Earnings</a>
+                                    <button data-modal-target="modal-ing" data-modal-toggle="modal-ing" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                                    Filtrer par ingrédients
+                                    </button>
+                                </li>
+                                <li>
+                                    <button data-modal-target="modal-tag" data-modal-toggle="modal-tag" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                                    Filtrer par tags
+                                    </button>
                                 </li>
                             </ul>
-                            <div class="py-1">
-                                <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Sign
-                                    out</a>
-                            </div>
                         </div>
                     </li>
                     <li>
@@ -172,6 +174,80 @@
                                 <input type="text" name="motCherche" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Rechercher un titre de recette" required>
                                 <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Rechercher</button>
                             </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin modal -->
+            <!-- Main modal -->
+            <div id="modal-ing" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full max-w-2xl max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <!-- Modal header -->
+                        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Filtre par ingrédients
+                            </h3>
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="modal-ing">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-6">
+                        <form action="./index.php?action=voir_recettes_par_ingredients" method="post">
+                            <?php
+                                foreach($_SESSION['ingredients'] as $ingredient){
+                                    echo('
+                                        <div class="flex items-center">
+                                        <input id="'. $ingredient['ING_ID'] .'" type="checkbox" name="ingredients_recette[]" value="'. $ingredient['ING_ID'] .'" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="'. $ingredient['ING_ID'] .'" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">'. $ingredient['ING_INTITULE'] .'</label>
+                                        </div>
+                                    ');
+                                }
+                            ?>
+                            <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Rechercher</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin modal -->
+            <!-- Main modal -->
+            <div id="modal-tag" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full max-w-2xl max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <!-- Modal header -->
+                        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Filtre par tags
+                            </h3>
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="modal-tag">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-6">
+                        <form action="./index.php?action=voir_recettes_par_tags" method="post">
+                            <?php
+                                foreach($_SESSION['tags'] as $tag){
+                                    echo('
+                                        <div class="flex items-center">
+                                        <input id="'. $tag['TAG_ID'] .'" type="checkbox" name="tags[]" value="'. $tag['TAG_ID'] .'" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="'. $tag['TAG_ID'] .'" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">'. $tag['TAG_LIBELLE'] .'</label>
+                                        </div>
+                                    ');
+                                }
+                            ?>
+                            <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Rechercher</button>
                         </form>
                         </div>
                     </div>
