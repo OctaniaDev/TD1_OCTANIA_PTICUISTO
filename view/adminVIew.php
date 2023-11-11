@@ -2,7 +2,7 @@
 
 <a href="/index.php?action=gestion_de_compte">Gestion de comtpes</a><br>
 <a href="/index.php?action=gestion_de_recette">Gestion de recettes</a><br>
-<a href="/index.php?action=deconnexion">Gestion des commentaires</a><br>
+<a href="/index.php?action=gestion_de_commentaire">Gestion des commentaires</a><br>
 
 <?php
     $content = ob_get_clean();

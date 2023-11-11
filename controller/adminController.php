@@ -33,6 +33,12 @@ class AdminController extends Controller {
                 $this->UseaccepterRecette($_GET['rec_id']);
             } else if ($_GET['action'] == 'voir_recette_details'){
                 $this->afficherRecetteDetails($_GET['rec_id']);
+            } else if($_GET['action'] == 'gestion_de_commentaire'){
+                $this->afficherTousCommentaires();
+            } else if($_GET['action'] == 'valider_commentaire'){
+                $this->validerCommentaire($_GET['com_id']);
+            } else if($_GET['action'] == 'supprimer_commentaire'){
+                $this->supprimerCommentaire($_GET['com_id']);
             }
         } else {
             echo '<script>location.replace("/index.php");</script>';
@@ -94,7 +100,24 @@ class AdminController extends Controller {
         echo '<script>location.replace("/index.php?action=gestion_de_recette");</script>';
     }
 
-    
+
+    public function afficherTousCommentaires(){
+        $adminModel = new Admin($this->connection);
+        $commentaires = $adminModel->recupererTousCommentaires();
+        require $GLOBALS['root'] . 'view/gestionCommentaireView.php';
+    }    
+
+    public function validerCommentaire($comId){
+        $adminModel = new Admin($this->connection);
+        $adminModel->validerCommentaire($comId);
+        echo '<script>location.replace("/index.php?action=gestion_de_commentaire");</script>';
+    }
+
+    public function supprimerCommentaire($comId){
+        $adminModel = new Admin($this->connection);
+        $adminModel->supprimerCommentaire($comId);
+        echo '<script>location.replace("/index.php?action=gestion_de_commentaire");</script>';
+    }
 
 }
 

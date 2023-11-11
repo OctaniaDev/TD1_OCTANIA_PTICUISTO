@@ -31,6 +31,9 @@ $routes = [
 	'/index.php?action=refuser_recette' => new adminController($connection),
 	'/index.php?action=accepter_recette' => new adminController($connection),
 	'/index.php?action=voir_recette_details' => new adminController($connection),
+	'/index.php?action=gestion_de_commentaire' => new adminController($connection),
+	'/index.php?action=valider_commentaire' => new adminController($connection),
+	'/index.php?action=supprimer_commentaire' => new adminController($connection),
 ];
 
 ?>	

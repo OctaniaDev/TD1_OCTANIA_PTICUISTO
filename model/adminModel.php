@@ -76,4 +76,26 @@ class Admin {
         ajouterParamPDO($cur, ':recId', $recId);
         return majDonneesPrepareesPDO($cur);
     }
+
+
+    public function recupererTousCommentaires(){
+        $sql = "SELECT * from CUI_COMMENTAIRE JOIN CUI_UTILISATEUR USING(UTI_ID) WHERE COM_STATUS = 1";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        LireDonneesPDOPreparee($cur,$tab);
+        return $tab;
+    }
+
+    public function validerCommentaire($comId){
+        $sql = "UPDATE CUI_COMMENTAIRE SET COM_STATUS = 2 WHERE COM_ID = :comId";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':comId', $comId);
+        return majDonneesPrepareesPDO($cur);
+    }
+
+    public function supprimerCommentaire($comId){
+        $sql = "DELETE FROM CUI_COMMENTAIRE WHERE COM_ID = :comId";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':comId', $comId);
+        return majDonneesPrepareesPDO($cur);
+    }
 }
