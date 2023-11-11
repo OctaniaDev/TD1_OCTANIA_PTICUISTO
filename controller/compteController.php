@@ -15,11 +15,23 @@ class CompteController extends Controller {
         if ($_SESSION['connecter'] === 'oui' && isset($_SESSION['id_utilisateur'])) {
             $this->traiterInformationsCompte($_SESSION['id_utilisateur']);
             if (isset($_GET['action']) && $_GET['action'] == 'supprimer_compte') {
-                $this->traiterSuppression($_SESSION['id_utilisateur']);
+                $result = $this->traiterSuppression($_SESSION['id_utilisateur']);
+                if($result) {
+                    echo '<script>location.replace("/index.php");</script>';
+                } else {
+                    $_SESSION['erreurSupprimerCompte'] = true;
+                    echo '<script>location.replace("/index.php?action=compte");</script>';
+                }
             } else if (isset($_GET['action']) && $_GET['action'] == 'modifier_mot_de_passe') {
                 $result = $this->traiterModificationMotDePasse($_SESSION['id_utilisateur']);
+                if($result) {
+                    echo '<script>location.replace("/index.php?action=deconnexion");</script>';
+                }  else {
+                    $_SESSION['erreurMDPCompte'] = true;
+                    echo '<script>location.replace("/index.php?action=compte");</script>';
+                }   
             }
-        } else {
+        } else  {
             require $GLOBALS['root'] . 'view/connexionView.php';
         }
         $this->connection = null;
@@ -31,6 +43,8 @@ class CompteController extends Controller {
         $compteModel = new Compte($this->connection);
         $accountInfo = $compteModel->getAccountInfo($userId);
         require $GLOBALS['root'] . 'view/compteView.php';
+        $_SESSION['erreurSupprimerCompte'] = null;
+        $_SESSION['erreurSupprimerCompte'] = null;
         return $accountInfo;
     }
 
@@ -39,19 +53,16 @@ class CompteController extends Controller {
         $userId = $_SESSION['id_utilisateur'];
         $compteModel = new Compte($this->connection);
         $result = $compteModel->deleteUser($userId);
-        if($result)
-            echo '<script>location.replace("/index.php");</script>';
-        else {
-            echo '<script>location.replace("/index.php?action=compte");</script>';
-        }
-
     }
 
     public function traiterModificationMotDePasse($userId) {
         $nouveauMotDePasse = $_POST['nouveau_mot_de_passe'];
+        $confirmerMotDePasse = $_POST['confirmation_mot_de_passe'];
+        if($nouveauMotDePasse != $confirmerMotDePasse)
+            return false;
         $compteModel = new Compte($this->connection);
         $result = $compteModel->modifierMotDePasse($_SESSION['id_utilisateur'], $nouveauMotDePasse);
-        echo '<script>location.replace("./index.php?action=deconnexion");</script>';
         return $result;
+
     }
 }
