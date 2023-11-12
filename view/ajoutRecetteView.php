@@ -1,9 +1,14 @@
 <?php ob_start(); ?>
 
+
+
 <div class="flex items-center justify-center min-h-screen mb-20">
     <div class="text-center border rounded-md p-8 bg-blanc md:p-16">
         <h1 class="text-2xl md:text-5xl font-titre mb-4 md:mb-8 text-bleu">Ajout d'une recette</h1>
-
+		<?php
+		if(isset($erreur))
+			echo $erreur;
+		?>
         <form enctype="multipart/form-data" method="post" action="/index.php?action=ajout_recette" class="mb-4">
             <div class="mb-4">
                 <label for="titre-recette" class="block text-sm md:text-base font-medium text-gray-600">Titre :</label>

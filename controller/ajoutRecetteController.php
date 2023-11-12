@@ -17,8 +17,9 @@ class AjoutRecetteController extends Controller {
 			if($this->ajouterRecette())
             	echo '<script>location.replace("/index.php");</script>';
 			else {
-				$erreur = "<p>Une erreur c'est produite</p>";
+				$erreur = '<p class=" text-red-500">Une erreur s\'est produite</p>';
 				require $GLOBALS['root'] . 'view/ajoutRecetteView.php';
+				$erreur = null;
 			}
 		}
 		$this->connection = null;
