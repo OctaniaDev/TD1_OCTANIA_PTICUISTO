@@ -10,6 +10,8 @@
         for($i = 0; $i < 10; $i++) {
             if($i < count($recettes)) {
                 echo '<li><h2><a href="./index.php?action=voir_recettes&rec_id='.$recettes[$i]['REC_ID'].'">'.$recettes[$i]['REC_TITRE'].'</a></h2>';
+                echo $GLOBALS['root'] .'img/' . $recettes[$i]['REC_IMAGE'];
+                echo '<img src="'. $GLOBALS['root'] .'img/' . $recettes[$i]['REC_IMAGE'] . '" alt="image de la recette">';
                 echo '<p>'.$recettes[$i]['CAT_INTITULE'].'</p>';
                 echo '<p>'.$recettes[$i]['REC_RESUME'].'</p></li>';
                 $j = 0;
@@ -41,7 +43,8 @@
         let plusDeRecette = '';
         for(let i = nbRecette; i < nbRecette + 10; i++) {
             if(i < recettes.length) {
-                plusDeRecette += '<li><h2><a href="./index.php?action=voir_recettes&rec_id='+recettes[i]['REC_ID']+'">'+recettes[i]['REC_TITRE']+'</a></h2>'+'<p>'+recettes[i]['CAT_INTITULE']+'</p><p>'+recettes[i]['REC_RESUME']+'</p></li>';
+                plusDeRecette += '<li><h2><a href="./index.php?action=voir_recettes&rec_id='+recettes[i]['REC_ID']+'">'+recettes[i]['REC_TITRE']+'</a></h2>'+'<img src="./img/'+recettes[i]['REC_IMAGE']+'" alt="image de la recette">'
+                +'<p>'+recettes[i]['CAT_INTITULE']+'</p><p>'+recettes[i]['REC_RESUME']+'</p></li>';
                 let j = 0;
                 while(tags.length > j) {
                     if(recettes[i]['REC_ID'] == tags[j]['REC_ID']) {
