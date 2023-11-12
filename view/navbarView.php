@@ -1,4 +1,4 @@
-<div class="mx-auto h-20 bg-bleu-clair w-full">
+<div class="mx-auto h-20 bg-bleu-clair w-full mb-20">
 
     <nav class="border-gray-200">
         <div class="container mx-auto flex flex-wrap items-center justify-between text-xl">
