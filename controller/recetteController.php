@@ -40,6 +40,7 @@ class RecetteController extends Controller {
     public function afficherToutesRecettes() {
         $recetteModel = new RecetteModel($this->connection);
         $recettes = $recetteModel->recupererTousRecettesValide();
+        $tags = $recetteModel->recupererTagsListRecette($recettes);
         require $GLOBALS['root'] . 'view/recetteView.php';
     }
 

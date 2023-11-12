@@ -156,6 +156,23 @@ class RecetteModel {
         ajouterParamPDO($cur, ':utiId', $utiId);
         return majDonneesPrepareesPDO($cur);
     }
+
+    public function recupererTagsListRecette($recettes) {
+        if(empty($recettes)) return null;
+        $req = "select * from CUI_TAG join CUI_POSSEDER using(TAG_ID)
+        where REC_ID = :recId0";
+        for($i = 1; $i < count($recettes); $i++) {
+            $req .= " union ";
+            $req .= "select * from CUI_TAG join CUI_POSSEDER using(TAG_ID)
+            where REC_ID = :recId".$i;
+        }
+        $cur = preparerRequetePDO($this->connection, $req);
+        for($i = 0; $i < count($recettes); $i++) {
+            ajouterParamPDO($cur, ':recId'.$i, $recettes[$i]['REC_ID']);
+        }
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
 }
 
 ?>
