@@ -18,6 +18,7 @@
                 echo '<li><h2><a href="./index.php?action=voir_recettes_compte&rec_id='.$recettes[$i]['REC_ID'].'">'.$recettes[$i]['REC_TITRE'].'</a></h2>';
                 echo '<p> Intitulé : '.$recettes[$i]['CAT_INTITULE'].'</p>';
                 echo '<p> Résumé : '.$recettes[$i]['REC_RESUME'].'</p>';
+                echo '<p> Contenu : '.$recettes[$i]['REC_CONTENU'].'</p>';
                 echo '</div>';
                 if($recettes[$i]['REC_STATUS'] == 2)
                     echo '<p class="text-red-300 italic">En attente de validation</p>';
