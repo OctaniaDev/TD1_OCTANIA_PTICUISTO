@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <div class="container mx-auto my-8 p-8 bg-bleu text-blanc rounded shadow-md">
-    <h1 class="font-titre text-2xl font-bold mb-4">Informations du compte</h1>
+    <h1 class="font-titre text-2xl mb-4">Informations du compte</h1>
 
     <div class="mb-4 font-texte">
         <p class="mb-1">Pseudo:
@@ -24,9 +24,9 @@
 
     <form method="post" action="/index.php?action=modifier_mot_de_passe" class="mb-4 font-texte">
         <label for="nouveau_mot_de_passe" class="block mb-2">Nouveau mot de passe :</label>
-        <input type="password" name="nouveau_mot_de_passe" required class="border p-2 mb-2 rounded">
+        <input type="password" name="nouveau_mot_de_passe" required class="border p-2 mb-2 rounded text-black">
         <label for="confirmation_mot_de_passe" class="block mb-2">Confirmer le nouveau mot de passe :</label>
-        <input type="password" name="confirmation_mot_de_passe" required class="border p-2 mb-2 rounded">
+        <input type="password" name="confirmation_mot_de_passe" required class="border p-2 mb-2 rounded text-black">
         <input type="submit" name="modifier_mot_de_passe" value="Modifier le mot de passe"
             class="bg-bleu text-blanc px-4 py-2 rounded hover:bg-bleu-clair">
     </form>

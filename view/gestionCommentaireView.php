@@ -28,7 +28,7 @@
     <?php endif; ?>
 
     <div class="mt-8">
-        <a href="javascript:history.go(-1)"
+        <a href="./index.php"
             class="bg-gray-500 text-white hover:bg-gray-400 px-4 py-2 rounded">Retour</a>
     </div>
 </div>
