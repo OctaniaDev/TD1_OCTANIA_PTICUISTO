@@ -44,7 +44,7 @@ class CompteController extends Controller {
         $accountInfo = $compteModel->getAccountInfo($userId);
         require $GLOBALS['root'] . 'view/compteView.php';
         $_SESSION['erreurSupprimerCompte'] = null;
-        $_SESSION['erreurSupprimerCompte'] = null;
+        $_SESSION['erreurMDPCompte'] = null;
         return $accountInfo;
     }
 
