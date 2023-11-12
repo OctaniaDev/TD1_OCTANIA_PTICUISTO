@@ -84,6 +84,14 @@ class RecetteModel {
         return $tab;
     }
 
+    public function recupererTagsRecette($recId) {
+        $req = 'SELECT * FROM CUI_TAG JOIN CUI_POSSEDER USING (TAG_ID) WHERE REC_ID = :recId';
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ':recId', $recId);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
+
     public function insererCommentaire($recId, $commentaire, $utiID) {
         $req = "INSERT into  CUI_COMMENTAIRE values (null, :recId, :utiId, :commentaire, 2, sysdate())";
         $cur = preparerRequetePDO($this->connection, $req);

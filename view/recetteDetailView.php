@@ -2,11 +2,14 @@
 ob_start();
 
 if (!empty($recetteDetail)) {
-    foreach ($recetteDetail as $recette) {
-        echo '<h1>'.$recette['REC_TITRE'].'</h1>';
-        echo '<p>date de creation : '.$recette['REC_DATE_CREATION'].'</p>';
-        echo '<p>'.$recette['REC_CONTENU'].'</p>';
+    echo '<h1>'.$recetteDetail[0]['REC_TITRE'].'</h1>';
+    echo '<p>date de creation : '.$recetteDetail[0]['REC_DATE_CREATION'].'</p>';
+    if(!empty($tags))
+        echo '<p>Tags : </p>';
+    foreach($tags as $tag) {
+        echo '<p>'.$tag['TAG_LIBELLE'].'</p>';
     }
+    echo '<p>'.$recetteDetail[0]['REC_CONTENU'].'</p>';
     echo '<p>Liste ingredients :</p>';
     if(!empty($ingredients)) {
         echo '<ul>';
@@ -17,7 +20,7 @@ if (!empty($recetteDetail)) {
         echo "<p>pas d'ingredients (à faire)</p>";
     
     if($_SESSION['connecter'] == 'oui' && $recetteDetail[0]['REC_STATUS'] == 1) {
-        echo '<form method="post" action="./index.php?action=voir_recettes&rec_id='.$recette['REC_ID'].'">';
+        echo '<form method="post" action="./index.php?action=voir_recettes&rec_id='.$recetteDetail[0]['REC_ID'].'">';
 ?>
     
         <p><label for="commentaire-input">Postez votre commentaire</label></p>
