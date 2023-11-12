@@ -12,7 +12,13 @@
             echo '<li><h2><a href="./index.php?action=voir_recettes_compte&rec_id='.$recettes[$i]['REC_ID'].'">'.$recettes[$i]['REC_TITRE'].'</a></h2>';
             echo '<p>'.$recettes[$i]['CAT_INTITULE'].'</p>';
             echo '<p>'.$recettes[$i]['REC_RESUME'].'</p>';
-			echo '<a href="./index.php?action=supprimer_recette&rec_id='.$recettes[$i]['REC_ID'].'">supprimer recette</a></li>';
+            
+            echo '<form method="post" action="/index.php?action=modifier_recette&rec_id='.$recettes[$i]['REC_ID'].'">
+                    <button type="submit">modifier</button>
+                    </form>';
+			echo '<form method="post" action="/index.php?action=supprimer_recette&rec_id='.$recettes[$i]['REC_ID'].'">
+                    <button type="submit">supprimer</button>
+                    </form>';
             }
         }
         echo '</ul>';

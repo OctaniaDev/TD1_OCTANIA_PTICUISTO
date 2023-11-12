@@ -18,12 +18,14 @@ class RecetteController extends Controller {
                     $this->afficherListeRecettesCompte($_SESSION['id_utilisateur']);
             }
         }
+
         if($_GET['action'] == 'voir_recettes') {
             if(isset($_GET['rec_id']))
                 $this->afficherRecette($_GET['rec_id']);
             else
                 $this->afficherToutesRecettes();
         }
+
         if($_GET['action'] == 'supprimer_recette') {
             if($_SESSION['connecter'] == 'oui' && isset($_SESSION['id_utilisateur'])) {
                 if(isset($_GET['rec_id'])) {
@@ -31,6 +33,14 @@ class RecetteController extends Controller {
                 }
             }
         }
+        if($_GET['action'] == 'modifier_recette') {
+            if($_SESSION['connecter'] == 'oui' && isset($_SESSION['id_utilisateur'])) {
+                if(isset($_GET['rec_id'])) {
+                    $this->modifierRecetteUtilisateur($_GET['rec_id'], $_SESSION['id_utilisateur']);
+                }
+            }
+        }
+
         $this->connection = null;
     }
 
@@ -76,5 +86,10 @@ class RecetteController extends Controller {
             echo '<script>location.replace("/index.php?action=voir_recettes_compte");</script>';
         }
     }
+
+    public function modifierRecetteUtilisateur($recId, $utiId) {
+        
+    }
+
 }
 ?>
