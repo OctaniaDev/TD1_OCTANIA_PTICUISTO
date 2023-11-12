@@ -3,6 +3,8 @@
     if($_SESSION['connecter'] == 'oui')
         echo '<a href="/index.php?action=ajout_recette">Ajouter une recette</a>';
         echo '<h1>Liste des recettes</h1>';
+        //a supp
+        echo '</br>';
     if (!empty($recettes)) {
         if(isset($_SESSION['erreurSuppression']))
             echo '<p style=" color: red;">erreur lors de la suppression d\'une recette</p>';
@@ -12,7 +14,8 @@
             echo '<li><h2><a href="./index.php?action=voir_recettes_compte&rec_id='.$recettes[$i]['REC_ID'].'">'.$recettes[$i]['REC_TITRE'].'</a></h2>';
             echo '<p>'.$recettes[$i]['CAT_INTITULE'].'</p>';
             echo '<p>'.$recettes[$i]['REC_RESUME'].'</p>';
-            
+            if($recettes[$i]['REC_STATUS'] == 2)
+                echo '<p>en attente de validation</p>';
             echo '<form method="post" action="/index.php?action=modifier_recette&rec_id='.$recettes[$i]['REC_ID'].'">
                     <button type="submit">modifier</button>
                     </form>';
@@ -20,6 +23,7 @@
                     <button type="submit">supprimer</button>
                     </form>';
             }
+            echo '</br></br>';
         }
         echo '</ul>';
     } else

@@ -45,5 +45,6 @@ class AjoutRecetteController extends Controller {
 		$recetteModel = new RecetteModel($this->connection);
 		return $recetteModel->recupererTousIngredients();
 	}
+
 }
 ?>
