@@ -70,10 +70,18 @@ class RecetteModel {
     }
 
     public function insererIngredient($recId, $ingId) {
-        $req = "INSERT into  CUI_CONTENIR values (:recId, :ingId)";
+        $req = "INSERT into CUI_CONTENIR values (:recId, :ingId)";
         $cur = preparerRequetePDO($this->connection, $req);
         ajouterParamPDO($cur, ':recId', $recId);
         ajouterParamPDO($cur, ':ingId', $ingId);
+        return majDonneesPrepareesPDO($cur);
+    }
+
+    public function insererTag($recId, $tagId) {
+        $req = "INSERT into CUI_POSSEDER values (:recId, :tagId)";
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ':recId', $recId);
+        ajouterParamPDO($cur, ':tagId', $tagId);
         return majDonneesPrepareesPDO($cur);
     }
 

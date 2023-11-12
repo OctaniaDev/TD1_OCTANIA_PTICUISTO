@@ -46,8 +46,8 @@
                 </div>
             </fieldset>
 
-            <div class="mb-4">
-				<p>Liste des ingredients</p>
+            <div class="mb-4 overscroll-auto overflow-y-scroll h-96">
+				<p class="text-bleu text-sm md:text-base">Liste des ingredients</p>
                 <?php
                 if (!empty($ingredients)) {
                     foreach ($ingredients as $ingredient) {
@@ -60,13 +60,13 @@
                 ?>
             </div>
 
-			<div class="mb-4">
-				<p>Liste des tags</p>
+			<div class="mb-4 overscroll-auto overflow-y-scroll h-96">
+				<p class="text-bleu text-sm md:text-base">Liste des tags</p>
                 <?php
                 if (!empty($tags)) {
                     foreach ($tags as $tag) {
                         echo '<div class="flex items-center mb-2">';
-                        echo '<input id="' . $tag['TAG_LIBELLE'] . '-recette" value="' . $tag['TAG_ID'] . '" type="checkbox" name="ingredients_recette[]">';
+                        echo '<input id="' . $tag['TAG_LIBELLE'] . '-recette" value="' . $tag['TAG_ID'] . '" type="checkbox" name="tags_recette[]">';
                         echo '<label for="' . $tag['TAG_LIBELLE'] . '-recette" class="ml-2 text-sm md:text-base">' . $tag['TAG_LIBELLE'] . '</label>';
                         echo '</div>';
                     }
