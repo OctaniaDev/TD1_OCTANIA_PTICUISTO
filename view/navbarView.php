@@ -143,7 +143,6 @@
 
 
             <!-- Main modal -->
-            <!-- Main modal -->
             <div id="modal-cat" tabindex="-1" aria-hidden="true"
                 class="fixed inset-0 items-center justify-center z-50 hidden w-full overflow-x-hidden overflow-y-auto bg-gray-500 bg-opacity-75">
                 <div class="relative w-full max-w-2xl">
@@ -156,7 +155,8 @@
                             </h3>
                             <button type="button"
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="modal-cat">
+                                data-modal-hide="modal-cat" 
+                                onclick="closeModal()">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -164,6 +164,8 @@
                                 </svg>
                                 <span class="sr-only">Close modal</span>
                             </button>
+
+
                         </div>
                         <!-- Modal body -->
                         <div class="p-6 space-y-6">
@@ -181,6 +183,7 @@
                 </div>
             </div>
 
+
             <!-- Fin modal -->
             <!-- Main modal -->
             <div id="modal-titre" tabindex="-1" aria-hidden="true"
@@ -194,8 +197,10 @@
                                 Filtre par titre
                             </h3>
                             <button type="button"
+                            
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="modal-titre">
+                                data-modal-hide="modal-titre"
+                                onclick="closeModal()">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -243,7 +248,8 @@
                             </h3>
                             <button type="button"
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="modal-ing">
+                                data-modal-hide="modal-ing"
+                                onclick="closeModal()">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -286,7 +292,8 @@
                             </h3>
                             <button type="button"
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="modal-tag">
+                                data-modal-hide="modal-tag"
+                                onclick="closeModal()">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -319,5 +326,16 @@
         </div>
     </nav>
 </div>
+
+<script>
+    function closeModal() {
+        window.location.href = window.location.href;
+    }
+</script>
+
+
+
+
+
 
 <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
