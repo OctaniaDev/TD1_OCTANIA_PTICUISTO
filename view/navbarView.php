@@ -1,9 +1,9 @@
-<div class="w-full h-20 bg-bleu-clair">
+<div class="mx-auto h-20 bg-bleu-clair w-full">
 
     <nav class="border-gray-200">
-        <div class="container mx-auto flex flex-wrap items-center justify-center gap-96">
-            <a href="./index.php" class="flex">
-                <img src="img/Logo.png" alt="Logo ptitCuisto" class="ml-4 w-36 mt-4">
+        <div class="container mx-auto flex flex-wrap items-center justify-between text-xl">
+            <a href="/index.php" class="flex items-center space-x-3">
+                <img src="img/Logo.png" class="w-36 ml-4 mt-4" alt="Logo ptitCuisto">
             </a>
 
             <!-- BOUTON POUR LE MENU BURGER -->
@@ -24,23 +24,23 @@
             </button>
 
 
-            <div class="hidden md:block w-full md:w-auto" id="mobile-menu">
-                <ul class="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-xl md:font-medium">
+            <div class="hidden md:block w-full md:w-auto bg-bleu-clair"  id="mobile-menu">
+                <ul class="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
                     <li>
                         <a href="./index.php"
-                            class="bg-blue-700 md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-white md:hover:text-blue-700 md:p-0 rounded focus:outline-none"
+                            class="bg-bleu-clair hover:text-bleu md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-blue-700 md:p-0 rounded focus:outline-none"
                             aria-current="page">Accueil</a>
                     </li>
 
                     <li>
                         <a href="./index.php?action=voir_recettes"
-                            class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Nos
+                            class="text-white hover:text-bleu border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Nos
                             Recettes</a>
                     </li>
 
                     <li>
                         <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                            class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">Filtres
+                            class="text-white hover:text-bleu border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">Filtres
                             <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -83,12 +83,11 @@
                         </div>
                     </li>
 
-
                     <!-- DROPDOWN MENU COMPTE -->
                     <?php if ($_SESSION['connecter'] == 'oui'): ?>
                         <li>
                             <button id="dropdownNavbarLinkCompte" data-dropdown-toggle="dropdownNavbarCompte"
-                                class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">
+                                class="text-white hover:text-bleu border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">
                                 Mon compte
                                 <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -123,24 +122,24 @@
                         </li>
                     <?php endif; ?>
 
-
-
                     <li>
                         <?php
                         if ($_SESSION['connecter'] != 'oui')
-                            echo '<a href="./index.php?action=connexion" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Connexion</a>';
+                            echo '<a href="./index.php?action=connexion" class="text-white hover:text-bleu border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Connexion</a>';
                         ?>
                     </li>
                     <?php
                     if (isset($_SESSION['type_utilisateur'])) {
                         if ($_SESSION['type_utilisateur'] == 'admin') {
-                            echo '<li><a href="./index.php?action=admin" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Pannel admin</a></li>';
+                            echo '<li><a href="./index.php?action=admin" class="text-white hover:text-bleu border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Pannel admin</a></li>';
                         }
                     }
                     ?>
                 </ul>
             </div>
 
+
+            <!-- ------------------------------------------------------------ -->
 
             <!-- Main modal -->
             <div id="modal-cat" tabindex="-1" aria-hidden="true"
@@ -155,8 +154,7 @@
                             </h3>
                             <button type="button"
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="modal-cat" 
-                                onclick="closeModal()">
+                                data-modal-hide="modal-cat" onclick="closeModal()">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -197,10 +195,8 @@
                                 Filtre par titre
                             </h3>
                             <button type="button"
-                            
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="modal-titre"
-                                onclick="closeModal()">
+                                data-modal-hide="modal-titre" onclick="closeModal()">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -248,8 +244,7 @@
                             </h3>
                             <button type="button"
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="modal-ing"
-                                onclick="closeModal()">
+                                data-modal-hide="modal-ing" onclick="closeModal()">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -292,8 +287,7 @@
                             </h3>
                             <button type="button"
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="modal-tag"
-                                onclick="closeModal()">
+                                data-modal-hide="modal-tag" onclick="closeModal()">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"

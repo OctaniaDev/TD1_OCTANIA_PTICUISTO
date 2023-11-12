@@ -1,4 +1,4 @@
-<footer class="fixed bottom-0 flex flex-col items-center justify-center w-full h-28 bg-bleu-clair p-8 lg:p-0">
+<footer class="fixed bottom-0 w-full flex flex-col items-center justify-center h-28 bg-bleu-clair mt-20 p-8 lg:p-0">
     <div class="bg-white flex flex-row items-center justify-center rounded mb-2">
         <a href="#">
             <img src="img/facebook.png" alt="Facebook" class="w-14 h-14">
