@@ -13,16 +13,20 @@ class ModifierRecetteController extends Controller {
 		if($_GET['action'] == 'modifier_recette') {
 			
             if($_SESSION['connecter'] == 'oui' && isset($_GET['rec_id'])) {
-				if(!isset($_POST['titre_recette'])) {
-					$this->afficherRecetteUtilisateur($_GET['rec_id'], $_SESSION['id_utilisateur']);
+				if(isset($_POST['titre_recette'])) {
+					$resultat = $this->modifierRecetteUtilisateur($_GET['rec_id'], $_SESSION['id_utilisateur']);
+					if($resultat) {
+						echo '<script>location.replace("/index.php");</script>';
+					} else
+						$this->afficherRecetteUtilisateur($_GET['rec_id'], $_SESSION['id_utilisateur'], true);
                 } else {
-					$this->modifierRecetteUtilisateur($_GET['rec_id'], $_SESSION['id_utilisateur']);
+					$this->afficherRecetteUtilisateur($_GET['rec_id'], $_SESSION['id_utilisateur']);
 				}
             }
         }
 	}
 
-	public function afficherRecetteUtilisateur($recId, $utiId) {
+	public function afficherRecetteUtilisateur($recId, $utiId, $erreur = null) {
 		$recetteModel = new RecetteModel($this->connection);
 		$recettesDetail = $recetteModel->recupererRecetteSimple($recId, $utiId);
 		if(count($recettesDetail) == 0)
@@ -37,7 +41,19 @@ class ModifierRecetteController extends Controller {
 	}
 
 	public function modifierRecetteUtilisateur($recId, $utiId) {
-
+		$recetteModel = new RecetteModel($this->connection);
+		if(!isset($_POST['titre_recette'])) return false;
+		if(!isset($_POST['contenu_recette'])) return false;
+		if(!isset($_POST['resume_recette'])) return false;
+		if(!isset($_POST['categorie_recette'])) return false;
+		if(!isset($_POST['ingredients_recette'])) return false;
+		//if(!isset($_POST['image_recette'])) return false;
+		//if(!isset($_POST['tags_recette'])) return false;
+		$resRecette = $recetteModel->updateRecette($recId, $utiId, $_POST['titre_recette'], $_POST['contenu_recette'], $_POST['resume_recette'], $_POST['categorie_recette']);
+		$recetteModel->supprimerIngredients($recId, $utiId);
+		foreach($_POST['ingredients_recette'] as $ingredient)
+			$resIngredients = $recetteModel->insererIngredient($recId, $ingredient);
+		return $resRecette && $resIngredients;
 	}
 }
 

@@ -136,6 +136,18 @@ class RecetteModel {
         ajouterParamPDO($cur, ':recId', $recId);
         return majDonneesPrepareesPDO($cur);
     }
+
+    public function updateRecette($recId, $utiId, $titre, $contenu, $resume, $categorie) {
+        $req = "UPDATE CUI_RECETTE set CAT_ID = :categorie, REC_TITRE = :titre, REC_CONTENU = :contenu, REC_RESUME = :resume, REC_MODIFICATION = sysdate(), REC_STATUS = 2 where REC_ID = :recId and UTI_ID = :utiId";
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ':categorie', $categorie);
+        ajouterParamPDO($cur, ':titre', $titre);
+        ajouterParamPDO($cur, ':contenu', $contenu);
+        ajouterParamPDO($cur, ':resume', $resume);
+        ajouterParamPDO($cur, ':recId', $recId);
+        ajouterParamPDO($cur, ':utiId', $utiId);
+        return majDonneesPrepareesPDO($cur);
+    }
 }
 
 ?>

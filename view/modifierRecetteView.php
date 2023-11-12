@@ -1,7 +1,12 @@
 <?php ob_start(); ?>
+<?php
+if(isset($erreur)) {
+	echo '<p style="color : red;">erreur lors de la modification de la recette</p>';
+}
+?>
 	<h1>Modification d'une recette</h1>
 
-	<form enctype="multipart/form-data" method="post" action="/index.php?action=modifier_recette">
+	<?php echo '<form enctype="multipart/form-data" method="post" action="/index.php?action=modifier_recette&rec_id='.$recettesDetail[0]['REC_ID'].'">'; ?>
 		<div>
 			<label for="titre-recette">Titre : </label></p>
 			<?php echo '<input id="titre-recette" type="text" name="titre_recette" value="'.$recettesDetail[0]['REC_TITRE'].'">'; ?>
