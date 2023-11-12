@@ -18,7 +18,7 @@ class ModifierRecetteController extends Controller {
 					if($resultat) {
 						echo '<script>location.replace("/index.php");</script>';
 					} else
-						$this->afficherRecetteUtilisateur($_GET['rec_id'], $_SESSION['id_utilisateur'], true);
+						$this->afficherRecetteUtilisateur($_GET['rec_id'], $_SESSION['id_utilisateur'], '<p class=" text-red-500">Une erreur s\'est produite</p>');
                 } else {
 					$this->afficherRecetteUtilisateur($_GET['rec_id'], $_SESSION['id_utilisateur']);
 				}
@@ -55,7 +55,6 @@ class ModifierRecetteController extends Controller {
 			'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
 			'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
 			$fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
-			echo $fichier;
 			move_uploaded_file($_FILES['image_recette']['tmp_name'], $dossier . $fichier);
 			$resRecette = $recetteModel->updateRecette($recId, $utiId, $_POST['titre_recette'], nl2br($_POST['contenu_recette']), $_POST['resume_recette'], $_POST['categorie_recette'], $fichier);
 		} else {
