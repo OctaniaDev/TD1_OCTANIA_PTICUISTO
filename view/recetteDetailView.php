@@ -7,7 +7,9 @@ if (!empty($recetteDetail)) {
     if(!empty($tags))
         echo '<p>Tags : </p>';
     foreach($tags as $tag) {
-        echo '<p>'.$tag['TAG_LIBELLE'].'</p>';
+        echo '<form action="./index.php?action=voir_recettes_par_tag" method="post">';
+        echo '<button type="submit" name="tag" value="'.$tag['TAG_ID'].'">'.$tag['TAG_LIBELLE'].'</button>';
+        echo '</form>';
     }
     echo '<p>'.$recetteDetail[0]['REC_CONTENU'].'</p>';
     echo '<p>Liste ingredients :</p>';
