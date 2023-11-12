@@ -9,11 +9,11 @@ if(isset($erreur)) {
 	<?php echo '<form enctype="multipart/form-data" method="post" action="/index.php?action=modifier_recette&rec_id='.$recettesDetail[0]['REC_ID'].'">'; ?>
 		<div>
 			<label for="titre-recette">Titre : </label></p>
-			<?php echo '<input id="titre-recette" type="text" name="titre_recette" value="'.$recettesDetail[0]['REC_TITRE'].'">'; ?>
+			<?php echo '<input id="titre-recette" type="text" pattern="^[a-zA-Z\'\s]{1,32}$" name="titre_recette" value="'.$recettesDetail[0]['REC_TITRE'].'">'; ?>
 		</div>
 		<div>
 			<p><label for="resume-recette">Résumé : </label></p>
-			<?php echo '<textarea id="resume-recette" name="resume_recette">'.$recettesDetail[0]['REC_CONTENU'].'</textarea>' ?>
+			<?php echo '<textarea id="resume-recette" name="resume_recette" name="resume_recette">'.$recettesDetail[0]['REC_CONTENU'].'</textarea>' ?>
 		</div>
 		<div>
 			<p><label for="contenu-recette">Contenu : </label></p>
