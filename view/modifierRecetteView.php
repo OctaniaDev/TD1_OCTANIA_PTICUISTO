@@ -68,7 +68,8 @@ if(isset($erreur)) {
 			}
 		?></div>
 		<div>
-			<input placeholder="choisir une image" type="file" id="image-recette" name="image_recette" accept="image/*">
+			<input type="hidden" name="MAX_FILE_SIZE" value="50000000">
+			<input placeholder="choisir une image" value="" type="file" id="image-recette" name="image_recette" accept="image/*">
 		</div>
 		<input type="submit" value="Publier">
 	</form>

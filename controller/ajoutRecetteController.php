@@ -17,7 +17,7 @@ class AjoutRecetteController extends Controller {
 			if($this->ajouterRecette())
             	echo '<script>location.replace("/index.php");</script>';
 			else {
-				echo "<p>Une erreur c'est produite</p>";
+				$erreur = "<p>Une erreur c'est produite</p>";
 				require $GLOBALS['root'] . 'view/ajoutRecetteView.php';
 			}
 		}
@@ -30,10 +30,17 @@ class AjoutRecetteController extends Controller {
 		if(!isset($_POST['resume_recette'])) return false;
 		if(!isset($_POST['categorie_recette'])) return false;
 		if(!isset($_POST['ingredients_recette'])) return false;
-		//if(!isset($_POST['image_recette'])) return false;
+		if(empty($_FILES['image_recette']['name'])) return false;
 		//if(!isset($_POST['tags_recette'])) return false;
 		$recetteModel = new RecetteModel($this->connection);
-		$resRecette = $recetteModel->insererRecette($_POST['titre_recette'], $_POST['contenu_recette'], $_POST['resume_recette'], $_POST['categorie_recette']);
+		$dossier = $GLOBALS['root'] . 'img/';
+		$fichier = basename($_FILES['image_recette']['name']);
+		$fichier = strtr($fichier,
+		'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+		'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+		$fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
+		move_uploaded_file($_FILES['image_recette']['tmp_name'], $dossier . $fichier);
+		$resRecette = $recetteModel->insererRecette($_POST['titre_recette'], $_POST['contenu_recette'], $_POST['resume_recette'], $_POST['categorie_recette'], $fichier);
 		$recettesUtilisateur = $recetteModel->recupererRecettesUtilisateur($_SESSION['id_utilisateur']);
 		if(!isset($recettesUtilisateur[0]['REC_ID'])) return false;
 		foreach($_POST['ingredients_recette'] as $ingredient)
