@@ -33,6 +33,8 @@ class ModifierRecetteController extends Controller {
 			return false;
 		$ingredients = $recetteModel->recupererTousIngredients();
 		$ingredientsRecette = $recetteModel->recupererIngredientsRecette($recId);
+		$tags = $recetteModel->recupererTousTAGS();
+		$tagsRecette = $recetteModel->recupererTagsRecette($recId);
 
 		if(!$recettesDetail)
 			echo '<script>location.replace("/index.php");</script>';
@@ -47,7 +49,7 @@ class ModifierRecetteController extends Controller {
 		if(!isset($_POST['resume_recette'])) return false;
 		if(!isset($_POST['categorie_recette'])) return false;
 		if(!isset($_POST['ingredients_recette'])) return false;
-		//if(!isset($_POST['tags_recette'])) return false;
+		if(!isset($_POST['tags_recette'])) return false;
 		if(!empty($_FILES['image_recette']['name'])) {
 			$dossier = $GLOBALS['root'] . 'img/';
 			$fichier = basename($_FILES['image_recette']['name']);
@@ -57,7 +59,9 @@ class ModifierRecetteController extends Controller {
 			$fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
 			move_uploaded_file($_FILES['image_recette']['tmp_name'], $dossier . $fichier);
 			$resRecette = $recetteModel->updateRecette($recId, $utiId, $_POST['titre_recette'], nl2br($_POST['contenu_recette']), $_POST['resume_recette'], $_POST['categorie_recette'], $fichier);
+			echo 'chiasse';
 		} else {
+			echo 'merde ou nutella';
 			$resRecette = $recetteModel->updateRecetteSansImage($recId, $utiId, $_POST['titre_recette'], $_POST['contenu_recette'], $_POST['resume_recette'], $_POST['categorie_recette']);
 		}
 
@@ -66,10 +70,10 @@ class ModifierRecetteController extends Controller {
 			$resIngredients = $recetteModel->insererIngredient($recId, $ingredient);
 
 		$recetteModel->supprimerTags($recId, $utiId);
-		foreach($_POST['ingredients_recette'] as $ingredient)
-			$resIngredients = $recetteModel->insererIngredient($recId, $ingredient);
+		foreach($_POST['tags_recette'] as $tag)
+			$resTags = $recetteModel->insererTag($recId, $tag);
 
-		return $resRecette && $resIngredients;
+		return $resRecette && $resIngredients && $resTags;
 	}
 }
 

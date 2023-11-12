@@ -12,7 +12,7 @@ if(isset($erreur))
 	<?php echo '<form enctype="multipart/form-data" method="post" action="/index.php?action=modifier_recette&rec_id='.$recettesDetail[0]['REC_ID'].'" class="mb-4">'; ?>
 		<div class="mb-4">
 			<label for="titre-recette" class="block text-sm md:text-base font-medium text-gray-600">Titre :</label></p>
-			<?php echo '<input id="titre-recette" type="text" pattern="^[a-zA-Z\'\s]{1,32}$" name="titre_recette" value="'.$recettesDetail[0]['REC_TITRE'].'" required
+			<?php echo '<input id="titre-recette" type="text" pattern="^[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\'\s]{1,240}$" name="titre_recette" value="'.$recettesDetail[0]['REC_TITRE'].'" required
             class="mt-1 p-2 md:p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">'; ?>
 		</div>
 
@@ -81,6 +81,29 @@ if(isset($erreur))
 				}
 			}
 		?></div>
+
+
+		<div class="mb-4 overscroll-auto overflow-y-scroll h-96">
+			<p class="text-bleu text-sm md:text-base">Liste des tags</p>
+            <?php
+            if (!empty($tags)) {
+                foreach ($tags as $tag) {
+					echo '<div class="flex items-center mb-2">';
+					$contient = false;
+					foreach($tagsRecette as $tagRecette) {
+						if($tag['TAG_ID'] == $tagRecette['TAG_ID']) {
+							$contient = true;
+							echo '<input checked id="'.$tagRecette['TAG_LIBELLE'].'-recette" value="'.$tagRecette['TAG_ID'].'" type="checkbox" name="tags_recette[]">';
+						}
+					}
+					if(!$contient)
+						echo '<input id="'.$tag['TAG_LIBELLE'].'-recette" value="'.$tag['TAG_ID'].'" type="checkbox" name="tags_recette[]">';
+					echo '<label for="' . $tag['TAG_LIBELLE'] . '-recette" class="ml-2 text-sm md:text-base">' . $tag['TAG_LIBELLE'] . '</label>';
+                    echo '</div>';
+                }
+            }
+            ?>
+        </div>
 		<div class="mb-4">
 			<input type="hidden" name="MAX_FILE_SIZE" value="50000000">
 			<input placeholder="choisir une image" value="" type="file" id="image-recette" name="image_recette" accept="image/*" class="p-2 md:p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
