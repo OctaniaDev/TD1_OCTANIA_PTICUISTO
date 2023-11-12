@@ -17,13 +17,15 @@
 
 
     <!-- TAILWIND CSS -->
-    <link rel="stylesheet" href="./dist/output.css">
+    <link rel="stylesheet" href="output.css">
 
 </head>
 <body>
 <?php
 
 require_once $GLOBALS['root'] . 'view/navbarView.php';
+require_once $GLOBALS['root'] . 'view/footerView.php';
+
 
 if(isset($_SESSION['type_utilisateur'])) {
     echo '<p>'.$_SESSION['type_utilisateur'].'</p>';

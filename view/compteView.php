@@ -1,43 +1,54 @@
 <?php ob_start(); ?>
-    <h1>Informations du compte</h1>
-    <p>Pseudo :
-        <?php echo $accountInfo['UTI_PSEUDO']; ?>
-    </p>
-    <?php
-    if(isset($_SESSION['erreurSupprimerCompte']))
-        echo '<p style=" color: red;">erreur lors de la suppression du compte</p>';
-    if(isset($_SESSION['erreurMDPCompte']))
-        echo '<p style=" color: red;">erreur lors de la modification du mot de passe</p>';
-    ?>
-    <form method="post" action="/index.php?action=modifier_mot_de_passe">
-        <label for="nouveau_mot_de_passe">Nouveau mot de passe :</label>
-        <input type="password" name="nouveau_mot_de_passe" required>
-        <label for="confirmation_mot_de_passe">Confirmer le nouveau mot de passe :</label>
-        <input type="password" name="confirmation_mot_de_passe" required>
-        <input type="submit" name="modifier_mot_de_passe" value="Modifier le mot de passe">
+
+<div class="container mx-auto my-8 p-8 bg-bleu text-blanc rounded shadow-md">
+    <h1 class="font-titre text-2xl font-bold mb-4">Informations du compte</h1>
+
+    <div class="mb-4 font-texte">
+        <p class="mb-1">Pseudo:
+            <?= $accountInfo['UTI_PSEUDO']; ?>
+        </p>
+        <p class="mb-1">Email:
+            <?= $accountInfo['UTI_EMAIL']; ?>
+        </p>
+        <p class="mb-1">Prénom:
+            <?= $accountInfo['UTI_PRENOM']; ?>
+        </p>
+        <p class="mb-1">Nom:
+            <?= $accountInfo['UTI_NOM']; ?>
+        </p>
+        <p class="mb-1">Date d'inscription:
+            <?= $accountInfo['UTI_DATE_INSCRIPTION']; ?>
+        </p>
+    </div>
+
+
+    <form method="post" action="/index.php?action=modifier_mot_de_passe" class="mb-4 font-texte">
+        <label for="nouveau_mot_de_passe" class="block mb-2">Nouveau mot de passe :</label>
+        <input type="password" name="nouveau_mot_de_passe" required class="border p-2 mb-2 rounded">
+        <label for="confirmation_mot_de_passe" class="block mb-2">Confirmer le nouveau mot de passe :</label>
+        <input type="password" name="confirmation_mot_de_passe" required class="border p-2 mb-2 rounded">
+        <input type="submit" name="modifier_mot_de_passe" value="Modifier le mot de passe"
+            class="bg-bleu text-blanc px-4 py-2 rounded hover:bg-bleu-clair">
     </form>
 
-
-    <p>Email :
-        <?php echo $accountInfo['UTI_EMAIL']; ?>
-    </p>
-    <p>Prénom :
-        <?php echo $accountInfo['UTI_PRENOM']; ?>
-    </p>
-    <p>Nom :
-        <?php echo $accountInfo['UTI_NOM']; ?>
-    </p>
-    <p>Date d'inscription :
-        <?php echo $accountInfo['UTI_DATE_INSCRIPTION']; ?>
-    </p>
+    <button class="bg-yellow-500 text-white rounded hover:bg-yellow-600 mb-4 block px-4 py-2">
+        <a href="/index.php?action=voir_recettes_compte"
+            class="">Voir vos recettes</a>
+    </button>
 
 
-    <form method="post" action="/index.php?action=supprimer_compte">
+    <form method="post" action="/index.php?action=supprimer_compte"
+        onsubmit="return confirm('Confirmez la suppression de votre compte.');">
         <input type="submit" name="delete" value="Supprimer le compte"
-            onclick="return confirm('Confirmez la suppression de votre compte.');">
+            class="bg-red-500 text-blanc px-4 py-2 rounded hover:bg-red-400">
     </form>
 
-    <a href="/index.php?action=voir_recettes_compte">voir vos recettes</a>
+
+    <div class="mt-8">
+        <a href="javascript:history.go(-1)"
+            class="bg-gray-500 text-white hover:bg-gray-400 px-4 py-2 rounded">Retour</a>
+    </div>
+</div>
 
 <?php
 $content = ob_get_clean();

@@ -55,7 +55,7 @@ class AdminController extends Controller {
     public function afficherCompte($userId) {
         $adminModel = new Admin($this->connection);
         $utilisateur = $adminModel->recupererCompteParId($userId);
-        require $GLOBALS['root'] . 'view/adminDetailView.php';
+        require $GLOBALS['root'] . 'view/gestionCompteDetailsView.php';
     }
 
     public function UserendreInactif($userId) {
