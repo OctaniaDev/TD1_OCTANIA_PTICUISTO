@@ -1,4 +1,7 @@
 <?php ob_start(); ?>
+<?php
+
+?>
 	<h1>Ajout d'une recette</h1>
 
 	<form enctype="multipart/form-data" method="post" action="/index.php?action=ajout_recette">

@@ -17,7 +17,7 @@ class AjoutRecetteController extends Controller {
 			if($this->ajouterRecette())
             	echo '<script>location.replace("/index.php");</script>';
 			else {
-				echo "<p>Une erreur c'est produite</p>";
+				$erreur = "<p>Une erreur c'est produite</p>";
 				require $GLOBALS['root'] . 'view/ajoutRecetteView.php';
 			}
 		}
@@ -30,7 +30,7 @@ class AjoutRecetteController extends Controller {
 		if(!isset($_POST['resume_recette'])) return false;
 		if(!isset($_POST['categorie_recette'])) return false;
 		if(!isset($_POST['ingredients_recette'])) return false;
-		if(!isset($_FILES['image_recette'])) return false;
+		if(empty($_FILES['image_recette']['name'])) return false;
 		//if(!isset($_POST['tags_recette'])) return false;
 		$recetteModel = new RecetteModel($this->connection);
 		$dossier = $GLOBALS['root'] . 'img/';
