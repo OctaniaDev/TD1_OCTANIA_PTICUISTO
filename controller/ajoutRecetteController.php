@@ -11,6 +11,7 @@ class AjoutRecetteController extends Controller {
 
     public function choix() {
 		$ingredients = $this->recuperIngredient();
+		$tags = $this->recuperTags();
 		if(!isset($_POST['titre_recette']) && $_SESSION['connecter'] == 'oui') {
 			require $GLOBALS['root'] . 'view/ajoutRecetteView.php';
 		} else {
@@ -52,6 +53,11 @@ class AjoutRecetteController extends Controller {
 	public function recuperIngredient() {
 		$recetteModel = new RecetteModel($this->connection);
 		return $recetteModel->recupererTousIngredients();
+	}
+
+	public function recuperTags() {
+		$recetteModel = new RecetteModel($this->connection);
+		return $recetteModel->recupererTousTags();
 	}
 
 }

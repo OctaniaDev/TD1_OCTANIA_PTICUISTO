@@ -46,6 +46,13 @@ class RecetteModel {
         return $tab;
     }
 
+    public function recupererTousTAGS() {
+        $req = 'SELECT * FROM CUI_TAG';
+        $cur = preparerRequetePDO($this->connection, $req);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
+
     public function recupererIngredientsRecette($recId) {
         $req = 'SELECT * FROM CUI_INGREDIENT JOIN CUI_CONTENIR USING (ING_ID) WHERE REC_ID = :recId';
         $cur = preparerRequetePDO($this->connection, $req);

@@ -47,12 +47,27 @@
             </fieldset>
 
             <div class="mb-4">
+				<p>Liste des ingredients</p>
                 <?php
                 if (!empty($ingredients)) {
                     foreach ($ingredients as $ingredient) {
                         echo '<div class="flex items-center mb-2">';
                         echo '<input id="' . $ingredient['ING_INTITULE'] . '-recette" value="' . $ingredient['ING_ID'] . '" type="checkbox" name="ingredients_recette[]">';
                         echo '<label for="' . $ingredient['ING_INTITULE'] . '-recette" class="ml-2 text-sm md:text-base">' . $ingredient['ING_INTITULE'] . '</label>';
+                        echo '</div>';
+                    }
+                }
+                ?>
+            </div>
+
+			<div class="mb-4">
+				<p>Liste des tags</p>
+                <?php
+                if (!empty($tags)) {
+                    foreach ($tags as $tag) {
+                        echo '<div class="flex items-center mb-2">';
+                        echo '<input id="' . $tag['TAG_LIBELLE'] . '-recette" value="' . $tag['TAG_ID'] . '" type="checkbox" name="ingredients_recette[]">';
+                        echo '<label for="' . $tag['TAG_LIBELLE'] . '-recette" class="ml-2 text-sm md:text-base">' . $tag['TAG_LIBELLE'] . '</label>';
                         echo '</div>';
                     }
                 }
