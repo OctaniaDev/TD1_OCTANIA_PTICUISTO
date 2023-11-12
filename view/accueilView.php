@@ -4,14 +4,14 @@
 
 <div class="col-md-6">
     <div class="flex justify-center mt-20">
-        <img src="./img/img_attente.jpg" alt="w8">
+        <img src="./img/img_attente.jpg" alt="w8" class="md:w-1/2 w-80">
     </div>
 </div>
 
-<div class="flex row container mt-5 justify-center mx-auto">
-    <div class="flex row justify-content-center">
-        <div class="col-md-6">
-            <div class="border-4 p-4 mr-10">
+<div class="flex flex-col md:flex-row container mt-5 justify-center mx-auto">
+    <div class="">
+        <div class="md:col-md-6 md:mr-10 mx-auto ml-10">
+            <div class="border-4 p-4 mr-10 mt-5 md:mx-auto">
                 <h2 class="text-2xl font-titre text-center mb-6 text-bleu">Les dernières recettes</h2>
                 <?php
                 if (!empty($recettes)) {
@@ -19,7 +19,7 @@
                     for ($i = 0; $i < 10; $i++) {
                         if ($i < count($recettes)) {
                             echo '<li class="flex mb-12 rounded p-4 bg-red-500">';
-                
+
                             echo '<div class="flex-shrink-0 mr-4">';
                             echo '<img src="' . $recettes[$i]['REC_IMAGE'] . '" alt="Image recette" class="w-16 h-16 object-cover">';
                             echo '</div>';
@@ -53,7 +53,7 @@
 
 
 
-    <div class="mt-5 w-1/2 bg-bleu p-6">
+    <div class="mt-5 w-full md:w-1/2 bg-bleu p-6 mb-10">
         <div class="col-md-6 flex justify-center">
             <img src="./img/Pticuisto.png" alt="Image pticuisto" class="w-60">
         </div>
