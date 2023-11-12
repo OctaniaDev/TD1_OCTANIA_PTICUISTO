@@ -74,13 +74,10 @@ class RecetteController extends Controller {
     public function supprimerRecetteUtilisateur($recId, $utiId) {
         $recetteModel = new RecetteModel($this->connection);
         $resultat = $recetteModel->supprimerRecetteUtilisateur($recId, $utiId);
-        if($resultat == -1) {
-            echo '<script>location.replace("/index.php");</script>';
-        } else {
-            if(!$resultat)
-                $_SESSION['erreurSuppression'] = true;
-            echo '<script>location.replace("/index.php?action=voir_recettes_compte");</script>';
-        }
+        
+        if(!$resultat)
+            $_SESSION['erreurSuppression'] = true;
+        echo '<script>location.replace("/index.php?action=voir_recettes_compte");</script>';
     }
 }
 ?>

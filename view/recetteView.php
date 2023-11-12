@@ -10,7 +10,6 @@
         for($i = 0; $i < 10; $i++) {
             if($i < count($recettes)) {
                 echo '<li><h2><a href="./index.php?action=voir_recettes&rec_id='.$recettes[$i]['REC_ID'].'">'.$recettes[$i]['REC_TITRE'].'</a></h2>';
-                echo $GLOBALS['root'] .'img/' . $recettes[$i]['REC_IMAGE'];
                 echo '<img src="'. $GLOBALS['root'] .'img/' . $recettes[$i]['REC_IMAGE'] . '" alt="image de la recette">';
                 echo '<p>'.$recettes[$i]['CAT_INTITULE'].'</p>';
                 echo '<p>'.$recettes[$i]['REC_RESUME'].'</p></li>';

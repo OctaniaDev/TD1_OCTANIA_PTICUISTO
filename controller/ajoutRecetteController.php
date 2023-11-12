@@ -39,10 +39,8 @@ class AjoutRecetteController extends Controller {
 		'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
 		'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
 		$fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
-		while(!move_uploaded_file($_FILES['image_recette']['tmp_name'], $dossier . $fichier)) {
-			$fichier.= '1';
-		}
-		$resRecette = $recetteModel->insererRecette($_POST['titre_recette'], $_POST['contenu_recette'], $_POST['resume_recette'], $_POST['categorie_recette'], $_FILES['image_recette']['name']);
+		move_uploaded_file($_FILES['image_recette']['tmp_name'], $dossier . $fichier);
+		$resRecette = $recetteModel->insererRecette($_POST['titre_recette'], $_POST['contenu_recette'], $_POST['resume_recette'], $_POST['categorie_recette'], $fichier);
 		$recettesUtilisateur = $recetteModel->recupererRecettesUtilisateur($_SESSION['id_utilisateur']);
 		if(!isset($recettesUtilisateur[0]['REC_ID'])) return false;
 		foreach($_POST['ingredients_recette'] as $ingredient)
