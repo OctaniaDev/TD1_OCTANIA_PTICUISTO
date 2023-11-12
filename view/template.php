@@ -42,12 +42,6 @@
     require_once $GLOBALS['root'] . 'view/navbarView.php';
     ?>
     
-    <?php
-    if (isset($_SESSION['type_utilisateur'])) {
-      echo '<p>' . $_SESSION['type_utilisateur'] . '</p>';
-    }
-    ?>
-    
     <?= $content ?>
   </div>
 

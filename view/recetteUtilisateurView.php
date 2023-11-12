@@ -19,6 +19,7 @@
                 echo '<p> Intitulé : '.$recettes[$i]['CAT_INTITULE'].'</p>';
                 echo '<p> Résumé : '.$recettes[$i]['REC_RESUME'].'</p>';
                 echo '<p> Contenu : '.$recettes[$i]['REC_CONTENU'].'</p>';
+                echo '<img src="'. $GLOBALS['root'] .'img/' . $recettes[$i]['REC_IMAGE'] . '" alt="image de la recette">';
                 echo '</div>';
                 if($recettes[$i]['REC_STATUS'] == 2)
                     echo '<p class="text-red-300 italic">En attente de validation</p>';
@@ -55,7 +56,8 @@
         let plusDeRecette = '';
         for(let i = nbRecette; i < nbRecette + 10; i++) {
             if(i < recettes.length)
-                plusDeRecette += '<li><h2><a href="./index.php?action=voir_recettes&rec_id='+recettes[i]['REC_ID']+'">'+recettes[i]['REC_TITRE']+'</a></h2>'+'<p>'+recettes[i]['CAT_INTITULE']+'</p><p>'+recettes[i]['REC_RESUME']+'</p>'+'<a href="./index.php?action=supprimer_recette&rec_id='+$recettes[$i]['REC_ID']+'">supprimer recette</a></li>';
+                plusDeRecette += '<li><h2><a href="./index.php?action=voir_recettes&rec_id='+recettes[i]['REC_ID']+'">'+recettes[i]['REC_TITRE']+'</a></h2>'+'<p>'+recettes[i]['CAT_INTITULE']+'</p><p>'+recettes[i]['REC_RESUME']+'</p></li>'+'<a href="./index.php?action=supprimer_recette&rec_id='+$recettes[$i]['REC_ID']+'">supprimer recette</a>';
+                plusDeRecette += '<img src="/img/' + recettes[i]['REC_IMAGE'] + '" alt="image de la recette">';
             else {
                 document.getElementById('button-plus').style.display = 'none';
             }
