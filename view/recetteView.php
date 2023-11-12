@@ -1,12 +1,10 @@
 <?php ob_start(); ?>
 <?php
-    if(!isset($accueil)) {
-        if($_SESSION['connecter'] == 'oui' )
-            echo '<a href="/index.php?action=ajout_recette">Ajouter une recette</a>';
-        echo '<h1>Liste des recettes</h1>';
-            //a supp
-        echo '</br>';
-    }
+    if($_SESSION['connecter'] == 'oui' )
+        echo '<a href="/index.php?action=ajout_recette">Ajouter une recette</a>';
+    echo '<h1>Liste des recettes</h1>';
+        //a supp
+    echo '</br>';
     if (!empty($recettes)) {
         echo '<ul id="list-recette">';
         for($i = 0; $i < 10; $i++) {
