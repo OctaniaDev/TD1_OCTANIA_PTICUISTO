@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <div class="container mx-auto my-8 p-8 bg-bleu text-blanc rounded shadow-md">
-    <h1 class="font-titre text-2xl font-bold mb-4">Informations du compte</h1>
+    <h1 class="font-titre text-2xl mb-4">Informations du compte</h1>
 
     <div class="mb-4 font-texte">
         <p class="mb-1">Pseudo:
