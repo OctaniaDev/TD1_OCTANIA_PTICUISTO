@@ -33,12 +33,11 @@ $currentPath = $path[0];
 require_once('./routes.php');
 
 if(array_key_exists($currentPath, $routes)) {
-    if(!isset($_GET['action']))
-        require $routes[$currentPath];
-    else if($_GET['action'] == "deconnexion")
-        require $routes[$currentPath];
-    else
-        $routes[$currentPath]->choix();
+    if(isset($_GET['action'])) {
+        if($_GET['action'] == "deconnexion")
+            require $routes[$currentPath];
+    }
+    $routes[$currentPath]->choix();
 } else
     require $ROOT . 'view/erreur404View.php';
 

@@ -1,6 +1,11 @@
 <?php ob_start(); ?>
 
-<h1>Edito</h1>
+<div>
+	<h2>Les dernière recettes</h2>
+
+	<?php $accueil = true; require $GLOBALS['root'] . 'view/recetteView.php'; ?>
+</div>
+<p><?= $edito[0]['EDI_CONTENU'] ?><p>
 
 <?php
 $content = ob_get_clean();
