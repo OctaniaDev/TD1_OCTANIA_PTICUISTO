@@ -7,6 +7,7 @@ require_once('./controller/inscriptionController.php');
 require_once('./controller/compteController.php');
 require_once('./controller/adminController.php');
 require_once('./controller/filtreRecetteController.php');
+require_once('./controller/modifierRecetteController.php');
 
 $routes = [
 	'/' => $ROOT . 'view/accueilView.php',
@@ -36,6 +37,9 @@ $routes = [
 	'/index.php?action=gestion_de_commentaire' => new adminController($connection),
 	'/index.php?action=valider_commentaire' => new adminController($connection),
 	'/index.php?action=supprimer_commentaire' => new adminController($connection),
+	'/index.php?action=voir_recettes_compte' => new RecetteController($connection),
+	'/index.php?action=supprimer_recette' => new RecetteController($connection),
+	'/index.php?action=modifier_recette' => new ModifierRecetteController($connection),
 ];
 
 ?>	

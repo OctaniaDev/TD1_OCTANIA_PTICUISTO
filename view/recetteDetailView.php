@@ -16,7 +16,7 @@ if (!empty($recetteDetail)) {
     } else
         echo "<p>pas d'ingredients (à faire)</p>";
     
-    if($_SESSION['connecter'] == 'oui') {
+    if($_SESSION['connecter'] == 'oui' && $recetteDetail[0]['REC_STATUS'] == 1) {
         echo '<form method="post" action="./index.php?action=voir_recettes&rec_id='.$recette['REC_ID'].'">';
 ?>
     
@@ -36,6 +36,8 @@ if (!empty($recetteDetail)) {
             echo '</p><p>'.$commentaire['COM_COMMENTAIRE'].'</p></div>';
         }
         echo '</div>';
+    } else {
+        echo '<p>pas de commentaires</p>';
     }
 } else
     echo '<p>Aucune recette trouvée</p>';
