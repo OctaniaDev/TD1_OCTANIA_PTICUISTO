@@ -101,7 +101,7 @@
                             <div id="dropdownNavbarCompte"
                                 class="hidden bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-4 w-44">
                                 <ul class="py-1" aria-labelledby="dropdownLargeButton">
-                                    <?php if (isset($_SESSION['type_utilisateur']) && $_SESSION['type_utilisateur'] == 'editeur'): ?>
+                                    <?php if (isset($_SESSION['type_utilisateur']) && ($_SESSION['type_utilisateur'] == 'editeur' || $_SESSION['type_utilisateur'] == 'admin')): ?>
                                         <li>
                                             <a href="./index.php?action=compte"
                                                 class="block text-gray-700 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-800">
@@ -110,7 +110,7 @@
                                         </li>
                                     <?php endif; ?>
 
-                                    <?php if (isset($_SESSION['type_utilisateur']) && $_SESSION['type_utilisateur'] == 'editeur'): ?>
+                                    <?php if (isset($_SESSION['type_utilisateur']) && ($_SESSION['type_utilisateur'] == 'editeur' || $_SESSION['type_utilisateur'] == 'admin')): ?>
                                         <li>
                                             <a href="./index.php?action=deconnexion"
                                                 class="block text-gray-700 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-800">
@@ -125,22 +125,17 @@
 
 
 
-
-
-
-
                     <li>
                         <?php
                         if ($_SESSION['connecter'] != 'oui')
                             echo '<a href="./index.php?action=connexion" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Connexion</a>';
-                        else
-                            echo '<a href="./index.php?action=deconnexion"
-                            class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Deconnexion</a>';
-
                         ?>
                     </li>
-                    <?php if (isset($_SESSION['type_utilisateur']) == 'admin') {
-                        echo '<li><a href="./index.php?action=admin" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Pannel admin</a></li>';
+                    <?php
+                    if (isset($_SESSION['type_utilisateur'])) {
+                        if ($_SESSION['type_utilisateur'] == 'admin') {
+                            echo '<li><a href="./index.php?action=admin" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Pannel admin</a></li>';
+                        }
                     }
                     ?>
                 </ul>
@@ -148,9 +143,10 @@
 
 
             <!-- Main modal -->
+            <!-- Main modal -->
             <div id="modal-cat" tabindex="-1" aria-hidden="true"
-                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                <div class="relative w-full max-w-2xl max-h-full">
+                class="fixed inset-0 items-center justify-center z-50 hidden w-full overflow-x-hidden overflow-y-auto bg-gray-500 bg-opacity-75">
+                <div class="relative w-full max-w-2xl">
                     <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                         <!-- Modal header -->
@@ -184,10 +180,11 @@
                     </div>
                 </div>
             </div>
+
             <!-- Fin modal -->
             <!-- Main modal -->
             <div id="modal-titre" tabindex="-1" aria-hidden="true"
-                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                class="fixed inset-0 items-center justify-center z-50 hidden w-full overflow-x-hidden overflow-y-auto bg-gray-500 bg-opacity-75">
                 <div class="relative w-full max-w-2xl max-h-full">
                     <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -235,7 +232,7 @@
             <!-- Fin modal -->
             <!-- Main modal -->
             <div id="modal-ing" tabindex="-1" aria-hidden="true"
-                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                class="fixed inset-0 items-center justify-center z-50 hidden w-full overflow-x-hidden overflow-y-auto bg-gray-500 bg-opacity-75">
                 <div class="relative w-full max-w-2xl max-h-full">
                     <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -278,7 +275,7 @@
             <!-- Fin modal -->
             <!-- Main modal -->
             <div id="modal-tag" tabindex="-1" aria-hidden="true"
-                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                class="fixed inset-0 items-center justify-center z-50 hidden w-full overflow-x-hidden overflow-y-auto bg-gray-500 bg-opacity-75">
                 <div class="relative w-full max-w-2xl max-h-full">
                     <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
