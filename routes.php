@@ -8,10 +8,11 @@ require_once('./controller/compteController.php');
 require_once('./controller/adminController.php');
 require_once('./controller/filtreRecetteController.php');
 require_once('./controller/modifierRecetteController.php');
+require_once('./controller/accueilController.php');
 
 $routes = [
-	'/' => $ROOT . 'view/accueilView.php',
-	'/index.php' => $ROOT . 'view/accueilView.php',
+	'/' => new AccueilController($connection),
+	'/index.php' => new AccueilController($connection),
 	'/index.php?action=deconnexion' => $ROOT . 'model/deconnexion.php',
 	'/index.php?action=connexion' => new ConnexionController($connection),
 	'/index.php?action=voir_recettes' => new RecetteController($connection),

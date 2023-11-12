@@ -28,7 +28,7 @@ class ConnexionController extends controller {
             $_SESSION['id_utilisateur'] = $tab[0]['UTI_ID'];
             $_SESSION['type_utilisateur'] = $tab[0]['TYPE_LIBELLE'];
             $_SESSION['connecter'] = 'oui';
-            require $GLOBALS['root'] . 'view/accueilView.php';
+            echo '<script>location.replace("/index.php");</script>';
             exit();
         } else {
             echo "Nom d'utilisateur ou mot de passe incorrect.";
