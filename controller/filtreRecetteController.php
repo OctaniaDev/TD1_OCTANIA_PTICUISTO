@@ -23,6 +23,8 @@ class filtreRecetteController extends Controller {
         }
         if(isset($_POST['tag'])){
             $this->afficherToutesRecettesParTagUnique($_POST['tag']);
+        } else {
+            echo '<script>location.replace("/index.php");</script>';
         }
         $this->connection = null;
     }
