@@ -12,6 +12,15 @@
                 echo '<li><h2><a href="./index.php?action=voir_recettes&rec_id='.$recettes[$i]['REC_ID'].'">'.$recettes[$i]['REC_TITRE'].'</a></h2>';
                 echo '<p>'.$recettes[$i]['CAT_INTITULE'].'</p>';
                 echo '<p>'.$recettes[$i]['REC_RESUME'].'</p></li>';
+                $j = 0;
+                while(count($tags) > $j) {
+                    if($recettes[$i]['REC_ID'] == $tags[$j]['REC_ID']) {
+                        echo '<form action="./index.php?action=voir_recettes_par_tag" method="post">';
+                        echo '<button type="submit" name="tag" value="'.$tags[$j]['TAG_ID'].'">'.$tags[$j]['TAG_LIBELLE'].'</button>';
+                        echo '</form>';
+                    }
+                    $j++;
+                }
                 echo '</br></br>';
             }
         }
@@ -27,12 +36,23 @@
     let listRecettes = document.getElementById('list-recette');
     let nbRecette = 10;
     function afficherPlus() {
-        recettes = <?php echo json_encode($recettes) ?>;
+        let recettes = <?php echo json_encode($recettes) ?>;
+        let tags = <?php echo json_encode($tags) ?>;
         let plusDeRecette = '';
         for(let i = nbRecette; i < nbRecette + 10; i++) {
-            if(i < recettes.length)
+            if(i < recettes.length) {
                 plusDeRecette += '<li><h2><a href="./index.php?action=voir_recettes&rec_id='+recettes[i]['REC_ID']+'">'+recettes[i]['REC_TITRE']+'</a></h2>'+'<p>'+recettes[i]['CAT_INTITULE']+'</p><p>'+recettes[i]['REC_RESUME']+'</p></li>';
-            else {
+                let j = 0;
+                while(tags.length > j) {
+                    if(recettes[i]['REC_ID'] == tags[j]['REC_ID']) {
+                        plusDeRecette +='<form action="./index.php?action=voir_recettes_par_tag" method="post">';
+                        plusDeRecette += '<button type="submit" name="tag" value="'+tags[j]['TAG_ID']+'">'+tags[j]['TAG_LIBELLE']+'</button>';
+                        plusDeRecette += '</form>';
+                    }
+                    j++;
+                }
+                plusDeRecette += '</br></br>';
+            } else {
                 document.getElementById('button-plus').style.display = 'none';
             }
         }

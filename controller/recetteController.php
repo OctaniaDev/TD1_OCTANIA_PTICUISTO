@@ -40,6 +40,7 @@ class RecetteController extends Controller {
     public function afficherToutesRecettes() {
         $recetteModel = new RecetteModel($this->connection);
         $recettes = $recetteModel->recupererTousRecettesValide();
+        $tags = $recetteModel->recupererTagsListRecette($recettes);
         require $GLOBALS['root'] . 'view/recetteView.php';
     }
 
@@ -50,6 +51,7 @@ class RecetteController extends Controller {
         $recetteDetail = $recetteModel->recupererRecetteSimpleValide($recId);
         $ingredients = $recetteModel->recupererIngredientsRecette($recId);
         $commentaires = $recetteModel->recupererCommentairesRecette($recId);
+        $tags = $recetteModel->recupererTagsRecette($recId);
         require $GLOBALS['root'] . 'view/recetteDetailView.php';
     }
 
@@ -58,6 +60,7 @@ class RecetteController extends Controller {
         $recetteDetail = $recetteModel->recupererRecetteSimple($recId, $utiId);
         $ingredients = $recetteModel->recupererIngredientsRecette($recId);
         $commentaires = $recetteModel->recupererCommentairesRecette($recId);
+        $tags = $recetteModel->recupererTagsRecette($recId);
         require $GLOBALS['root'] . 'view/recetteDetailView.php';
     }
 
