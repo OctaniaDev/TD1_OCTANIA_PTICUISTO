@@ -4,7 +4,7 @@
 	<form enctype="multipart/form-data" method="post" action="/index.php?action=ajout_recette">
 		<div>
 			<label for="titre-recette">Titre : </label></p>
-			<input id="titre-recette" type="text" name="titre_recette">
+			<input id="titre-recette" type="text" name="titre_recette" required pattern="^[a-zA-Z'\s]{1,32}$">
 		</div>
 		<div>
 			<p><label for="contenu-recette">Contenu : </label></p>
