@@ -47,7 +47,7 @@ class Admin {
     
 
     public function recupererToutesRecettes(){
-        $sql = "SELECT * from CUI_RECETTE WHERE rec_status = 0";
+        $sql = "SELECT * from CUI_RECETTE WHERE rec_status = 2";
         $cur = preparerRequetePDO($this->connection, $sql);
         LireDonneesPDOPreparee($cur,$tab);
         return $tab;
@@ -94,7 +94,7 @@ class Admin {
 
 
     public function recupererTousCommentaires(){
-        $sql = "SELECT * from CUI_COMMENTAIRE JOIN CUI_UTILISATEUR USING(UTI_ID) WHERE COM_STATUS = 1";
+        $sql = "SELECT * from CUI_COMMENTAIRE JOIN CUI_UTILISATEUR USING(UTI_ID) WHERE COM_STATUS = 2";
         $cur = preparerRequetePDO($this->connection, $sql);
         LireDonneesPDOPreparee($cur,$tab);
         return $tab;
