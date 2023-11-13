@@ -132,12 +132,13 @@ class RecetteModel {
     public function supprimerRecetteUtilisateur($recId, $utiId) {
         $res1 = $this->supprimerIngredients($recId, $utiId);
         $res2 = $this->supprimerTags($recId, $utiId);
+        $res3 = $this->supprimerCommentaire($recId, $utiId);
 
         $sql = "DELETE FROM CUI_RECETTE WHERE REC_ID = :recId and uti_id = :utiId";
         $cur = preparerRequetePDO($this->connection, $sql);
         ajouterParamPDO($cur, ':recId', $recId);
         ajouterParamPDO($cur, ':utiId', $utiId);
-        return $res1 && $res2 && majDonneesPrepareesPDO($cur);
+        return $res1 && $res2 && $res3 && majDonneesPrepareesPDO($cur);
     }
 
     public function supprimerIngredients($recId, $utiId) {
@@ -149,6 +150,13 @@ class RecetteModel {
 
     public function supprimerTags($recId, $utiId) {
         $sql = "delete from CUI_POSSEDER WHERE REC_ID = :recId";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':recId', $recId);
+        return majDonneesPrepareesPDO($cur);
+    }
+
+    public function supprimerCommentaire($recId, $utiId) {
+        $sql = "DELETE FROM CUI_COMMENTAIRE WHERE recId = :recId";
         $cur = preparerRequetePDO($this->connection, $sql);
         ajouterParamPDO($cur, ':recId', $recId);
         return majDonneesPrepareesPDO($cur);
