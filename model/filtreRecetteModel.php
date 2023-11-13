@@ -74,5 +74,12 @@ class filtreRecetteModel {
         return $tab;
     }
     
+    public function recupererNomRecettesGlobal() {
+        $req= "select REC_TITRE from CUI_RECETTE";
+        $cur = preparerRequetePDO($this->connection, $req);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
+
 }
     ?>
