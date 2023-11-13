@@ -23,7 +23,7 @@ class RecetteModel {
     }
 
     public function recupererRecetteSimpleValide($recId) {
-        $req = 'SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID) WHERE rec_id = :recId and REC_STATUS = 1';
+        $req = 'SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID) JOIN CUI_UTILISATEUR USING(UTI_ID) WHERE rec_id = :recId and REC_STATUS = 1';
         $cur = preparerRequetePDO($this->connection, $req);
         ajouterParamPDO($cur, ':recId', $recId);
         LireDonneesPDOPreparee($cur, $tab);
@@ -31,7 +31,7 @@ class RecetteModel {
     }
 
     public function recupererRecetteSimple($recId, $utiId) {
-        $req = 'SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID) WHERE rec_id = :recId and uti_id = :utiId';
+        $req = 'SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID) JOIN CUI_UTILISATEUR USING(UTI_ID) WHERE rec_id = :recId and uti_id = :utiId';
         $cur = preparerRequetePDO($this->connection, $req);
         ajouterParamPDO($cur, ':recId', $recId);
         ajouterParamPDO($cur, ':utiId', $utiId);
@@ -40,7 +40,7 @@ class RecetteModel {
     }
 
     public function recupererRecetteSimpleAdmin($recId) {
-        $req = 'SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID) WHERE rec_id = :recId';
+        $req = 'SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID) JOIN CUI_UTILISATEUR USING(UTI_ID) WHERE rec_id = :recId';
         $cur = preparerRequetePDO($this->connection, $req);
         ajouterParamPDO($cur, ':recId', $recId);
         LireDonneesPDOPreparee($cur, $tab);
