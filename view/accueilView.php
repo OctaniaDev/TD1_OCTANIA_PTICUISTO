@@ -43,7 +43,7 @@
         position: relative;
         text-align: center;
         padding: 1em 0;
-        max-width: 750px;
+        max-width: 1050px;
         margin: auto;
     }
 
