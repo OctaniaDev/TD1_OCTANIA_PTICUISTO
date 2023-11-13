@@ -3,6 +3,8 @@
 <?php if (!empty($recetteDetail)) : ?>
     <div class="max-w-2xl mx-auto">
         <h1 class="text-3xl font-titre mb-4"><?= $recetteDetail[0]['REC_TITRE'] ?></h1>
+        <p class="mb-2">Créé par <?= $recetteDetail[0]['UTI_PSEUDO'] ?></p>
+        <p class="mt-4 mb-4 bg-yellow-500 text-white px-2 py-1 rounded w-16 text-center"><?= $recetteDetail[0]['CAT_INTITULE'] ?></p>
         <p class="mb-2">Date de création : <?= $recetteDetail[0]['REC_DATE_CREATION'] ?></p>
 
         <?php if (!empty($tags)) : ?>

@@ -3,6 +3,8 @@
 <?php if (!empty($recetteDetail)) : ?>
     <div class="max-w-2xl mx-auto">
         <h1 class="text-3xl font-titre mb-4"><?= $recetteDetail[0]['REC_TITRE'] ?></h1>
+        <p class="mb-2">Créé par <?= $recetteDetail[0]['UTI_PSEUDO'] ?></p>
+        <p class="mt-4 mb-4 bg-yellow-500 text-white px-2 py-1 rounded w-16 text-center"><?= $recetteDetail[0]['CAT_INTITULE'] ?></p>
         <p class="mb-2">Date de création : <?= $recetteDetail[0]['REC_DATE_CREATION'] ?></p>
 
         <?php if (!empty($tags)) : ?>
@@ -29,14 +31,6 @@
             <p class="mb-4">Pas d'ingrédients</p>
         <?php endif; ?>
 
-        <?php if ($_SESSION['connecter'] == 'oui' && $recetteDetail[0]['REC_STATUS'] == 1) : ?>
-            <form method="post" action="./index.php?action=voir_recettes&rec_id=<?= $recetteDetail[0]['REC_ID'] ?>" class="mb-4">
-                <label for="commentaire-input" class="block text-sm font-medium text-gray-600 mb-2">Postez votre commentaire</label>
-                <textarea rows="4" id="commentaire-input" name="texte_commentaire" class="border rounded-md p-2 w-full focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50 mb-2"></textarea>
-                <input type="submit" value="Poster" class="bg-bleu text-white p-2 rounded-md hover:bg-bleu-clair focus:outline-none focus:ring focus:border-bleu focus:ring-bleu focus:ring-opacity-50">
-            </form>
-        <?php endif; ?>
-
         <p class="mb-2">Commentaires :</p>
         <?php if (!empty($commentaires)) : ?>
             <div class="mb-4">
@@ -58,27 +52,22 @@
             <a href="javascript:history.go(-1)" class="bg-gray-500 text-white hover:bg-gray-400 px-4 py-2 rounded">Retour</a>
         </div>
 
-        <?php if ($recetteDetail['REC_STATUS'] != 1): ?>
-            <div class="flex space-x-4 mt-4">
-                <form method="post" action="/index.php?action=refuser_recette&rec_id=<?php echo $recetteDetail['REC_ID']; ?>">
-                    <button type="submit" class="bg-red-500 text-white hover:bg-red-400 px-4 py-2 rounded">Refuser recette</button>
-                </form>
+        <div class="flex space-x-4 mt-4">
+            <form method="post" action="/index.php?action=refuser_recette&rec_id=<?php echo $recetteDetail[0]['REC_ID']; ?>">
+                <button type="submit" class="bg-red-500 text-white hover:bg-red-400 px-4 py-2 rounded mb-10 mb:mb-20">Refuser recette</button>
+            </form>
 
-                <form method="post" action="/index.php?action=accepter_recette&rec_id=<?php echo $recetteDetail['REC_ID']; ?>">
+        <?php if ($recetteDetail[0]['REC_STATUS'] != 1): ?>
+                <form method="post" action="/index.php?action=accepter_recette&rec_id=<?php echo $recetteDetail[0]['REC_ID']; ?>">
                     <button type="submit" class="bg-green-500 text-white hover:bg-green-400 px-4 py-2 rounded">Accepter recette</button>
                 </form>
-            </div>
         <?php endif; ?>
-    <div class="mt-8">
-        <a href="javascript:history.go(-1)"
-            class="bg-gray-500 text-white hover:bg-gray-400 px-4 py-2 rounded">Retour</a>
-    </div>
+        </div>
 
     </div>
 <?php else : ?>
     <p class="text-red-500">Aucune recette trouvée</p>
 <?php endif; ?>
-
 
 </div>
 

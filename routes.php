@@ -42,6 +42,7 @@ $routes = [
 	'/index.php?action=supprimer_recette' => new RecetteController($connection),
 	'/index.php?action=modifier_recette' => new ModifierRecetteController($connection),
 	'/index.php?action=voir_recettes_par_tag' => new filtreRecetteController($connection),
+	'/index.php?action=modifier_edito' => new adminController($connection),
 ];
 
 ?>	

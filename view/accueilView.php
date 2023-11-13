@@ -176,12 +176,12 @@
                     echo '<ul id="list-recette" class="bg-white">'; ?>
                     <?php for ($i = 0; $i < 3; $i++): ?>
                         <?php if ($i < count($recettes)): ?>
-                            <div class="mb-2 font-texte flex flex-col md:flex-row mt-12 rounded p-4 md:h-72 bg-bleu-clair">
-                                <img src="<?= $GLOBALS['root'] ?>img/<?= $recettes[$i]['REC_IMAGE'] ?>" alt="image de la recette" class="float-left mr-4 w-64 h-64 md:w-48 md:h-48">
+                            <div class="mb-2 font-texte flex flex-col md:flex-row mt-12 rounded p-4 md:h-56 bg-bleu-clair">
+                            <a class="mr-2" href="./index.php?action=voir_recettes&rec_id=<?= $recettes[$i]['REC_ID'] ?>"><img src="<?= $GLOBALS['root'] ?>img/<?= $recettes[$i]['REC_IMAGE'] ?>" alt="image de la recette" class="float-left mr-4 w-64 h-64 mr-2 md:w-48 md:h-48"></a>
                                 <div class="flex flex-col md:mb-20">
-                                    <h2><a href="./index.php?action=voir_recettes&rec_id=<?= $recettes[$i]['REC_ID'] ?>"><?= $recettes[$i]['REC_TITRE'] ?></a></h2>
-                                    <p><?= $recettes[$i]['CAT_INTITULE'] ?></p>
-                                    <p><?= $recettes[$i]['REC_RESUME'] ?></p>
+                                    <h2 class="text-2xl underline  underline-offset-1"><a href="./index.php?action=voir_recettes&rec_id=<?= $recettes[$i]['REC_ID'] ?>"><?= $recettes[$i]['REC_TITRE'] ?></a></h2>
+                                    <p class="mt-4 mb-4 bg-yellow-500 text-white px-2 py-1 rounded w-16 text-center"><?= $recettes[$i]['CAT_INTITULE'] ?></p>
+                                    <p class=""><?= $recettes[$i]['REC_RESUME'] ?></p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <?php $j = 0; ?>
                                         <?php while (count($tags) > $j): ?>

@@ -9,7 +9,7 @@ class Utilisateur {
 
     public function connexion($username, $password) {
         $password = md5($password);
-        $sql = "SELECT UTI_PSEUDO, UTI_MDP, TYPE_LIBELLE, UTI_ID FROM CUI_UTILISATEUR JOIN CUI_TYPE_UTILISATEUR USING(TYPE_iD) WHERE UTI_PSEUDO = :username AND UTI_MDP = :password";
+        $sql = "SELECT UTI_PSEUDO, UTI_MDP, TYPE_LIBELLE, UTI_ID,STA_ID FROM CUI_UTILISATEUR JOIN CUI_TYPE_UTILISATEUR USING(TYPE_iD) WHERE UTI_PSEUDO = :username AND UTI_MDP = :password AND STA_ID=1";
         $cur = preparerRequetePDO($this->connection, $sql);
         ajouterParamPDO($cur, ':username', $username);
         ajouterParamPDO($cur, ':password', $password);
