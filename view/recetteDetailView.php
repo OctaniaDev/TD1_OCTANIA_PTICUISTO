@@ -26,7 +26,7 @@
                 <?php endforeach; ?>
             </ul>
         <?php else : ?>
-            <p class="mb-4">Pas d'ingrédients (à faire)</p>
+            <p class="mb-4">Pas d'ingrédients</p>
         <?php endif; ?>
 
         <?php if ($_SESSION['connecter'] == 'oui' && $recetteDetail[0]['REC_STATUS'] == 1) : ?>

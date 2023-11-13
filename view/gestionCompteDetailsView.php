@@ -23,7 +23,7 @@
             <?php
             if ($utilisateur['STA_ID'] == 1) {
                 echo '<form method="post" action="/index.php?action=rendre_inactif&user_id=' . $utilisateur['UTI_ID'] . '">
-                    <button type="submit" class="bg-jaune text-bleu hover:bg-jaune-clair px-4 py-2 rounded">Rendre inactif</button>
+                    <button type="submit" class="bg-yellow-500 text-bleu hover:bg-yellow-300 px-4 py-2 rounded">Rendre inactif</button>
                 </form>';
             } else {
                 echo '<form method="post" action="/index.php?action=rendre_actif&user_id=' . $utilisateur['UTI_ID'] . '">

@@ -4,6 +4,7 @@
     <h1 class="text-4xl font-titre mb-4">Recette</h1>
 
     <div>
+    <img src="<?= $GLOBALS['root'] ?>img/<?= $recettes['REC_IMAGE'] ?>" alt="image de la recette" class="float-left mr-4 w-64 h-64 md:w-48 md:h-48">
         <p class="text-xl font-texte">Titre: <?php echo $recette['REC_TITRE']; ?></p>
         <p class="text-xl font-texte">Contenu: <?php echo $recette['REC_CONTENU']; ?></p>
         <p class="text-xl font-texte">Date de création: <?php echo $recette['REC_DATE_CREATION']; ?></p>

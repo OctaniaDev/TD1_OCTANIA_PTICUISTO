@@ -113,4 +113,13 @@ class Admin {
         ajouterParamPDO($cur, ':comId', $comId);
         return majDonneesPrepareesPDO($cur);
     }
+
+
+    public function recupererTagsRecette($recId) {
+        $req = 'SELECT * FROM CUI_TAG JOIN CUI_POSSEDER USING (TAG_ID) WHERE REC_ID = :recId';
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ':recId', $recId);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
 }

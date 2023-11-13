@@ -67,6 +67,7 @@ class RecetteController extends Controller {
     public function afficherListeRecettesCompte($utiId) {
         $recetteModel = new RecetteModel($this->connection);
         $recettes = $recetteModel->recupererRecettesUtilisateur($utiId);
+        $tags = $recetteModel->recupererTagsListRecette($recettes);
         require $GLOBALS['root'] . 'view/recetteUtilisateurView.php';
         $_SESSION['erreurSuppression'] = null;
     }

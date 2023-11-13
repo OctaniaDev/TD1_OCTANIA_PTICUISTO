@@ -84,6 +84,7 @@ class AdminController extends Controller {
 
     public function afficherRecetteDetails($recId){
         $adminModel = new Admin($this->connection);
+        $tags = $adminModel->recupererTagsRecette($recId);
         $recette = $adminModel->recupererRecetteDetails($recId);
         require $GLOBALS['root'] . 'view/gestionRecetteDetailsView.php';
     }
