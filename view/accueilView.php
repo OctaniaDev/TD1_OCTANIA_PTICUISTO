@@ -173,34 +173,31 @@
                 <h2 class="text-2xl font-titre text-center mb-6 text-bleu">Les dernières recettes</h2>
                 <?php
                 if (!empty($recettes)) {
-                    echo '<ul id="list-recette" class="bg-white">';
-                    for ($i = 0; $i < 10; $i++) {
-                        if ($i < count($recettes)) {
-                            echo '<li class="flex mb-12 rounded p-4 bg-bleu">';
-
-                            echo '<div class="flex-shrink-0 mr-4">';
-                            echo '<img src="./img/' . $recettes[$i]['REC_IMAGE'] . '" alt="Image recette" class="w-16 h-16 object-cover">';
-                            echo '</div>';
-
-                            echo '<div>';
-                            echo '<h2 class="text-xl font-bold"><a href="./index.php?action=voir_recettes&rec_id=' . $recettes[$i]['REC_ID'] . '">' . $recettes[$i]['REC_TITRE'] . '</a></h2>';
-                            echo '<p class="text-gris">' . $recettes[$i]['REC_RESUME'] . '</p>';
-
-                            $j = 0;
-                            while (count($tags) > $j) {
-                                if ($recettes[$i]['REC_ID'] == $tags[$j]['REC_ID']) {
-                                    echo '<form action="./index.php?action=voir_recettes_par_tag" method="post">';
-                                    echo '<button type="submit" name="tag" value="' . $tags[$j]['TAG_ID'] . '" class="text-bleu hover:underline">' . $tags[$j]['TAG_LIBELLE'] . '</button>';
-                                    echo '</form>';
-                                }
-                                $j++;
-                            }
-
-                            echo '</div>';
-                            echo '</li>';
-                        }
-                    }
-                    echo '</ul>';
+                    echo '<ul id="list-recette" class="bg-white">'; ?>
+                    <?php for ($i = 0; $i < 3; $i++): ?>
+                        <?php if ($i < count($recettes)): ?>
+                            <div class="mb-2 font-texte flex flex-col md:flex-row mt-12 rounded p-4 md:h-72 bg-bleu-clair">
+                                <img src="<?= $GLOBALS['root'] ?>img/<?= $recettes[$i]['REC_IMAGE'] ?>" alt="image de la recette" class="float-left mr-4 w-64 h-64 md:w-48 md:h-48">
+                                <div class="flex flex-col md:mb-20">
+                                    <h2><a href="./index.php?action=voir_recettes&rec_id=<?= $recettes[$i]['REC_ID'] ?>"><?= $recettes[$i]['REC_TITRE'] ?></a></h2>
+                                    <p><?= $recettes[$i]['CAT_INTITULE'] ?></p>
+                                    <p><?= $recettes[$i]['REC_RESUME'] ?></p>
+                                    <div class="flex flex-wrap gap-2 mt-2">
+                                        <?php $j = 0; ?>
+                                        <?php while (count($tags) > $j): ?>
+                                            <?php if ($recettes[$i]['REC_ID'] == $tags[$j]['REC_ID']): ?>
+                                                <form action="./index.php?action=voir_recettes_par_tag" method="post">
+                                                    <button type="submit" name="tag" value="<?= $tags[$j]['TAG_ID'] ?>" class="bg-bleu text-white px-2 py-1 rounded"><?= $tags[$j]['TAG_LIBELLE'] ?></button>
+                                                </form>
+                                            <?php endif; ?>
+                                            <?php $j++; ?>
+                                        <?php endwhile; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                    <?php echo '</ul>';
                 } else {
                     echo '<p class="text-center text-red-950">Aucune recette trouvée</p>';
                 }

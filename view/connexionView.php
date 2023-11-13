@@ -4,16 +4,21 @@
     <div class="text-center border rounded-md p-16 bg-blanc">
         <h1 class="text-5xl font-titre mb-8 text-bleu">Connexion</h1>
 
+        <?php if(isset($erreur)){
+            echo $erreur;
+        }
+        ?>
+
         <form method="post" action="./index.php?action=connexion" class="mb-8">
             <div class="mb-6">
                 <label for="username" class="block text-sm font-medium text-gray-600">Nom d'utilisateur :</label>
-                <input type="text" pattern=".{3,32}" id="username" name="username" placeholder="Entrez votre nom d'utilisateur" required
+                <input type="text" pattern=".{1,32}$" id="username" name="username" placeholder="Entrez votre nom d'utilisateur" required
                        class="mt-1 p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
             </div>
 
             <div class="mb-6">
                 <label for="password" class="block text-sm font-medium text-gray-600">Mot de passe :</label>
-                <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" pattern=".{3,32}" required
+                <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" pattern=".{1,32}$" required
                        class="mt-1 p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
             </div>
 

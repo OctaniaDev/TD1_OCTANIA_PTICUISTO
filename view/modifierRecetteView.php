@@ -29,7 +29,7 @@ if(isset($erreur))
 		</div>
 
 		<fieldset class="mb-4">
-			<legend class="text-bleu text-sm md:text-base">choisissez une categorie</legend>
+			<legend class="text-bleu text-sm md:text-base">Choisissez une categorie</legend>
 			<div class="flex gap-4">
 				<div>
 					<?php

@@ -24,9 +24,9 @@
 
     <form method="post" action="/index.php?action=modifier_mot_de_passe" class="mb-4 font-texte">
         <label for="nouveau_mot_de_passe" class="block mb-2">Nouveau mot de passe :</label>
-        <input type="password" name="nouveau_mot_de_passe" pattern=".{3,32}" required class="border p-2 mb-2 rounded">
+        <input type="password" name="nouveau_mot_de_passe" pattern="^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ \']{1,32}$" required class="border p-2 mb-2 rounded text-black">
         <label for="confirmation_mot_de_passe" class="block mb-2">Confirmer le nouveau mot de passe :</label>
-        <input type="password" name="confirmation_mot_de_passe" pattern=".{3,32}" required class="border p-2 mb-2 rounded">
+        <input type="password" name="confirmation_mot_de_passe" pattern="^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ \']{1,32}$" required class="border p-2 mb-2 rounded text-black">
         <input type="submit" name="modifier_mot_de_passe" value="Modifier le mot de passe"
             class="bg-bleu text-blanc px-4 py-2 rounded hover:bg-bleu-clair">
     </form>

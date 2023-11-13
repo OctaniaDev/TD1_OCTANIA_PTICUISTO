@@ -12,7 +12,7 @@
         <form enctype="multipart/form-data" method="post" action="/index.php?action=ajout_recette" class="mb-4">
             <div class="mb-4">
                 <label for="titre-recette" class="block text-sm md:text-base font-medium text-gray-600">Titre :</label>
-                <input id="titre-recette" type="text" name="titre_recette" placeholder="Entrez le titre de la recette" required
+                <input id="titre-recette" pattern="^[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\'\s]{1,240}$" type="text" name="titre_recette" placeholder="Entrez le titre de la recette" required
                     class="mt-1 p-2 md:p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
             </div>
             

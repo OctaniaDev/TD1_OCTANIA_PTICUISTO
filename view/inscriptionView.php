@@ -8,7 +8,9 @@
         <form method="post" action="./index.php?action=inscription">
             <div class="mb-6">
                 <label for="username" class="block text-sm font-medium text-gray-600">Nom :</label>
-                <input type="text" pattern="[a-zA-Z]{1,32}$" id="nom" name="nom" placeholder="Entrez votre nom" required><br>
+                <input type="text" pattern="[a-zA-Z]{1,32}$" id="nom" name="nom" placeholder="Entrez votre nom" required
+                        class="mt-1 p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
+                <br>
             </div>
             <div class="mb-6">
                 <label for="username" class="block text-sm font-medium text-gray-600">Prénom :</label>
@@ -26,14 +28,14 @@
 
             <div class="mb-6">
                 <label for="username" class="block text-sm font-medium text-gray-600">Pseudo :</label>
-                <input type="text" id="pseudo" name="pseudo" placeholder="Entrez votre pseudo" required
+                <input type="text" pattern=".{1,32}$" id="pseudo" name="pseudo" placeholder="Entrez votre pseudo" required
                        class="mt-1 p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
                 <br>
             </div>
 
             <div class="mb-6">
                 <label for="password" class="block text-sm font-medium text-gray-600">Mot de passe :</label>
-                <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required
+                <input type="password" pattern="^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ \']{1,32}$" id="password" name="password" placeholder="Entrez votre mot de passe" required
                     class="mt-1 p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
                 <br>
             </div>

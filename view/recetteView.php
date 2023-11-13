@@ -1,13 +1,13 @@
 <?php ob_start(); ?>
-<?php if ($_SESSION['connecter'] == 'oui'): ?>
-    <div class="container mx-auto my-8 p-8 bg-bleu text-blanc rounded shadow-md">
-        <h1 class="font-titre text-2xl mb-4">Liste de vos recettes</h1>
+
+<div class="container mx-auto my-8 p-8 bg-bleu text-blanc rounded shadow-md">
+<h1 class="font-titre text-2xl mb-4">Liste des recettes</h1>
+    <?php if ($_SESSION['connecter'] == 'oui'): ?>
         <button>
             <a href="/index.php?action=ajout_recette" class="bg-bleu-clair text-white rounded hover:bg-blue-600 mb-4 block px-4 py-2">Ajouter une recette</a>
         </button>
         </br>
     <?php endif; ?>
-
     <?php if (!empty($recettes)): ?>
         <?php if (isset($_SESSION['erreurSuppression'])): ?>
             <p style="color: red;">Erreur lors de la suppression d'une recette</p>
