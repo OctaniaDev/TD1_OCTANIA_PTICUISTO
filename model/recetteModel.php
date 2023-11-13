@@ -46,6 +46,13 @@ class RecetteModel {
         return $tab;
     }
 
+    public function recupererTousTAGS() {
+        $req = 'SELECT * FROM CUI_TAG';
+        $cur = preparerRequetePDO($this->connection, $req);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
+
     public function recupererIngredientsRecette($recId) {
         $req = 'SELECT * FROM CUI_INGREDIENT JOIN CUI_CONTENIR USING (ING_ID) WHERE REC_ID = :recId';
         $cur = preparerRequetePDO($this->connection, $req);
@@ -63,10 +70,18 @@ class RecetteModel {
     }
 
     public function insererIngredient($recId, $ingId) {
-        $req = "INSERT into  CUI_CONTENIR values (:recId, :ingId)";
+        $req = "INSERT into CUI_CONTENIR values (:recId, :ingId)";
         $cur = preparerRequetePDO($this->connection, $req);
         ajouterParamPDO($cur, ':recId', $recId);
         ajouterParamPDO($cur, ':ingId', $ingId);
+        return majDonneesPrepareesPDO($cur);
+    }
+
+    public function insererTag($recId, $tagId) {
+        $req = "INSERT into CUI_POSSEDER values (:recId, :tagId)";
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ':recId', $recId);
+        ajouterParamPDO($cur, ':tagId', $tagId);
         return majDonneesPrepareesPDO($cur);
     }
 
@@ -117,12 +132,13 @@ class RecetteModel {
     public function supprimerRecetteUtilisateur($recId, $utiId) {
         $res1 = $this->supprimerIngredients($recId, $utiId);
         $res2 = $this->supprimerTags($recId, $utiId);
+        $res3 = $this->supprimerCommentaire($recId, $utiId);
 
         $sql = "DELETE FROM CUI_RECETTE WHERE REC_ID = :recId and uti_id = :utiId";
         $cur = preparerRequetePDO($this->connection, $sql);
         ajouterParamPDO($cur, ':recId', $recId);
         ajouterParamPDO($cur, ':utiId', $utiId);
-        return $res1 && $res2 && majDonneesPrepareesPDO($cur);
+        return $res1 && $res2 && $res3 && majDonneesPrepareesPDO($cur);
     }
 
     public function supprimerIngredients($recId, $utiId) {
@@ -139,6 +155,13 @@ class RecetteModel {
         return majDonneesPrepareesPDO($cur);
     }
 
+    public function supprimerCommentaire($recId, $utiId) {
+        $sql = "DELETE FROM CUI_COMMENTAIRE WHERE recId = :recId";
+        $cur = preparerRequetePDO($this->connection, $sql);
+        ajouterParamPDO($cur, ':recId', $recId);
+        return majDonneesPrepareesPDO($cur);
+    }
+
     public function updateRecette($recId, $utiId, $titre, $contenu, $resume, $categorie, $image) {
         $req = "UPDATE CUI_RECETTE set CAT_ID = :categorie, REC_TITRE = :titre, REC_CONTENU = :contenu, REC_RESUME = :resume, REC_MODIFICATION = sysdate(), REC_STATUS = 2, REC_IMAGE = :image where REC_ID = :recId and UTI_ID = :utiId";
         $cur = preparerRequetePDO($this->connection, $req);
@@ -149,6 +172,18 @@ class RecetteModel {
         ajouterParamPDO($cur, ':recId', $recId);
         ajouterParamPDO($cur, ':utiId', $utiId);
         ajouterParamPDO($cur, ':image', $image);
+        return majDonneesPrepareesPDO($cur);
+    }
+
+    public function updateRecetteSansImage($recId, $utiId, $titre, $contenu, $resume, $categorie) {
+        $req = "UPDATE CUI_RECETTE set CAT_ID = :categorie, REC_TITRE = :titre, REC_CONTENU = :contenu, REC_RESUME = :resume, REC_MODIFICATION = sysdate(), REC_STATUS = 2 where REC_ID = :recId and UTI_ID = :utiId";
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ':categorie', $categorie);
+        ajouterParamPDO($cur, ':titre', $titre);
+        ajouterParamPDO($cur, ':contenu', $contenu);
+        ajouterParamPDO($cur, ':resume', $resume);
+        ajouterParamPDO($cur, ':recId', $recId);
+        ajouterParamPDO($cur, ':utiId', $utiId);
         return majDonneesPrepareesPDO($cur);
     }
 

@@ -47,7 +47,7 @@ class Admin {
     
 
     public function recupererToutesRecettes(){
-        $sql = "SELECT * from CUI_RECETTE WHERE rec_status = 2";
+        $sql = "SELECT * from CUI_RECETTE order by REC_STATUS desc";
         $cur = preparerRequetePDO($this->connection, $sql);
         LireDonneesPDOPreparee($cur,$tab);
         return $tab;

@@ -11,6 +11,7 @@ class AjoutRecetteController extends Controller {
 
     public function choix() {
 		$ingredients = $this->recuperIngredient();
+		$tags = $this->recuperTags();
 		if(!isset($_POST['titre_recette']) && $_SESSION['connecter'] == 'oui') {
 			require $GLOBALS['root'] . 'view/ajoutRecetteView.php';
 		} else {
@@ -32,26 +33,41 @@ class AjoutRecetteController extends Controller {
 		if(!isset($_POST['categorie_recette'])) return false;
 		if(!isset($_POST['ingredients_recette'])) return false;
 		if(empty($_FILES['image_recette']['name'])) return false;
-		//if(!isset($_POST['tags_recette'])) return false;
+		if(!isset($_POST['tags_recette'])) return false;
+
 		$recetteModel = new RecetteModel($this->connection);
 		$dossier = $GLOBALS['root'] . 'img/';
+
 		$fichier = basename($_FILES['image_recette']['name']);
 		$fichier = strtr($fichier,
 		'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
 		'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
 		$fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
 		move_uploaded_file($_FILES['image_recette']['tmp_name'], $dossier . $fichier);
-		$resRecette = $recetteModel->insererRecette($_POST['titre_recette'], $_POST['contenu_recette'], $_POST['resume_recette'], $_POST['categorie_recette'], $fichier);
+		
+		$resRecette = $recetteModel->insererRecette($_POST['titre_recette'], nl2br($_POST['contenu_recette']), $_POST['resume_recette'], $_POST['categorie_recette'], $fichier);
+
 		$recettesUtilisateur = $recetteModel->recupererRecettesUtilisateur($_SESSION['id_utilisateur']);
+
 		if(!isset($recettesUtilisateur[0]['REC_ID'])) return false;
+
 		foreach($_POST['ingredients_recette'] as $ingredient)
 			$resIngredients = $recetteModel->insererIngredient($recettesUtilisateur[0]['REC_ID'], $ingredient);
-		return $resRecette && $resIngredients;
+
+		foreach($_POST['tags_recette'] as $tag)
+			$restags = $recetteModel->insererTag($recettesUtilisateur[0]['REC_ID'], $tag);
+		
+		return $resRecette && $resIngredients && $restags;
 	}
 
 	public function recuperIngredient() {
 		$recetteModel = new RecetteModel($this->connection);
 		return $recetteModel->recupererTousIngredients();
+	}
+
+	public function recuperTags() {
+		$recetteModel = new RecetteModel($this->connection);
+		return $recetteModel->recupererTousTags();
 	}
 
 }

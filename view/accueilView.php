@@ -179,7 +179,7 @@
                             echo '<li class="flex mb-12 rounded p-4 bg-bleu">';
 
                             echo '<div class="flex-shrink-0 mr-4">';
-                            echo '<img src="' . $recettes[$i]['REC_IMAGE'] . '" alt="Image recette" class="w-16 h-16 object-cover">';
+                            echo '<img src="./img/' . $recettes[$i]['REC_IMAGE'] . '" alt="Image recette" class="w-16 h-16 object-cover">';
                             echo '</div>';
 
                             echo '<div>';

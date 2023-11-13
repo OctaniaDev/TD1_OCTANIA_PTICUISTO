@@ -15,16 +15,16 @@
                 <input id="titre-recette" type="text" name="titre_recette" placeholder="Entrez le titre de la recette" required
                     class="mt-1 p-2 md:p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
             </div>
-
+            
             <div class="mb-4">
-                <label for="contenu-recette" class="block text-sm md:text-base font-medium text-gray-600">Contenu :</label>
-                <textarea id="contenu-recette" name="contenu_recette" placeholder="Entrez le contenu de la recette" required
+                <label for="resume-recette" class="block text-sm md:text-base font-medium text-gray-600">Résumé :</label>
+                <textarea id="resume-recette" name="resume_recette" placeholder="Entrez le résumé de la recette" required
                     class="mt-1 p-2 md:p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50"></textarea>
             </div>
 
             <div class="mb-4">
-                <label for="resume-recette" class="block text-sm md:text-base font-medium text-gray-600">Résumé :</label>
-                <textarea id="resume-recette" name="resume_recette" placeholder="Entrez le résumé de la recette" required
+                <label for="contenu-recette" class="block text-sm md:text-base font-medium text-gray-600">Contenu :</label>
+                <textarea id="contenu-recette" name="contenu_recette" placeholder="Entrez le contenu de la recette" required
                     class="mt-1 p-2 md:p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50"></textarea>
             </div>
 
@@ -46,7 +46,8 @@
                 </div>
             </fieldset>
 
-            <div class="mb-4">
+            <div class="mb-4 overscroll-auto overflow-y-scroll h-96">
+				<p class="text-bleu text-sm md:text-base">Liste des ingredients</p>
                 <?php
                 if (!empty($ingredients)) {
                     foreach ($ingredients as $ingredient) {
@@ -59,7 +60,22 @@
                 ?>
             </div>
 
+			<div class="mb-4 overscroll-auto overflow-y-scroll h-96">
+				<p class="text-bleu text-sm md:text-base">Liste des tags</p>
+                <?php
+                if (!empty($tags)) {
+                    foreach ($tags as $tag) {
+                        echo '<div class="flex items-center mb-2">';
+                        echo '<input id="' . $tag['TAG_LIBELLE'] . '-recette" value="' . $tag['TAG_ID'] . '" type="checkbox" name="tags_recette[]">';
+                        echo '<label for="' . $tag['TAG_LIBELLE'] . '-recette" class="ml-2 text-sm md:text-base">' . $tag['TAG_LIBELLE'] . '</label>';
+                        echo '</div>';
+                    }
+                }
+                ?>
+            </div>
+
             <div class="mb-4">
+			<input type="hidden" name="MAX_FILE_SIZE" value="50000000">
                 <input placeholder="Choisir une image" type="file" id="image-recette" name="image_recette" accept="image/*"
                     class="p-2 md:p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
             </div>
