@@ -9,9 +9,6 @@
         </br>
     <?php endif; ?>
     <?php if (!empty($recettes)): ?>
-        <?php if (isset($_SESSION['erreurSuppression'])): ?>
-            <p style="color: red;">Erreur lors de la suppression d'une recette</p>
-        <?php endif; ?>
         <ul id="list-recette">
             <?php for ($i = 0; $i < 10; $i++): ?>
                 <?php if ($i < count($recettes)): ?>
