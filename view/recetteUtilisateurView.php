@@ -17,7 +17,7 @@
             <?php for ($i = 0; $i < 10; $i++): ?>
                 <?php if ($i < count($recettes)): ?>
                     <div class="mb-2 font-texte flex items-center bg-bleu-clair p-4">
-                        <img src="<?= $GLOBALS['root'] ?>img/<?= $recettes[$i]['REC_IMAGE'] ?>" alt="image de la recette"
+                        <img alt="image de la recette" src="<?= $GLOBALS['root'] ?>img/<?= $recettes[$i]['REC_IMAGE'] ?>" alt="image de la recette"
                             class="w-64 h-64 md:w-48 md:h-48 mr-20">
                         <div>
                             <li>
@@ -96,7 +96,7 @@
         for (let i = nbRecette; i < nbRecette + 10; i++) {
             if (i < recettes.length) {
                 plusDeRecette += '<div class="mb-2 font-texte flex items-center bg-bleu-clair p-4">' +
-                    '<img src="<?= $GLOBALS['root'] ?>img/' + recettes[i]['REC_IMAGE'] + '" alt="image de la recette" class="w-64 h-64 md:w-48 md:h-48 mr-20">' +
+                    '<img alt="image de la recette" src="<?= $GLOBALS['root'] ?>img/' + recettes[i]['REC_IMAGE'] + '" alt="image de la recette" class="w-64 h-64 md:w-48 md:h-48 mr-20">' +
                     '<div>' +
                     '<li>' +
                     '<h2><a href="./index.php?action=voir_recettes_compte&rec_id=' + recettes[i]['REC_ID'] + '">' + recettes[i]['REC_TITRE'] + '</a></h2>' +

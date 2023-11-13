@@ -10,7 +10,7 @@
             <?php for ($i = 0; $i < 10; $i++): ?>
                 <?php if ($i < count($recettes)): ?>
                     <div class="mb-2 font-texte flex items-center bg-bleu-clair p-4">
-                    <a class="mr-2" href="./index.php?action=voir_recettes&rec_id=<?= $recettes[$i]['REC_ID'] ?>"><img src="<?= $GLOBALS['root'] ?>img/<?= $recettes[$i]['REC_IMAGE'] ?>" alt="image de la recette" class="float-left mr-4 w-64 h-64 mr-2 md:w-48 md:h-48"></a>
+                    <a class="mr-2" href="./index.php?action=voir_recettes&rec_id=<?= $recettes[$i]['REC_ID'] ?>"><img alt="image de la recette" src="<?= $GLOBALS['root'] ?>img/<?= $recettes[$i]['REC_IMAGE'] ?>" alt="image de la recette" class="float-left mr-4 w-64 h-64 mr-2 md:w-48 md:h-48"></a>
                         <div>
                             <li>
                                 <h2 class="text-2xl underline  underline-offset-1"><a href="./index.php?action=voir_recettes_compte&rec_id=<?= $recettes[$i]['REC_ID'] ?>">
@@ -83,7 +83,7 @@
         for (let i = nbRecette; i < nbRecette + 10; i++) {
             if (i < recettes.length) {
                 plusDeRecette += '<div class="mb-2 font-texte flex flex-col md:flex-row mb-12 mt-12 rounded p-4 bg-bleu-clair">' +
-                    '<a class="mr-2" href="./index.php?action=voir_recettes&rec_id='+recettes[i]['REC_ID']+'"><img src="./img/'+recettes[i]['REC_IMAGE']+'" alt="image de la recette" class="float-left mr-4 w-64 h-64 mr-2 md:w-48 md:h-48"></a>' +
+                    '<a class="mr-2" href="./index.php?action=voir_recettes&rec_id='+recettes[i]['REC_ID']+'"><img alt="image de la recette" src="./img/'+recettes[i]['REC_IMAGE']+'" alt="image de la recette" class="float-left mr-4 w-64 h-64 mr-2 md:w-48 md:h-48"></a>' +
                     '<div class="flex flex-col">' +
                     '<h2 class="text-2xl underline  underline-offset-1"><a href="./index.php?action=voir_recettes&rec_id=' + recettes[i]['REC_ID'] + '">' + recettes[i]['REC_TITRE'] + '</a></h2>' +
                     '<p class="mt-4 mb-4 bg-yellow-500 text-white px-2 py-1 rounded w-16 text-center">' + recettes[i]['CAT_INTITULE'] + '</p>' +

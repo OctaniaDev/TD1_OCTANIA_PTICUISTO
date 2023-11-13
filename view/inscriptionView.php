@@ -7,27 +7,27 @@
 
         <form method="post" action="./index.php?action=inscription">
             <div class="mb-6">
-                <label for="username" class="block text-sm font-medium text-gray-600">Nom :</label>
+                <label for="nom" class="block text-sm font-medium text-gray-600">Nom :</label>
                 <input type="text" pattern="[a-zA-Z]{1,32}$" id="nom" name="nom" placeholder="Entrez votre nom" required
                         class="mt-1 p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
                 <br>
             </div>
             <div class="mb-6">
-                <label for="username" class="block text-sm font-medium text-gray-600">Prénom :</label>
+                <label for="prenom" class="block text-sm font-medium text-gray-600">Prénom :</label>
                 <input type="text" pattern="[a-zA-Z]{1,32}$" id="prenom" name="prenom" placeholder="Entrez votre prénom" required
                        class="mt-1 p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
                 <br>
             </div>
 
             <div class="mb-6">
-                <label for="username" class="block text-sm font-medium text-gray-600">Email :</label>
+                <label for="email" class="block text-sm font-medium text-gray-600">Email :</label>
                 <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" name="email" placeholder="Entrez votre email" required
                        class="mt-1 p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
                 <br>
             </div>
 
             <div class="mb-6">
-                <label for="username" class="block text-sm font-medium text-gray-600">Pseudo :</label>
+                <label for="pseudo" class="block text-sm font-medium text-gray-600">Pseudo :</label>
                 <input type="text" pattern=".{1,32}$" id="pseudo" name="pseudo" placeholder="Entrez votre pseudo" required
                        class="mt-1 p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
                 <br>
