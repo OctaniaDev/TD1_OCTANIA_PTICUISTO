@@ -28,7 +28,11 @@ class AdminController extends Controller {
                 } else if ($_GET['action'] == 'rendre_actif') {
                     $this->UserendreActif($_GET['user_id']);
                 } else if ($_GET['action'] == 'gestion_de_recette'){
-                    $this->afficherToutesRecettes();
+                    if(isset($_POST['motCherche'])){
+                        $this->afficherToutesRecettesParMot($_POST['motCherche']);
+                    } else {
+                        $this->afficherToutesRecettes();
+                    }
                 } else if ($_GET['action'] == 'refuser_recette'){
                     $this->UserefuserRecette($_GET['rec_id']);
                 } else if ($_GET['action'] == 'accepter_recette'){
@@ -138,6 +142,14 @@ class AdminController extends Controller {
             $accueilModel->modiferEdito(nl2br($_POST['edito']));
             echo '<script>location.replace("/index.php");</script>';
         }
+    }
+
+    public function afficherToutesRecettesParMot($motCherche){
+        $adminModel = new Admin($this->connection);
+        $recettes = $adminModel->filtrerRecetteParTitre($motCherche);
+        $recetteModel = new RecetteModel($this->connection);
+        $tags = $recetteModel->recupererTagsListRecette($recettes);
+        require $GLOBALS['root'] . 'view/gestionRecetteView.php';
     }
 
 }

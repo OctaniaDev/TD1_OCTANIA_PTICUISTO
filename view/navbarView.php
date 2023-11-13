@@ -1,3 +1,7 @@
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
 <div class="mx-auto h-20 bg-bleu-clair w-full mb-20 z-50">
 
     <nav class="border-gray-200">
@@ -219,10 +223,12 @@
                                                 stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                         </svg>
                                     </div>
+                                    <div class="ui-widget">
                                     <input type="text" name="motCherche" id="default-search"
                                         class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Rechercher un titre de recette" pattern="^[a-zA-Z'\s]{1,32}$" required>
-                                    <button type="submit"
+                                        placeholder="Rechercher un titre de recette" pattern="^[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\'\s]{1,240}$" required>
+                                    </div>
+                                        <button type="submit"
                                         class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Rechercher</button>
                                 </div>
                             </form>
@@ -326,10 +332,16 @@
         window.location.href = window.location.href;
     }
 </script>
-
-
-
-
-
-
+  <script>
+  $( function() {   
+    let tab = <?php echo json_encode($_SESSION['recettes'])?>;
+    let rec = [];
+    for(let i = 0; i<tab.length; i++){
+        rec[i] = tab[i]['REC_TITRE'];
+    }
+    $( "#default-search" ).autocomplete({
+      source: rec
+    });
+  } );
+  </script>
 <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>

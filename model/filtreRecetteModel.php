@@ -67,5 +67,19 @@ class filtreRecetteModel {
         return $tab;
     }
 
+    public function recupererNomRecettes() {
+        $req= "select REC_TITRE from CUI_RECETTE join CUI_CATEGORIE using(CAT_ID) where REC_STATUS = 1";
+        $cur = preparerRequetePDO($this->connection, $req);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
+    
+    public function recupererNomRecettesGlobal() {
+        $req= "select REC_TITRE from CUI_RECETTE";
+        $cur = preparerRequetePDO($this->connection, $req);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
+
 }
     ?>
