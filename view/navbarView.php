@@ -1,4 +1,4 @@
-<div class="mx-auto h-20 bg-bleu-clair w-full mb-20">
+<div class="mx-auto h-20 bg-bleu-clair w-full mb-20 z-50">
 
     <nav class="border-gray-200">
         <div class="container mx-auto flex flex-wrap items-center justify-between text-xl">
@@ -24,7 +24,7 @@
             </button>
 
 
-            <div class="hidden md:block w-full md:w-auto bg-bleu-clair"  id="mobile-menu">
+            <div class="hidden md:block w-full md:w-auto bg-bleu-clair z-50"  id="mobile-menu">
                 <ul class="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
                     <li>
                         <a href="./index.php"
