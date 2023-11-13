@@ -123,8 +123,13 @@ class AdminController extends Controller {
     }
 
     public function modiferEdito() {
+        $accueilModel = new AccueilModel($this->connection);
         if(!isset($_POST['edito'])) {
-
+            $edito = $accueilModel->recupererEdito();
+            require $GLOBALS['root'] . 'view/editoView.php';
+        } else {
+            $accueilModel->modiferEdito(nl2br($_POST['edito']));
+            echo '<script>location.replace("/index.php");</script>';
         }
     }
 
