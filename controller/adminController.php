@@ -39,6 +39,8 @@ class AdminController extends Controller {
                 $this->validerCommentaire($_GET['com_id']);
             } else if($_GET['action'] == 'supprimer_commentaire'){
                 $this->supprimerCommentaire($_GET['com_id']);
+            } else if($_GET['action'] == 'modifier_edito'){
+                $this->modiferEdito();
             }
         } else {
             echo '<script>location.replace("/index.php");</script>';
@@ -118,6 +120,12 @@ class AdminController extends Controller {
         $adminModel = new Admin($this->connection);
         $adminModel->supprimerCommentaire($comId);
         echo '<script>location.replace("/index.php?action=gestion_de_commentaire");</script>';
+    }
+
+    public function modiferEdito() {
+        if(!isset($_POST['edito'])) {
+
+        }
     }
 
 }
