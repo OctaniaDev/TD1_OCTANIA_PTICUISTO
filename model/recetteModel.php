@@ -39,6 +39,14 @@ class RecetteModel {
         return $tab;
     }
 
+    public function recupererRecetteSimpleAdmin($recId) {
+        $req = 'SELECT * FROM CUI_RECETTE JOIN CUI_CATEGORIE USING(CAT_ID) WHERE rec_id = :recId';
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ':recId', $recId);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
+
     public function recupererTousIngredients() {
         $req = 'SELECT * FROM CUI_INGREDIENT';
         $cur = preparerRequetePDO($this->connection, $req);

@@ -31,12 +31,13 @@ class ConnexionController extends controller {
             echo '<script>location.replace("/index.php");</script>';
             exit();
         } else {
-            echo "Nom d'utilisateur ou mot de passe incorrect.";
-            $this->getform();
+            $erreur = '<p class="text-red-500"> Nom d\'utilisateur ou mot de passe incorrect.</p>';
+            $this->getform($erreur);
+            
         }
     }
 
-    public function getform() {
+    public function getform($erreur = null) {
         require $GLOBALS['root'] . 'view/connexionView.php';
     }
 }

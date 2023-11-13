@@ -85,9 +85,11 @@ class AdminController extends Controller {
     }
 
     public function afficherRecetteDetails($recId){
-        $adminModel = new Admin($this->connection);
-        $tags = $adminModel->recupererTagsRecette($recId);
-        $recette = $adminModel->recupererRecetteDetails($recId);
+        $recetteModel = new RecetteModel($this->connection);
+        $recetteDetail = $recetteModel->recupererRecetteSimpleAdmin($recId);
+        $ingredients = $recetteModel->recupererIngredientsRecette($recId);
+        $commentaires = $recetteModel->recupererCommentairesRecette($recId);
+        $tags = $recetteModel->recupererTagsRecette($recId);
         require $GLOBALS['root'] . 'view/gestionRecetteDetailsView.php';
     }
 

@@ -8,7 +8,9 @@
         <form method="post" action="./index.php?action=inscription">
             <div class="mb-6">
                 <label for="username" class="block text-sm font-medium text-gray-600">Nom :</label>
-                <input type="text" pattern="[a-zA-Z]{1,32}$" id="nom" name="nom" placeholder="Entrez votre nom" required><br>
+                <input type="text" pattern="[a-zA-Z]{1,32}$" id="nom" name="nom" placeholder="Entrez votre nom" required
+                        class="mt-1 p-4 w-full border rounded-md focus:outline-none focus:border-bleu focus:ring focus:ring-bleu focus:ring-opacity-50">
+                <br>
             </div>
             <div class="mb-6">
                 <label for="username" class="block text-sm font-medium text-gray-600">Prénom :</label>

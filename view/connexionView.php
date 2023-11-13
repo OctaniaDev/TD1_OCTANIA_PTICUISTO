@@ -4,6 +4,11 @@
     <div class="text-center border rounded-md p-16 bg-blanc">
         <h1 class="text-5xl font-titre mb-8 text-bleu">Connexion</h1>
 
+        <?php if(isset($erreur)){
+            echo $erreur;
+        }
+        ?>
+
         <form method="post" action="./index.php?action=connexion" class="mb-8">
             <div class="mb-6">
                 <label for="username" class="block text-sm font-medium text-gray-600">Nom d'utilisateur :</label>
