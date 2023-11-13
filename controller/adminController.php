@@ -26,8 +26,16 @@ class AdminController extends Controller {
             } else if ($_GET['action'] == 'rendre_actif') {
                 $this->UserendreActif($_GET['user_id']);
             } else if ($_GET['action'] == 'gestion_de_recette'){
-                $this->afficherToutesRecettes();
+                if(isset($_GET['motCherche'])){
+                    echo ('dans le if');
+                    $this->afficherToutesRecettesParMot($_POST['motCherche']);
+                } else {
+                    echo ('pas dans le if');
+                    $this->afficherToutesRecettes();
+                }
             } else if ($_GET['action'] == 'refuser_recette'){
+                $this->UserefuserRecette($_GET['rec_id']);
+            }else if ($_GET['action'] == 'refuser_recette'){
                 $this->UserefuserRecette($_GET['rec_id']);
             } else if ($_GET['action'] == 'accepter_recette'){
                 $this->UseaccepterRecette($_GET['rec_id']);
@@ -118,6 +126,12 @@ class AdminController extends Controller {
         $adminModel = new Admin($this->connection);
         $adminModel->supprimerCommentaire($comId);
         echo '<script>location.replace("/index.php?action=gestion_de_commentaire");</script>';
+    }
+
+    public function afficherToutesRecettesParMot($motCherche){
+        $adminModel = new Admin($this->connection);
+        $recettes = $adminModel->filtrerRecetteParTitre($motCherche);
+        require $GLOBALS['root'] . 'view/gestionRecetteView.php';
     }
 
 }

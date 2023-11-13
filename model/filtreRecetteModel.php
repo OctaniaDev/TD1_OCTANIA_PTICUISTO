@@ -68,7 +68,7 @@ class filtreRecetteModel {
     }
 
     public function recupererNomRecettes() {
-        $req= "select REC_TITRE from CUI_RECETTE";
+        $req= "select REC_TITRE from CUI_RECETTE join CUI_CATEGORIE using(CAT_ID) where REC_STATUS = 1";
         $cur = preparerRequetePDO($this->connection, $req);
         LireDonneesPDOPreparee($cur, $tab);
         return $tab;

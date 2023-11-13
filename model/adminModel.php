@@ -122,4 +122,13 @@ class Admin {
         LireDonneesPDOPreparee($cur, $tab);
         return $tab;
     }
+
+    public function filtrerRecetteParTitre($motCherche){
+        $motCherche = "%" . $motCherche . "%";
+        $req = "SELECT * FROM CUI_RECETTE WHERE upper(trim(REC_TITRE)) LIKE upper(trim(:motCherche))";
+        $cur = preparerRequetePDO($this->connection, $req);
+        ajouterParamPDO($cur, ":motCherche", $motCherche);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
 }
