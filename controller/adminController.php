@@ -26,11 +26,9 @@ class AdminController extends Controller {
             } else if ($_GET['action'] == 'rendre_actif') {
                 $this->UserendreActif($_GET['user_id']);
             } else if ($_GET['action'] == 'gestion_de_recette'){
-                if(isset($_GET['motCherche'])){
-                    echo ('dans le if');
+                if(isset($_POST['motCherche'])){
                     $this->afficherToutesRecettesParMot($_POST['motCherche']);
                 } else {
-                    echo ('pas dans le if');
                     $this->afficherToutesRecettes();
                 }
             } else if ($_GET['action'] == 'refuser_recette'){

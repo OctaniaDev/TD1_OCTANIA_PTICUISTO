@@ -3,7 +3,7 @@
 <div class="container mx-auto my-8 p-8 bg-bleu text-blanc rounded shadow-md">
     <h1 class="text-4xl font-titre mb-4">Gestion de recettes</h1>
 
-    <form action="./index.php?action=gestion_de_recette" method="get">
+    <form action="./index.php?action=gestion_de_recette" method="post">
         <label for="default-search"
         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Rechercher un
         titre</label>
@@ -18,7 +18,7 @@
                 <div class="ui-widget">
                     <input type="text" name="motCherche" id="default-search"
                     class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Rechercher un titre de recette" pattern="^[a-zA-Z'\s]{1,32}$" required>
+                    placeholder="Rechercher un titre de recette" pattern="^[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\'\s]{1,240}$" required>
                 </div>
             <button type="submit"
             class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Rechercher</button>
