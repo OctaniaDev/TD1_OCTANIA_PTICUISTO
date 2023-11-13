@@ -27,6 +27,11 @@ if(!isset($_SESSION['tags'])){
     $_SESSION['tags'] = $filtreRecetteModel->recupererTousTags();
 }
 
+if(!isset($_SESSION['recettes'])){
+    $filtreRecetteModel = new FiltreRecetteModel($connection);
+    $_SESSION['recettes'] = $filtreRecetteModel->recupererNomRecettes();
+}
+
 $path = explode("&", $_SERVER['REQUEST_URI']);
 $currentPath = $path[0];
 

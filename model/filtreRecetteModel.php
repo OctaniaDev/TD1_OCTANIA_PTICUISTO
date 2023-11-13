@@ -63,7 +63,16 @@ class filtreRecetteModel {
         $req = "SELECT * from CUI_RECETTE join CUI_CATEGORIE using(CAT_ID) where rec_id IN ( select rec_id from CUI_POSSEDER where tag_id = :tag and REC_STATUS = 1) ";
         $cur = preparerRequetePDO($this->connection, $req);
         ajouterParamPDO($cur, ':tag', $tag);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
     }
 
+    public function recupererNomRecettes() {
+        $req= "select REC_TITRE from CUI_RECETTE";
+        $cur = preparerRequetePDO($this->connection, $req);
+        LireDonneesPDOPreparee($cur, $tab);
+        return $tab;
+    }
+    
 }
     ?>
