@@ -9,22 +9,22 @@
     <ul class="items">
         <li>
             <div class="item">
-                <img src="./img/img_attente.jpg">
+                <img src="./img/img_attente.jpg" alt="image du carousel">
             </div>
         </li>
         <li>
             <div class="item">
-                <img src="./img/img_attente2.jpg">
+                <img src="./img/img_attente2.jpg" alt="image du carousel">
             </div>
         </li>
         <li>
             <div class="item">
-                <img src="./img/img_attente3.jpg">
+                <img src="./img/img_attente3.jpg" alt="image du carousel">
             </div>
         </li>
         <li>
             <div class="item">
-                <img src="./img/img_attente4.jpg">
+                <img src="./img/img_attente4.jpg" alt="image du carousel">
             </div>
         </li>
     </ul>
@@ -36,156 +36,40 @@
     </div>
 
     <div class="arrow left-arrow" onclick="changeSlide(-1)">&#8249;</div>
-<div class="arrow right-arrow" onclick="changeSlide(1)">&#8250;</div>
+    <div class="arrow right-arrow" onclick="changeSlide(1)">&#8250;</div>
 </div>
 
-<style>
-    /*Carousel*/
-    .carrousel {
-        overflow: hidden;
-        position: relative;
-        text-align: center;
-        padding: 1em 0;
-        max-width: 1050px;
-        margin: auto;
-    }
 
-    .carrousel .items {
-        width: 1000%;
-        margin-bottom: 20px;
-        list-style: none;
-        position: relative;
-        -webkit-transition: transform 0.5s;
-        -moz-transition: transform 0.5s;
-        -o-transition: transform 0.5s;
-        transition: transform 0.5s;
-    }
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var radioButtons = document.querySelectorAll('.carrousel input[type="radio"]');
+        var currentRadio = 0;
 
-    .carrousel .items li {
-        width: 25%;
-        position: relative;
-        float: left;
-    }
+        var interval = setInterval(function() {
+            radioButtons[currentRadio].checked = false;
+            currentRadio = (currentRadio + 1) % radioButtons.length;
+            radioButtons[currentRadio].checked = true;
 
-    .carrousel li div {
-        margin: auto;
-        color: #666666;
-        font-size: 1.3em;
-        font-weight: bold;
-    }
-
-    .carrousel li img {
-        max-width: 50%;
-        object-fit: cover;
-        vertical-align: middle;
-    }
-
-    .carrousel li div.item {
-        color: #777777;
-        display: block;
-        max-width: 100%;
-        max-height: 500px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .name {
-        font-weight: bold;
-    }
-
-    .description {
-        font-weight: 100;
-    }
-
-    .carrousel .itemsNavigation {
-        margin-top: 20px;
-        display: block;
-        list-style: none;
-        text-align: center;
-        bottom: 1em;
-        position: relative;
-        width: 104px;
-        left: 50%;
-        margin-left: -52px;
-    }
-
-    .carrousel input {
-        display: none;
-    }
-
-    .carrousel .itemsNavigation label {
-        float: left;
-        margin: 6px;
-        display: block;
-        height: 10px;
-        width: 10px;
-        -webkit-border-radius: 50%;
-        border-radius: 50%;
-        border: solid 2px #2980b9;
-        font-size: 0;
-    }
-
-    #radio-1:checked~.items {
-        transform: translateX(0%);
-    }
-
-    #radio-2:checked~.items {
-        transform: translateX(-25%);
-    }
-
-    #radio-3:checked~.items {
-        transform: translateX(-50%);
-    }
-
-    #radio-4:checked~.items {
-        transform: translateX(-75%);
-    }
-
-    .carrousel .itemsNavigation label:hover {
-        cursor: pointer;
-    }
-
-    .carrousel #radio-1:checked~.itemsNavigation label#dotForRadio-1,
-    .carrousel #radio-2:checked~.itemsNavigation label#dotForRadio-2,
-    .carrousel #radio-3:checked~.itemsNavigation label#dotForRadio-3,
-    .carrousel #radio-4:checked~.itemsNavigation label#dotForRadio-4 {
-        background: #2980b9;
-    }
-
-    .carrousel .arrow {
-    position: absolute;
-    top: 40%;
-    font-size: 100px;
-    cursor: pointer;
-    color: #2980b9;
-    user-select: none;
-}
-
-.carrousel .left-arrow {
-    left: 10px;
-}
-
-.carrousel .right-arrow {
-    right: 10px;
-}
+            var event = new Event('change');
+            radioButtons[currentRadio].dispatchEvent(event);
+        }, 5000);
 
 
-    @media (max-width: 768px) {
-    .carrousel li div.item {
-        margin-left: 50px;
-        width: 60%;
-    }
-    .carrousel .arrow {
-        top: 10%;
-    }
+        var interval = setInterval(function() {
+            changeSlide(1);
+        }, 5000);
 
-    @media (max-width: 480px) {
-        .carrousel li div.item {
-            margin-left: 50px;
-            width: 60%;
-        }
-    }
-</style>
+        window.changeSlide = function(increment) {
+            radioButtons[currentRadio].checked = false;
+            currentRadio = (currentRadio + increment + radioButtons.length) % radioButtons.length;
+            radioButtons[currentRadio].checked = true;
+
+            var event = new Event('change');
+            radioButtons[currentRadio].dispatchEvent(event);
+        };
+    });
+</script>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -227,20 +111,20 @@
                 <h2 class="text-2xl font-titre text-center mb-6 text-bleu">Les dernières recettes</h2>
                 <?php
                 if (!empty($recettes)) {
-                    echo '<ul id="list-recette" class="bg-white">'; ?>
-                    <?php for ($i = 0; $i < 3; $i++): ?>
-                        <?php if ($i < count($recettes)): ?>
+                    echo '<div id="list-recette" class="bg-white">'; ?>
+                    <?php for ($i = 0; $i < 3; $i++) : ?>
+                        <?php if ($i < count($recettes)) : ?>
                             <div class="mb-2 font-texte flex flex-col md:flex-row mt-12 rounded p-4 md:h-56 bg-bleu-clair">
-                            <a class="mr-2" href="./index.php?action=voir_recettes&rec_id=<?= $recettes[$i]['REC_ID'] ?>"><img src="<?= $GLOBALS['root'] ?>img/<?= $recettes[$i]['REC_IMAGE'] ?>" alt="image de la recette" class="float-left mr-4 w-64 h-64 mr-2 md:w-48 md:h-48"></a>
+                                <a class="mr-2" href="./index.php?action=voir_recettes&rec_id=<?= $recettes[$i]['REC_ID'] ?>"><img src="<?= $GLOBALS['root'] ?>img/<?= $recettes[$i]['REC_IMAGE'] ?>" alt="image de la recette" class="float-left mr-4 w-64 h-64 mr-2 md:w-48 md:h-48"></a>
                                 <div class="flex flex-col md:mb-20">
                                     <h2 class="text-2xl underline  underline-offset-1"><a href="./index.php?action=voir_recettes&rec_id=<?= $recettes[$i]['REC_ID'] ?>"><?= $recettes[$i]['REC_TITRE'] ?></a></h2>
                                     <p class="mt-4 mb-4 bg-yellow-500 text-white px-2 py-1 rounded w-16 text-center"><?= $recettes[$i]['CAT_INTITULE'] ?></p>
                                     <p class=""><?= $recettes[$i]['REC_RESUME'] ?></p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <?php $j = 0; ?>
-                                        <?php while (count($tags) > $j): ?>
-                                            <?php if ($recettes[$i]['REC_ID'] == $tags[$j]['REC_ID']): ?>
-                                                <form action="./index.php?action=voir_recettes_par_tag" method="post">
+                                        <?php while (count($tags) > $j) : ?>
+                                            <?php if ($recettes[$i]['REC_ID'] == $tags[$j]['REC_ID']) : ?>
+                                                <form action="./index.php?action=voir_recettes_par_tag&tag_id=" method="post">
                                                     <button type="submit" name="tag" value="<?= $tags[$j]['TAG_ID'] ?>" class="bg-bleu text-white px-2 py-1 rounded"><?= $tags[$j]['TAG_LIBELLE'] ?></button>
                                                 </form>
                                             <?php endif; ?>
@@ -251,7 +135,7 @@
                             </div>
                         <?php endif; ?>
                     <?php endfor; ?>
-                    <?php echo '</ul>';
+                <?php echo '</div>';
                 } else {
                     echo '<p class="text-center text-red-950">Aucune recette trouvée</p>';
                 }

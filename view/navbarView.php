@@ -13,7 +13,7 @@
             <!-- BOUTON POUR LE MENU BURGER -->
             <button data-collapse-toggle="mobile-menu" type="button"
                 class="md:hidden ml-3 text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center"
-                aria-controls="mobile-menu-2" aria-expanded="false">
+                aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -54,7 +54,7 @@
                         <!-- Dropdown menu -->
                         <div id="dropdownNavbar"
                             class="hidden bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-4 w-44">
-                            <ul class="py-1" aria-labelledby="dropdownLargeButton">
+                            <ul class="py-1">
                                 <li>
                                     <button data-modal-target="modal-cat" data-modal-toggle="modal-cat"
                                         class="block text-gray-700 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-800"
@@ -103,7 +103,7 @@
                             <!-- Dropdown menu -->
                             <div id="dropdownNavbarCompte"
                                 class="hidden bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-4 w-44">
-                                <ul class="py-1" aria-labelledby="dropdownLargeButton">
+                                <ul class="py-1">
                                     <?php if (isset($_SESSION['type_utilisateur']) && ($_SESSION['type_utilisateur'] == 'editeur' || $_SESSION['type_utilisateur'] == 'admin')): ?>
                                         <li>
                                             <a href="./index.php?action=compte"
@@ -143,7 +143,6 @@
             </div>
 
 
-            <!-- ------------------------------------------------------------ -->
 
             <!-- Main modal -->
             <div id="modal-cat" tabindex="-1" aria-hidden="true"
@@ -266,8 +265,8 @@
                                 foreach ($_SESSION['ingredients'] as $ingredient) {
                                     echo ('
                                         <div class="flex items-center">
-                                        <input id="' . $ingredient['ING_ID'] . '" type="checkbox" name="ingredients_recette[]" value="' . $ingredient['ING_ID'] . '" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="' . $ingredient['ING_ID'] . '" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">' . $ingredient['ING_INTITULE'] . '</label>
+                                        <input id="ing-' . $ingredient['ING_ID'] . '" type="checkbox" name="ingredients_recette[]" value="' . $ingredient['ING_ID'] . '" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="ing-' . $ingredient['ING_ID'] . '" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">' . $ingredient['ING_INTITULE'] . '</label>
                                         </div>
                                     ');
                                 }
@@ -309,8 +308,8 @@
                                 foreach ($_SESSION['tags'] as $tag) {
                                     echo ('
                                         <div class="flex items-center">
-                                        <input id="' . $tag['TAG_ID'] . '" type="checkbox" name="tags[]" value="' . $tag['TAG_ID'] . '" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="' . $tag['TAG_ID'] . '" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">' . $tag['TAG_LIBELLE'] . '</label>
+                                        <input id="tag-' . $tag['TAG_ID'] . '" type="checkbox" name="tags[]" value="' . $tag['TAG_ID'] . '" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="tag-' . $tag['TAG_ID'] . '" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">' . $tag['TAG_LIBELLE'] . '</label>
                                         </div>
                                     ');
                                 }
