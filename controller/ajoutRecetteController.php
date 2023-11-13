@@ -12,17 +12,20 @@ class AjoutRecetteController extends Controller {
     public function choix() {
 		$ingredients = $this->recuperIngredient();
 		$tags = $this->recuperTags();
-		if(!isset($_POST['titre_recette']) && $_SESSION['connecter'] == 'oui') {
-			require $GLOBALS['root'] . 'view/ajoutRecetteView.php';
-		} else {
-			if($this->ajouterRecette())
-            	echo '<script>location.replace("/index.php");</script>';
-			else {
-				$erreur = '<p class=" text-red-500">Une erreur s\'est produite</p>';
+		if($_SESSION['connecter'] == 'oui') {
+			if(!isset($_POST['titre_recette'])) {
 				require $GLOBALS['root'] . 'view/ajoutRecetteView.php';
-				$erreur = null;
+			} else {
+				if($this->ajouterRecette())
+					echo '<script>location.replace("/index.php");</script>';
+				else {
+					$erreur = '<p class=" text-red-500">Une erreur s\'est produite</p>';
+					require $GLOBALS['root'] . 'view/ajoutRecetteView.php';
+					$erreur = null;
+				}
 			}
-		}
+		} else 
+			echo '<script>location.replace("/index.php");</script>';
 		$this->connection = null;
 	}
 

@@ -22,7 +22,8 @@ class ModifierRecetteController extends Controller {
                 } else {
 					$this->afficherRecetteUtilisateur($_GET['rec_id'], $_SESSION['id_utilisateur']);
 				}
-            }
+            } else 
+				echo '<script>location.replace("/index.php");</script>';
         }
 	}
 
