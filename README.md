@@ -43,7 +43,6 @@ Si un administrateur constate un comportement inapproprié ou des violations ré
 
 ## 7. Infos complémentaires <a name="infos"></a>
 
-Vous pouvez connecter en admin avec le nom d'utilisateur admin et le mot de passe admin.
 Pour pouvoir vous connecter à la bdd, il faut ajouter un fichier nommer param_connexion_etu.php.
 Celui ci doit être réaliser comme ce ci :
 ```php
