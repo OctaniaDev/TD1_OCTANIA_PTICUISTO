@@ -34,6 +34,9 @@
         <label for="radio-3" id="dotForRadio-3"></label>
         <label for="radio-4" id="dotForRadio-4"></label>
     </div>
+
+    <div class="arrow left-arrow" onclick="changeSlide(-1)">&#8249;</div>
+<div class="arrow right-arrow" onclick="changeSlide(1)">&#8250;</div>
 </div>
 
 <style>
@@ -149,11 +152,31 @@
         background: #2980b9;
     }
 
+    .carrousel .arrow {
+    position: absolute;
+    top: 40%;
+    font-size: 100px;
+    cursor: pointer;
+    color: #2980b9;
+    user-select: none;
+}
+
+.carrousel .left-arrow {
+    left: 10px;
+}
+
+.carrousel .right-arrow {
+    right: 10px;
+}
+
+
     @media (max-width: 768px) {
     .carrousel li div.item {
         margin-left: 50px;
         width: 60%;
     }
+    .carrousel .arrow {
+        top: 10%;
     }
 
     @media (max-width: 480px) {
@@ -163,6 +186,37 @@
         }
     }
 </style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var radioButtons = document.querySelectorAll('.carrousel input[type="radio"]');
+        var currentRadio = 0;
+
+        var interval = setInterval(function () {
+            radioButtons[currentRadio].checked = false;
+            currentRadio = (currentRadio + 1) % radioButtons.length;
+            radioButtons[currentRadio].checked = true;
+
+            var event = new Event('change');
+            radioButtons[currentRadio].dispatchEvent(event);
+        }, 5000);
+
+
+        var interval = setInterval(function () {
+            changeSlide(1);
+        }, 5000);
+
+        window.changeSlide = function (increment) {
+            radioButtons[currentRadio].checked = false;
+            currentRadio = (currentRadio + increment + radioButtons.length) % radioButtons.length;
+            radioButtons[currentRadio].checked = true;
+
+            var event = new Event('change');
+            radioButtons[currentRadio].dispatchEvent(event);
+        };
+    });
+</script>
+
 
 
 
