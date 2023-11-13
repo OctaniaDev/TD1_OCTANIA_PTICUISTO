@@ -46,12 +46,13 @@ Si un administrateur constate un comportement inapproprié ou des violations ré
 Vous pouvez connecter en admin avec le nom d'utilisateur admin et le mot de passe admin.
 Pour pouvoir vous connecter à la bdd, il faut ajouter un fichier nommer param_connexion_etu.php.
 Celui ci doit être réaliser comme ce ci :
+```php
 <?php
     $db_username = "nom d'utilisateur";
     $db_password = "mdp de la bdd"; 
     $db = "le base de donnees";
 ?>
-
+```
 Nous espérons que vous apprécierez votre expérience sur Cuisto. N'hésitez pas à explorer, partager vos recettes, interagir avec d'autres amateurs de cuisine et contribuer à une communauté de passionnés de la gastronomie.
 
 Bon appétit et bonne cuisine! 🍽️👩‍🍳👨‍🍳
